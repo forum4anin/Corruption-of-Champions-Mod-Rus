@@ -5,7 +5,7 @@ Corruption-of-Champions-Mod
 
 NOTE: CONTAINS MATURE CONTENT. ADULTS ONLY
 
-CoC Mod source from Kitteh6660. Original game by Fenoxo.  
+CoC Mod source from Kitteh6660. Original game by Fenoxo. Rus text by Fergusson.
 Modifications by everyone at:  
 https://github.com/Kitteh6660/Corruption-of-Champions-Mod/graphs/contributors
 
@@ -31,4 +31,4 @@ To build run:
 
 If you want to skip the tests (not recommended):
 
-`ant release` or `ant debug`
+`ant release` or `ant debug.
