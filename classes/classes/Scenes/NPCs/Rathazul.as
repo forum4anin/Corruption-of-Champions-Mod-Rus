@@ -736,8 +736,8 @@ public function craftEbonweaveArmor():void {
 		} else {
 			outputText("\n\nYou realize you're still a bit short on Ebonbloom for the robes and armor, but you can have indecent robes or undergarments made instead.");
 			addDisabledButton(0, "Armor", "You must have 10 Ebonblooms to make it.");
-			addDisabledButton(1, "Jacket", "You must have 10 Ebonblooms to make it.");
-			addDisabledButton(2, "Robe", "You must have 10 Ebonblooms to make it.");
+			addDisabledButton(1, "Jacket", "You must have 8 Ebonblooms to make it.");
+			addDisabledButton(2, "Robe", "You must have 8 Ebonblooms to make it.");
 		}
 		if (player.hasItem(useables.EBNFLWR, 8)) {
 			addButton(3, "IndecRo", craftEbonweaveArmorForReal, 3, null, null, armors.EBNIROB.description);
@@ -751,8 +751,8 @@ public function craftEbonweaveArmor():void {
 		addButton(8, "Thong", craftEbonweaveArmorForReal, 7, null, null, undergarments.EBNTHNG.description);
 		addButton(9, "Loincloth", craftEbonweaveArmorForReal, 8, null, null, undergarments.EBNCLTH.description);
 		//Rune Armor
-		addButton(10, "RuneStrap", craftEbonweaveArmorForReal, 9, null, null, undergarments.EBNRJCK.description);
-		addButton(11, "RuneThong", craftEbonweaveArmorForReal, 10, null, null, undergarments.EBNRTNG.description);
+		addButton(10, "RuneStrap", craftEbonweaveArmorForReal, 9, null, null, undergarments.EBNRTNG.description);
+		addButton(11, "RuneThong", craftEbonweaveArmorForReal, 10, null, null, undergarments.EBNRJCK.description);
 		addButton(12, "RuneCloth", craftEbonweaveArmorForReal, 11, null, null, undergarments.EBNRLNC.description);
 		
 		addButton(14, "Nevermind", rathazulArmorMenu);
@@ -950,8 +950,8 @@ private function rathazulShopMenu(dyes:Boolean = false, philters:Boolean = false
 
 //Hair dyes
 private function buyDyes():void {
-	spriteSelect(SpriteDb.s_rathazul);
 	clearOutput();
+	spriteSelect(SpriteDb.s_rathazul);
 	outputText(images.showImage("rathazul-vials"));
 	outputText("Rathazul smiles and pulls forth several vials of colored fluids.  Which type of dye would you like?");
 	outputText("\n\n<b>(-50 Gems)</b>");
@@ -998,10 +998,10 @@ private function buyDyeNevermind():void {
 
 //Skin Oils
 private function buyOils(fromPage2:Boolean = false):void {
+	clearOutput();
 	spriteSelect(SpriteDb.s_rathazul);
-	outputText(images.showImage("rathazul-oils"));
 	if (!fromPage2) {
-		clearOutput();
+		outputText(images.showImage("rathazul-oils"));
 		outputText("Rathazul smiles and pulls forth several bottles of skin oil.  Which type of skin oil would you like?");
 		outputText("\n\n<b>(-50 Gems)</b>");
 		player.gems -= 50;
@@ -1029,6 +1029,7 @@ private function buyOils(fromPage2:Boolean = false):void {
 	addButton(14, "Nevermind", buyOilNevermind);
 }
 private function buyOilsPage2():void {
+	clearOutput();
 	if (mixologyXP() < 80) { // Failsafe, should probably never happen (Stadler76)
 		buyOils(true);
 		return;
@@ -1059,8 +1060,8 @@ private function buyOilsPage2():void {
 	addButton(14, "Nevermind", buyOilNevermind);
 }
 private function buyOil(oil:ItemType):void {
-	spriteSelect(SpriteDb.s_rathazul);
 	clearOutput();
+	spriteSelect(SpriteDb.s_rathazul);
 	outputText(images.showImage("item-oil"));
 	inventory.takeItem(oil, returnToRathazulMenu);
 	statScreenRefresh();
@@ -1068,8 +1069,8 @@ private function buyOil(oil:ItemType):void {
 	player.addStatusValue(StatusEffects.MetRathazul, 2, 1);
 }
 private function buyOilNevermind():void {
-	spriteSelect(SpriteDb.s_rathazul);
 	clearOutput();
+	spriteSelect(SpriteDb.s_rathazul);
 	outputText("You change your mind about the oil, and Rathazul returns your gems.\n\n<b>(+50 Gems)</b>");
 	player.gems += 50;
 	statScreenRefresh();
@@ -1078,8 +1079,8 @@ private function buyOilNevermind():void {
 
 //Body Lotions
 private function buyLotions():void {
-	spriteSelect(SpriteDb.s_rathazul);
 	clearOutput();
+	spriteSelect(SpriteDb.s_rathazul);
 	outputText(images.showImage("rathazul-vials"));
 	outputText("Rathazul smiles and pulls forth several vials of body lotion.  Which type of body lotion would you like?");
 	outputText("\n\n<b>(-50 Gems)</b>");
@@ -1093,8 +1094,8 @@ private function buyLotions():void {
 	addButton(14, "Nevermind", buyLotionNevermind);
 }
 private function buyLotion(lotion:ItemType):void {
-	spriteSelect(SpriteDb.s_rathazul);
 	clearOutput();
+	spriteSelect(SpriteDb.s_rathazul);
 	outputText(images.showImage("item-lotion"));
 	inventory.takeItem(lotion, returnToRathazulMenu);
 	statScreenRefresh();
@@ -1102,8 +1103,8 @@ private function buyLotion(lotion:ItemType):void {
 	player.addStatusValue(StatusEffects.MetRathazul, 2, 1);
 }
 private function buyLotionNevermind():void {
-	spriteSelect(SpriteDb.s_rathazul);
 	clearOutput();
+	spriteSelect(SpriteDb.s_rathazul);
 	outputText("You change your mind about the lotion, and Rathazul returns your gems.\n\n<b>(+50 Gems)</b>");
 	player.gems += 50;
 	statScreenRefresh();
@@ -1112,8 +1113,8 @@ private function buyLotionNevermind():void {
 
 //Reducto
 private function buyReducto():void {
-	spriteSelect(SpriteDb.s_rathazul);
 	clearOutput();
+	spriteSelect(SpriteDb.s_rathazul);
 	var cost:int = (flags[kFLAGS.AMILY_MET_RATHAZUL] >= 2 ? 50 : 100);
 	if (player.gems >= cost) {
 		outputText("Rathazul hands you the Reducto with a nod before returning to his work.\n\n");
@@ -1132,13 +1133,13 @@ private function buyReducto():void {
 
 //GroPlus
 private function buyGroPlus():void {
-	spriteSelect(SpriteDb.s_rathazul);
 	clearOutput();
+	spriteSelect(SpriteDb.s_rathazul);
 	var cost:int = (flags[kFLAGS.AMILY_MET_RATHAZUL] >= 2 ? 50 : 100);
 	if (player.gems >= cost) {
+		outputText(images.showImage("item-groPlus"));
 		outputText("Rathazul hands you the GroPlus with a nod before returning to his work.\n\n");
 		player.gems -= cost;
-		outputText(images.showImage("item-groPlus"));
 		inventory.takeItem(consumables.GROPLUS, returnToRathazulMenu);
 		statScreenRefresh();
 		addMixologyXP(4);
@@ -1164,8 +1165,8 @@ private function buyPuritySomething(item:ItemType):void {
 // PURIFY
 //------------
 private function purifySomething():void {
-	spriteSelect(SpriteDb.s_rathazul);
 	clearOutput();
+	spriteSelect(SpriteDb.s_rathazul);
 	outputText("Rathazul asks, \"<i>What would you like me to purify?</i>\"");
 	menu();
 	//Item purification offer
