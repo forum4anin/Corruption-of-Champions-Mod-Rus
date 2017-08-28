@@ -736,8 +736,8 @@ public function craftEbonweaveArmor():void {
 		} else {
 			outputText("\n\nYou realize you're still a bit short on Ebonbloom for the robes and armor, but you can have indecent robes or undergarments made instead.");
 			addDisabledButton(0, "Armor", "You must have 10 Ebonblooms to make it.");
-			addDisabledButton(1, "Jacket", "You must have 8 Ebonblooms to make it.");
-			addDisabledButton(2, "Robe", "You must have 8 Ebonblooms to make it.");
+			addDisabledButton(1, "Jacket", "You must have 10 Ebonblooms to make it.");
+			addDisabledButton(2, "Robe", "You must have 10 Ebonblooms to make it.");
 		}
 		if (player.hasItem(useables.EBNFLWR, 8)) {
 			addButton(3, "IndecRo", craftEbonweaveArmorForReal, 3, null, null, armors.EBNIROB.description);
@@ -751,8 +751,8 @@ public function craftEbonweaveArmor():void {
 		addButton(8, "Thong", craftEbonweaveArmorForReal, 7, null, null, undergarments.EBNTHNG.description);
 		addButton(9, "Loincloth", craftEbonweaveArmorForReal, 8, null, null, undergarments.EBNCLTH.description);
 		//Rune Armor
-		addButton(10, "RuneStrap", craftEbonweaveArmorForReal, 9, null, null, undergarments.EBNRTNG.description);
-		addButton(11, "RuneThong", craftEbonweaveArmorForReal, 10, null, null, undergarments.EBNRJCK.description);
+		addButton(10, "RuneStrap", craftEbonweaveArmorForReal, 9, null, null, undergarments.EBNRJCK.description);
+		addButton(11, "RuneThong", craftEbonweaveArmorForReal, 10, null, null, undergarments.EBNRTNG.description);
 		addButton(12, "RuneCloth", craftEbonweaveArmorForReal, 11, null, null, undergarments.EBNRLNC.description);
 		
 		addButton(14, "Nevermind", rathazulArmorMenu);
