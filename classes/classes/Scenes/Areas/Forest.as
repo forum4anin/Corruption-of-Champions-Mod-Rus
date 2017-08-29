@@ -127,10 +127,10 @@ import classes.Scenes.API.FnHelpers;
 			if (player.hasKeyItem("Dangerous Plants") >= 0 && player.inte / 2 > rand(50)) {
 				trace("TENTACLE'S AVOIDED DUE TO BOOK!");
 				outputText(images.showImage("item-dPlants"));
-				outputText("Using the knowledge contained in your 'Dangerous Plants' book, you determine a tentacle beast's lair is nearby, do you continue?  If not you could return to camp.\n\n");
+				outputText("Используя знания из книги 'Опасные растения', ты решаешь, что поблизости находится логовище опасного зверя, идти дальше? В противном случае ты можешь вернуться в лагерь.\n\n");
 				menu();
-				addButton(0, "Continue", tentacleBeastScene.encounter);
-				addButton(4, "Leave", camp.returnToCampUseOneHour);
+				addButton(0, "Дальше", tentacleBeastScene.encounter);
+				addButton(4, "Уйти", camp.returnToCampUseOneHour);
 			} else {
 				tentacleBeastScene.encounter();
 			}
@@ -139,38 +139,39 @@ import classes.Scenes.API.FnHelpers;
 
 		public function tripOnARoot():void {
 			outputText(images.showImage("minomob-falling"));
-			outputText("You trip on an exposed root, scraping yourself somewhat, but otherwise the hour is uneventful.");
+			outputText("Твоя нога попала в выступивший корень, и ты падаешь, при этом сильно поцарапавшись - за исключением этого события, оставшийся час обошелся без приключений.");
 			player.takeDamage(10);
 			doNext(camp.returnToCampUseOneHour);
 		}
 
 		public function findTruffle():void {
 			outputText(images.showImage("item-pigTruffle"));
-			outputText("You spot something unusual. Taking a closer look, it's definitely a truffle of some sort. ");
+			outputText("В лесу ты натыкаешься на кое-что необычное. При более близком рассмотрении, становится понятно, что это трюфель необычного вида. ");
 			inventory.takeItem(consumables.PIGTRUF, camp.returnToCampUseOneHour);
 		}
 		public function findHPill():void {
 			outputText(images.showImage("item-hPill"));
-			outputText("You find a pill stamped with the letter 'H' discarded on the ground. ");
+			outputText("В лесу ты находишь валяющуюся на земле пилюлю, со штампом 'H'. ");
 			inventory.takeItem(consumables.H_PILL, camp.returnToCampUseOneHour);
 		}
 		public function findChitin():void {
 			outputText(images.showImage("item-bChitin"));
-			outputText("You find a large piece of insectile carapace obscured in the ferns to your left. It's mostly black with a thin border of bright yellow along the outer edge. There's still a fair portion of yellow fuzz clinging to the chitinous shard. It feels strong and flexible - maybe someone can make something of it. ");
+			outputText("В лесу ты находишь крупный кусок хитиновой оболочки, скрытый в кустах папоротника слева от тебя. Кусок почти весь черный с желтоватой кромкой по краю. На котором все еще осталась значительная часть желтого меха, цепляющегося к хитиновому обломку. ");
+			if (player.statusEffectv2(StatusEffects.MetRathazul) == 0) outputText("Похоже он крепкий и гибкий - может даже тебе попадется кто-нибудь, кто сможет что-нибудь из него сделать. ");
 			inventory.takeItem(useables.B_CHITN, camp.returnToCampUseOneHour);
 		}
 		public function forestWalkFn():void {
 			outputText(images.showImage("area-forest"));
 			if (player.cor < 80) {
-				outputText("You enjoy a peaceful walk in the woods, it gives you time to think.");
+				outputText("Лес дает тебе хорошо насладиться прогулкой, и это предоставляет время пораскинуть мозгами.");
 				dynStats("tou", .5, "int", 1);
 			}
 			else {
-				outputText("As you wander in the forest, you keep ");
-				if (player.gender == 1) outputText("stroking your half-erect " + player.multiCockDescriptLight() + " as you daydream about fucking all kinds of women, from weeping tight virgins to lustful succubi with gaping, drooling fuck-holes.");
-				if (player.gender == 2) outputText("idly toying with your " + player.vaginaDescript(0) + " as you daydream about getting fucked by all kinds of monstrous cocks, from minotaurs' thick, smelly dongs to demons' towering, bumpy pleasure-rods.");
-				if (player.gender == 3) outputText("stroking alternatively your " + player.multiCockDescriptLight() + " and your " + player.vaginaDescript(0) + " as you daydream about fucking all kinds of women, from weeping tight virgins to lustful succubi with gaping, drooling fuck-holes, before, or while, getting fucked by various monstrous cocks, from minotaurs' thick, smelly dongs to demons' towering, bumpy pleasure-rods.");
-				if (player.gender == 0) outputText("daydreaming about sex-demons with huge sexual attributes, and how you could please them.");
+				outputText("Ты слоняешься по лесу, постоянно ");
+				if (player.gender == 1) outputText("наяривая свой полуэрегированный " + player.multiCockDescriptLight() + ", пока тем временем перед тобой возникают видения, как ты совокупляешься с самками всех видов, от рыдающих тугих девственниц до полных страсти женщин-суккубов с широко раскрытыми, истекающими дырками.");
+				if (player.gender == 2) outputText("играясь лениво своей " + player.vaginaDescript(0) + "ой, пока тем временем перед тобой возникают видения, как в тебя входят чудовищные отростки всех видов, от толстых ароматных минотаврьих молотов до вздымающихся бугристых демонических жезлов удовольствия.");
+				if (player.gender == 3) outputText("наяривая поочередно свой " + player.multiCockDescriptLight() + " с " + player.vaginaDescript(0) + "ой, пока тем временем перед тобой возникают видения, как about fucking all kinds of women, from weeping tight virgins to lustful succubi with gaping, drooling fuck-holes, before, or while, getting fucked by various monstrous cocks, from minotaurs' thick, smelly dongs to demons' towering, bumpy pleasure-rods.");
+				if (player.gender == 0) outputText("представляя возникающих перед тобой демонов с большущими секс органами, с самыми различными способами их удовлетворения.");
 				outputText("");
 				dynStats("tou", .5, "lib", .25, "lus", player.lib / 5);
 			}
@@ -180,10 +181,10 @@ import classes.Scenes.API.FnHelpers;
 
 		public function marbleVsImp():void {
 			clearOutput();
-			outputText("While you're moving through the trees, you suddenly hear yelling ahead, followed by a crash and a scream as an imp comes flying at high speed through the foliage and impacts a nearby tree.  The small demon slowly slides down the tree before landing at the base, still.  A moment later, a familiar-looking cow-girl steps through the bushes brandishing a huge two-handed hammer with an angry look on her face.");
+			outputText("Во время твоего продвижения по лесу, спереди до тебя внезапно доносятся вопль; Cо звуком удара, последовавшим за ним и криком, когда бес пролетая на высокой скорости через листву, находит посадочную полосу у соседнего дерева. Маленький демон медленно скатывается по дереву перед тем, как сползти к его корневищу, и все же... Мгновение спустя знакомая коровка переступает через кустарники, размахивая с сердитым взглядом огромным двуручным молотом.");
 			outputText(images.showImage("monster-marble"));
-			outputText("\n\nShe goes up to the imp, and kicks it once.  Satisfied that the creature isn't moving, she turns around to face you and gives you a smile.  \"<i>Sorry about that, but I prefer to take care of these buggers quickly.  If they get the chance to call on their friends, they can actually become a nuisance.</i>\"  She disappears back into the foliage briefly before reappearing holding two large pile of logs under her arms, with a fire axe and her hammer strapped to her back.  \"<i>I'm gathering firewood for the farm, as you can see; what brings you to the forest, sweetie?</i>\"  You inform her that you're just exploring.");
-			outputText("\n\nShe gives a wistful sigh. \"<i>I haven't really explored much since getting to the farm.  Between the jobs Whitney gives me, keeping in practice with my hammer, milking to make sure I don't get too full, cooking, and beauty sleep, I don't get a lot of free time to do much else.</i>\"  She sighs again.  \"<i>Well, I need to get this back, so I'll see you later!</i>\"");
+			outputText("\n\nОна подходит к бесу и разок пинает его. Удовлетворившись тем, что существо больше не шевелится, она оборачивается, чтобы встретиться с тобой лицом и улыбнуться. \"<i>Сожалею, что тебе пришлось это видеть, но я предпочитаю сразу браться за этих пидорасов. Если у них появляется шанс позвать своих дружков, то они могут стать довольно большой неприятностью.</i>\" Она обратно исчезает в листве прямо перед тем, как вновь появиться, держа под подмышками две большие груды бревен, с пожарным топором и своим молотом закрепленными на спине. \"<i>Как ты видишь, я собираю дрова для Фермы; что привело тебя в лес, сладость?</i>\" Ты говоришь ей, что лишь исследуешь местность.");
+			outputText("\n\nОна делает задумчивый вздох. \"<i>Вообще-то я не исследовала много с тех пор, как пришла на Ферму. Между делами, что дает мне Уитни, остается время на практику с моим молотом, доения, чтобы моя грудь наверняка не стала слишком неподъемна, приготовления еды и сна; у меня не хватает свободного времени сделать еще многое.</i>\" Она вздыхает снова. \"<i>Ну ладно, мне еще нужно отнести все это назад, так что увидимся позже!</i>\"");
 			//end event
 			doNext(camp.returnToCampUseOneHour);
 		}
