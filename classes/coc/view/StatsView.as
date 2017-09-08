@@ -102,31 +102,31 @@ public class StatsView extends Block {
 			defaultTextFormat: LABEL_FORMAT
 		});
 		coreStatsText = addTextField({
-			text: 'Core stats:',
+			text: 'Главная инфо',
 			defaultTextFormat: LABEL_FORMAT
 		},{before:1});
-		addElement(strBar = new StatBar({statName: "Strength:"}));
-		addElement(touBar = new StatBar({statName: "Toughness:"}));
-		addElement(speBar = new StatBar({statName: "Speed:"}));
-		addElement(intBar = new StatBar({statName: "Intelligence:"}));
+		addElement(strBar = new StatBar({statName: "Сила:"}));
+		addElement(touBar = new StatBar({statName: "Стойкость:"}));
+		addElement(speBar = new StatBar({statName: "Скорость:"}));
+		addElement(intBar = new StatBar({statName: "Интеллект:"}));
 		/* [INTERMOD: xianxia]
 		addElement(wisBar = new StatBar({statName: "Wisdom:"}));
 		 */
-		addElement(libBar = new StatBar({statName: "Libido:", maxValue: 100}));
-		addElement(senBar = new StatBar({statName: "Sensitivity:", maxValue: 100}));
-		addElement(corBar = new StatBar({statName: "Corruption:", maxValue: 100}));
+		addElement(libBar = new StatBar({statName: "Влечение:", maxValue: 100}));
+		addElement(senBar = new StatBar({statName: "Нежность:", maxValue: 100}));
+		addElement(corBar = new StatBar({statName: "Разврат:", maxValue: 100}));
 		combatStatsText = addTextField({
-			text: 'Combat stats',
+			text: 'Боевая инфо',
 			defaultTextFormat: LABEL_FORMAT
 		},{before:1});
 		addElement(hpBar = new StatBar({
-			statName: "HP:",
+			statName: "ОЗ:",
 			barColor: '#00ff00',
 			bgColor : '#ff0000',
 			showMax : true
 		}));
 		addElement(lustBar = new StatBar({
-			statName   : "Lust:",
+			statName   : "Страсть:",
 			minBarColor: '#ff0000',
 			hasMinBar  : true,
 			showMax    : true
@@ -138,7 +138,7 @@ public class StatsView extends Block {
 		}));
 		*/
 		addElement(fatigueBar = new StatBar({
-			statName: "Fatigue:"
+			statName: "Усталость:"
 		}));
 		/* [INTERMOD: xianxia]
 		addElement(manaBar = new StatBar({
@@ -153,34 +153,34 @@ public class StatsView extends Block {
 		}));
 		*/
 		addElement(hungerBar = new StatBar({
-			statName: "Satiety:",
+			statName: "Сытость:",
 			showMax : true
 		}));
 		addElement(esteemBar = new StatBar({
-			statName: "Self Esteem:",
+			statName: "Самолюбие:",
 			showMax : true
 		}));
 		addElement(willBar = new StatBar({
-			statName: "Willpower:",
+			statName: "Сила воли:",
 			showMax : true
 		}));
 		addElement(obeyBar = new StatBar({
-			statName: "Obedience:",
+			statName: "Покорность:",
 			showMax : true
 		}));
 		advancementText = addTextField({
-			text:'Advancement',
+			text:'Прогресс',
 			defaultTextFormat: LABEL_FORMAT
 		},{before:1});
 		addElement(levelBar = new StatBar({
-			statName: "Level:",
+			statName: "Уровень:",
 			hasBar  : false
 		}));
 		addElement(xpBar = new StatBar({
-			statName: "XP:"
+			statName: "Опыт:"
 		}));
 		addElement(gemsBar = new StatBar({
-			statName: "Gems:",
+			statName: "Камн(ей):",
 			hasBar: false
 		}));
 		/* [INTERMOD: xianxia]
@@ -190,7 +190,7 @@ public class StatsView extends Block {
 		}));
 		*/
 		timeText = addTextField({
-			htmlText: '<u>Day#: 0</u>\nTime: 00:00',
+			htmlText: '<u>День#: 0</u>\nВремя: 00:00',
 			defaultTextFormat: TIME_FORMAT
 		},{before:1});
 		///////////////////////////
@@ -305,7 +305,7 @@ public class StatsView extends Block {
 	public function refreshStats(game:CoC):void {
 		var player:Player            = game.player;
 		var maxes:Object      = player.getAllMaxStats();
-		nameText.htmlText     = "<b>Name: " + player.short + "</b>";
+		nameText.htmlText     = "<b>Имя: " + player.short + "</b>";
 		strBar.maxValue       = maxes.str;
 		strBar.value          = player.str;
 		touBar.maxValue       = maxes.tou;
@@ -353,7 +353,7 @@ public class StatsView extends Block {
 		spiritstonesBar.visible       = !inPrison;
 		*/
 		if (inPrison) {
-			advancementText.htmlText = "<b>Prison Stats</b>";
+			advancementText.htmlText = "<b>Тюремная инфо</b>";
 			esteemBar.maxValue       = 100;
 			esteemBar.value          = player.esteem;
 			willBar.maxValue         = 100;
@@ -361,7 +361,7 @@ public class StatsView extends Block {
 			obeyBar.maxValue         = 100;
 			obeyBar.value            = player.obey;
 		} else {
-			advancementText.htmlText = "<b>Advancement</b>";
+			advancementText.htmlText = "<b>Прогресс</b>";
 			levelBar.value           = player.level;
 			if (player.level < kGAMECLASS.levelCap) {
 				xpBar.maxValue = player.requiredXP();
@@ -387,10 +387,10 @@ public class StatsView extends Block {
 			ampm = "";
 		} else {
 			hrs  = (hours % 12 == 0) ? "12" : "" + (hours % 12);
-			ampm = hours < 12 ? "am" : "pm";
+			ampm = hours < 12 ? "AM" : "PM";
 		}
-		timeText.htmlText = "<u>Day#: " + game.model.time.days + "</u>"+
-						"\nTime: " + hrs + ":" + minutesDisplay + ampm;
+		timeText.htmlText = "<u>День: " + game.model.time.days + "</u>"+
+						"\nВремя: " + hrs + ":" + minutesDisplay + ampm;
 
 		invalidateLayout();
 	}
