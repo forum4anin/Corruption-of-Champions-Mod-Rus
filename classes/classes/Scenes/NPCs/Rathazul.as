@@ -366,43 +366,43 @@ private function rathazulWorkOffer():Boolean {
 		return true;
 	}
 	if (totalOffers > 0) {
-		outputText("Will you take him up on an offer or leave?");
+		outputText("Примешь ли ты его сделку или же уйдешь?");
 		//In camp has no time passage if left.
 		menu();
 		var button:int = 5; //After the 8th button, the menus will dynamically fill in.
 		//Armour sub-menu
 		if (showArmorMenu)
-			addButton(0, "Craft", rathazulArmorMenu, null, null, null, "Ask Rathazul to craft something for you.");
+			addButton(0, "Создать", rathazulArmorMenu, null, null, null, "Ask Rathazul to craft something for you.");
 		else
-			addButtonDisabled(0, "Craft", "You don't have sufficient materials that can be crafted.");
+			addButtonDisabled(0, "Создать", "You don't have sufficient materials that can be crafted.");
 		//Shop sub-menu
 		if (dyes || philters || reductos)
-			addButton(1, "Shop", rathazulShopMenu, dyes, philters, reductos, "Check Rathazul's wares.");
+			addButton(1, "Лавка", rathazulShopMenu, dyes, philters, reductos, "Check Rathazul's wares.");
 		else
-			addButtonDisabled(1, "Shop", "You can't afford anything Rathazul has to offer.");
+			addButtonDisabled(1, "Лавка", "You can't afford anything Rathazul has to offer.");
 		//Purification sub-menu
 		if (purify) {
-			addButton(2, "Purify", purifySomething, null, null, null, "Ask him to purify any tainted potions.\n\nCost: 20 Gems.");
+			addButton(2, "Очистить", purifySomething, null, null, null, "Ask him to purify any tainted potions.\n\nЦена: 20 Камней.");
 		}
 		else {
-			addButtonDisabled(2, "Purify", "You don't have any items that can be purified.");
+			addButtonDisabled(2, "Очистить", "You don't have any items that can be purified.");
 		}
 		//Alchemy sub-menu
 		if (alchemy) {
-			addButton(3, "Alchemy", rathazulAlchemyMenu, null, null, null, "Have Rathazul make something out of the ingredients you carry.");
+			addButton(3, "Алхимия", rathazulAlchemyMenu, null, null, null, "Have Rathazul make something out of the ingredients you carry.");
 		}
 		//Silly Mode: Straight-up kill Rathazul (He'll revive, this is silly mode. Just, no longer a follower)
 		//I blame the Wikia Discord chat for this, they egged me on
 		if (silly() && player.hasStatusEffect(StatusEffects.CampRathazul)) {
-			addButton(4, "Flirt", getThatRatAss, null, null, null, "Try to score with Rathazul.");
+			addButton(4, "Флирт", getThatRatAss, null, null, null, "Try to score with Rathazul.");
 		}
 		//These will be filled in.
-		if (lethiciteDefense != null) addButton(button++, "Lethicite", lethiciteDefense, null, null, null, "Ask him if he can make use of that lethicite you've obtained from Marae.");
+		if (lethiciteDefense != null) addButton(button++, "Летицит", lethiciteDefense, null, null, null, "Ask him if he can make use of that lethicite you've obtained from Marae.");
 
 		if (player.hasStatusEffect(StatusEffects.CampRathazul))
-			addButton(14,"Leave", camp.campFollowers);
+			addButton(14,"Уйти", camp.campFollowers);
 		else
-			addButton(14, "Leave", camp.returnToCampUseOneHour);
+			addButton(14, "Уйти", camp.returnToCampUseOneHour);
 		return true;
 	}
 	return false;
@@ -417,42 +417,42 @@ public function rathazulArmorMenu():void {
 	outputText("Which crafting project would you like to pursue with Rathazul?");
 	menu();
 	if (player.hasItem(useables.GREENGL, 5)) {
-		addButton(0, "GelArmor", craftOozeArmor);
+		addButton(0, "Гелевая", craftOozeArmor);
 	} else {
-		addDisabledButton(0, "GelArmor", "He can make armor using 5 clumps of green gel.");
+		addDisabledButton(0, "Гелевая", "He can make armor using 5 clumps of green gel.");
 	}
 	if (player.hasItem(useables.B_CHITN, 5)) {
-		addButton(1, "BeeArmor", craftCarapace);
+		addButton(1, "Хитиновая", craftCarapace);
 	} else {
-		addDisabledButton(1, "BeeArmor", "He can make armor using 5 shards of chitinous plating.");
+		addDisabledButton(1, "Хитиновая", "He can make armor using 5 shards of chitinous plating.");
 	}
 	if (player.hasItem(useables.T_SSILK) && flags[kFLAGS.RATHAZUL_SILK_ARMOR_COUNTDOWN] + flags[kFLAGS.RATHAZUL_SILK_ARMOR_TYPE] == 0) {
-		addButton(2, "SpiderSilk", craftSilkArmor);
+		addButton(2, "Шелковая", craftSilkArmor);
 	} else {
-		addDisabledButton(2, "SpiderSilk", "He can make armor or clothes using tough spider-silk.");
+		addDisabledButton(2, "Шелковая", "He can make armor or clothes using tough spider-silk.");
 	}
 	if (player.hasItem(useables.D_SCALE, 2)) {
-		addButton(3, "Dragonscale", craftDragonscaleArmor);
+		addButton(3, "Чешуйчатая", craftDragonscaleArmor);
 	} else {
-		addDisabledButton(3, "Dragonscale", "He can make armor or clothes using dragonscales.");
+		addDisabledButton(3, "Чешуйчатая", "He can make armor or clothes using dragonscales.");
 	}
 	if (player.hasItem(useables.LETHITE, 5) && player.hasItem(weapons.W_STAFF, 1)) {
-		addButton(4, "Lethicite", craftLethiciteStaff);
+		addButton(4, "Летицитовая", craftLethiciteStaff);
 	} else {
-		addDisabledButton(4, "Lethicite", "He can upgrade your wizard's staff if you bring him 5 chunks of lethicite.");
+		addDisabledButton(4, "Летицитовая", "He can upgrade your wizard's staff if you bring him 5 chunks of lethicite.");
 	}
 	if (player.hasKeyItem("Tentacled Bark Plates") >= 0) {
-		addButton(5, "T.Bark Armor", craftMaraeArmor, false);
+		addButton(5, "Неряшливая", craftMaraeArmor, false);
 	} // no disabled button - you'll get directions when you'll get bark plates
 	if (player.hasKeyItem("Divine Bark Plates") >= 0) {
-		addButton(6, "D.Bark Armor", craftMaraeArmor, true);
+		addButton(6, "Божественная", craftMaraeArmor, true);
 	} // no disabled button - you'll get directions when you'll get bark plates
 	if (player.hasItem(useables.EBNFLWR, 3)) {
-		addButton(7, "Ebonbloom", craftEbonweaveArmor);
+		addButton(7, "Эбенблумовая", craftEbonweaveArmor);
 	} else {
-		addDisabledButton(7, "Ebonbloom", "He can make armor or clothes using Ebonblooms.\n\nCost: 500 Gems");
+		addDisabledButton(7, "Эбенблумовая", "He can make armor or clothes using Ebonblooms.\n\nЦена: 500 Камней");
 	}
-	addButton(14, "Back", returnToRathazulMenu);
+	addButton(14, "Назад", returnToRathazulMenu);
 }
 
 private function craftOozeArmor():void {
@@ -469,6 +469,7 @@ private function craftOozeArmor():void {
 private function craftCarapace():void {
 	spriteSelect(SpriteDb.s_rathazul);
 	clearOutput();
+	outputText(images.showImage("item-chitinArmor"));
 	outputText("The rat takes the scales and works on his bench for an hour while you wait.  Once he has finished, Rathazul is beaming with pride, \"<i>I think you'll be pleased. Go ahead and take a look.</i>\"\n\nHe hands you the armor.  ");
 	outputText("The plates shine and shimmer like black steel.  He has used the yellow chitin to add accents and embroidery to the plates with a level of detail and craftsmanship rarely seen back home. A yellow fur neck lining has been fashioned from hairs found on the pieces.  The armor includes a breastplate, shoulder guards, full arm guards, and knee high boots.  You notice there are no pants.  As you turn to ask him where the pants are, you see him scratching his head and hastily rustling in drawers.  He mutters under his breath, \"<i>I'm sorry, I'm sorry, I got so focused on working on the pauldrons that I forgot to make any leg coverings!  Here, this should look good with it, and it won't restrict your movements.</i>\"  He hands you a silken loincloth");
 	if (player.mf("m", "f") == "f") outputText(" with stockings and garters");
@@ -477,7 +478,6 @@ private function craftCarapace():void {
 	if (player.biggestTitSize() >= 8) outputText("Your " + player.biggestBreastSizeDescript() + " barely fit into the breastplate, leaving you displaying a large amount of jiggling cleavage.\n\n");
 	player.destroyItems(useables.B_CHITN, 5);
 	player.addStatusValue(StatusEffects.MetRathazul, 2, 1);
-	outputText(images.showImage("item-chitinArmor"));
 	inventory.takeItem(armors.BEEARMR, returnToRathazulMenu);
 }
 
@@ -524,16 +524,16 @@ private function commissionSilkArmorForReal():void {
 	outputText("You sort 500 gems into a pouch and toss them to Rathazul, along with the rest of the webbing.  The wizened alchemist snaps the items out of the air with lightning-fast movements and goes to work immediately.  He bustles about with enormous energy, invigorated by the challenging task before him.  It seems Rathazul has completely forgotten about you, but as you turn to leave, he calls out, \"<i>What did you want me to make?  A mage's robe or some nigh-impenetrable armor?  Or undergarments if you want.</i>\"\n\n");
 	menu();
 	if (player.hasItem(useables.T_SSILK, 5)) {
-		addButton(0, "Armor", chooseArmorOrRobes, 1, null, null, armors.SSARMOR.description);
-		addButton(1, "Robes", chooseArmorOrRobes, 2, null, null, armors.SS_ROBE.description);
+		addButton(0, "Броня", chooseArmorOrRobes, 1, null, null, armors.SSARMOR.description);
+		addButton(1, "Мантия", chooseArmorOrRobes, 2, null, null, armors.SS_ROBE.description);
 	} else {
-		addDisabledButton(0, "Armor", "You must have 5 bundles of silk to make it.");
-		addDisabledButton(1, "Robes", "You must have 5 bundles of silk to make it.");
+		addDisabledButton(0, "Броня", "You must have 5 bundles of silk to make it.");
+		addDisabledButton(1, "Мантия", "You must have 5 bundles of silk to make it.");
 	}
-	addButton(2, "Bra", chooseArmorOrRobes, 3, null, null, undergarments.SS_BRA.description);
-	addButton(3, "Panties", chooseArmorOrRobes, 4, null, null, undergarments.SSPANTY.description);
-	addButton(4, "Loincloth", chooseArmorOrRobes, 5, null, null, undergarments.SS_LOIN.description);
-	addButton(14, "Nevermind", declineSilkArmorCommish);
+	addButton(2, "Лифчик", chooseArmorOrRobes, 3, null, null, undergarments.SS_BRA.description);
+	addButton(3, "Трусики", chooseArmorOrRobes, 4, null, null, undergarments.SSPANTY.description);
+	addButton(4, "Повязка", chooseArmorOrRobes, 5, null, null, undergarments.SS_LOIN.description);
+	addButton(14, "Неважно", declineSilkArmorCommish);
 }
 private function declineSilkArmorCommish():void {
 	spriteSelect(SpriteDb.s_rathazul);
@@ -626,17 +626,17 @@ private function craftDragonscaleArmor():void {
 	outputText("The rat looks at the sheets of dragon scales you're carrying and says, \"<i>I could work these into armor. Or if you want, undergarments. I have the necessary supplies.</i>\"");
 	menu();
 	if (player.hasItem(useables.D_SCALE, 5)) {
-		addButton(0, "Armor", craftDragonscaleArmorForReal, 0, null, null, armors.DSCLARM.description);
-		addButton(1, "Robe", craftDragonscaleArmorForReal, 1, null, null, armors.DSCLROB.description);
+		addButton(0, "Броня", craftDragonscaleArmorForReal, 0, null, null, armors.DSCLARM.description);
+		addButton(1, "Мантия", craftDragonscaleArmorForReal, 1, null, null, armors.DSCLROB.description);
 	} else {
 		outputText("\n\nYou realize you're still a bit short on dragonscales for the armor but you can have undergarments made instead.");
-		addDisabledButton(0, "Armor", "You must have 5 sheets of dragonscales to make it.");
-		addDisabledButton(1, "Robes", "You must have 5 sheets of dragonscales to make it.");
+		addDisabledButton(0, "Броня", "You must have 5 sheets of dragonscales to make it.");
+		addDisabledButton(1, "Мантия", "You must have 5 sheets of dragonscales to make it.");
 	}
-	addButton(2, "Bra", craftDragonscaleArmorForReal, 2, null, null, undergarments.DS_BRA.description);
-	addButton(3, "Thong", craftDragonscaleArmorForReal, 3, null, null, undergarments.DSTHONG.description);
-	addButton(4, "Loincloth", craftDragonscaleArmorForReal, 4, null, null, undergarments.DS_LOIN.description);
-	addButton(14, "Nevermind", rathazulArmorMenu);
+	addButton(2, "Лифчик", craftDragonscaleArmorForReal, 2, null, null, undergarments.DS_BRA.description);
+	addButton(3, "Танга", craftDragonscaleArmorForReal, 3, null, null, undergarments.DSTHONG.description);
+	addButton(4, "Повязка", craftDragonscaleArmorForReal, 4, null, null, undergarments.DS_LOIN.description);
+	addButton(14, "Неважно", rathazulArmorMenu);
 }
 private function craftDragonscaleArmorForReal(type:int = 0):void {
 	spriteSelect(SpriteDb.s_rathazul);
@@ -697,7 +697,7 @@ public function craftLethiciteStaff():void {
 		outputText("You present Rathazul the Wizard's Staff and pieces of Lethicite. He sets the staff aside and looks over the Lethicite in awe. You stifle a laugh at his expression. You'd think he'd never seen pieces Lethicite before. He jumps at your noise, nearly dropping the Lethicite in the process. He scrambles to keep them in his paws and looks up at you once they're secured against his chest. \"<i>Right,</i>\" he breathes. \"<i>I will see what I can do.</i>\" He then grabs the staff and ushers away, leaving you to sit and wait for him to be done.");
 		outputText("\n\nAn hour of worrying noises and concerning clouds of smoke later, and Rathazul comes back to you, covered in purple dust. He tries to shake some of it off, but gets cut short by coughing. You pat his back and ask if he's okay.\n\n\"<i>Fine, fine,</i>\" he mumbles in reply. \"<i>Just fine... Nothing a thorough washing can't resolve.</i>\" He holds out the staff for you. \"<i>Here. I was able to infuse the Lethicite with the staff. Be careful with it. I'm not making a new one until I clear out my lungs.</i>\"\n\nAs soon as you take the staff, he turns away and begins to head toward the river, grumbling to himself.");
 		menu();
-		addButton(0,"Next",takethatStuff);
+		addButton(0,"Далее",takethatStuff);
 }
 			
 private function takethatStuff():void {
@@ -730,32 +730,32 @@ public function craftEbonweaveArmor():void {
 	else {
 		menu();
 		if (player.hasItem(useables.EBNFLWR, 10)) {
-			addButton(0, "Armor", craftEbonweaveArmorForReal, 0, null, null, armors.EBNARMR.description);
-			addButton(1, "Jacket", craftEbonweaveArmorForReal, 1, null, null, armors.EBNJACK.description);
-			addButton(2, "Robe", craftEbonweaveArmorForReal, 2, null, null, armors.EBNROBE.description);
+			addButton(0, "Броня", craftEbonweaveArmorForReal, 0, null, null, armors.EBNARMR.description);
+			addButton(1, "Куртка", craftEbonweaveArmorForReal, 1, null, null, armors.EBNJACK.description);
+			addButton(2, "Мантия", craftEbonweaveArmorForReal, 2, null, null, armors.EBNROBE.description);
 		} else {
 			outputText("\n\nYou realize you're still a bit short on Ebonbloom for the robes and armor, but you can have indecent robes or undergarments made instead.");
-			addDisabledButton(0, "Armor", "You must have 10 Ebonblooms to make it.");
-			addDisabledButton(1, "Jacket", "You must have 10 Ebonblooms to make it.");
-			addDisabledButton(2, "Robe", "You must have 10 Ebonblooms to make it.");
+			addDisabledButton(0, "Броня", "You must have 10 Ebonblooms to make it.");
+			addDisabledButton(1, "Куртка", "You must have 10 Ebonblooms to make it.");
+			addDisabledButton(2, "Мантия", "You must have 10 Ebonblooms to make it.");
 		}
 		if (player.hasItem(useables.EBNFLWR, 8)) {
-			addButton(3, "IndecRo", craftEbonweaveArmorForReal, 3, null, null, armors.EBNIROB.description);
+			addButton(3, "Откр.мантия", craftEbonweaveArmorForReal, 3, null, null, armors.EBNIROB.description);
 		} else {
 			outputText("\n\nYou realize you're still a bit short on Ebonbloom for the indecent robes, but you can have undergarments made instead.");
-			addDisabledButton(3, "IndecRo", "You must have 8 Ebonbloom to make it.");
+			addDisabledButton(3, "Откр.мантия", "You must have 8 Ebonbloom to make it.");
 		}
-		addButton(5, "Vest", craftEbonweaveArmorForReal, 4, null, null, undergarments.EBNVEST.description);
-		addButton(6, "Corset", craftEbonweaveArmorForReal, 5, null, null, undergarments.EBNCRST.description);
-		addButton(7, "Jockstrap", craftEbonweaveArmorForReal, 6, null, null, undergarments.EBNJOCK.description);
-		addButton(8, "Thong", craftEbonweaveArmorForReal, 7, null, null, undergarments.EBNTHNG.description);
-		addButton(9, "Loincloth", craftEbonweaveArmorForReal, 8, null, null, undergarments.EBNCLTH.description);
+		addButton(5, "Жилет", craftEbonweaveArmorForReal, 4, null, null, undergarments.EBNVEST.description);
+		addButton(6, "Корсет", craftEbonweaveArmorForReal, 5, null, null, undergarments.EBNCRST.description);
+		addButton(7, "Суспензорий", craftEbonweaveArmorForReal, 6, null, null, undergarments.EBNJOCK.description);
+		addButton(8, "Танга", craftEbonweaveArmorForReal, 7, null, null, undergarments.EBNTHNG.description);
+		addButton(9, "Повязка", craftEbonweaveArmorForReal, 8, null, null, undergarments.EBNCLTH.description);
 		//Rune Armor
-		addButton(10, "RuneStrap", craftEbonweaveArmorForReal, 9, null, null, undergarments.EBNRJCK.description);
-		addButton(11, "RuneThong", craftEbonweaveArmorForReal, 10, null, null, undergarments.EBNRTNG.description);
-		addButton(12, "RuneCloth", craftEbonweaveArmorForReal, 11, null, null, undergarments.EBNRLNC.description);
+		addButton(10, "Рун.Суспензорий", craftEbonweaveArmorForReal, 9, null, null, undergarments.EBNRJCK.description);
+		addButton(11, "Рун.Танга", craftEbonweaveArmorForReal, 10, null, null, undergarments.EBNRTNG.description);
+		addButton(12, "Рун.Повязка", craftEbonweaveArmorForReal, 11, null, null, undergarments.EBNRLNC.description);
 		
-		addButton(14, "Nevermind", rathazulArmorMenu);
+		addButton(14, "Неважно", rathazulArmorMenu);
 	}
 }
 
@@ -875,13 +875,13 @@ private function craftMaraeArmor(divine:Boolean = false):void {
 		outputText("You show him the pieces of thick bark with tentacles attached. \n\n \"<i>My, my. That's definitely the strangest thing I've ever seen. But as you've requested, I'll make armor for you,</i>\" the old rat says. He takes the pile of bark, taking care to avoid touching the still-alive tentacles. He works on his bench for an hour while you wait. \n\n")
 		outputText("Once he has finished, Rathazul is beaming with both pride and shame, \"<i>I think you'll be pleased. Go ahead and take a look. I'm not working on this type of armor again. I nearly got surprised by tentacles.</i>\"\n\nHe hands you the armor. \n\n")
 		menu();
-		addButton(0,"Next",takethatMarmorC);
+		addButton(0,"Далее",takethatMarmorC);
 	}
 else {
 		outputText("You show him the pieces of glowing white thick bark attached. \n\n \"<i>My, my. I heard a voice from Marae instructing me to make the armor for you,</i>\" the old rat says. He takes the pile of bark and works on his bench for an hour while you wait. \n\n")
 		outputText("Once he has finished, Rathazul is beaming with both pride and shame, \"<i>I think you'll be pleased. Go ahead and take a look. I'm not working on this type of armor again. It took me many attempts to bend the bark plates to get them right.</i>\"\n\nHe hands you the armor. \n\n")
 		menu();
-		addButton(0,"Next",takethatMarmorD);
+		addButton(0,"Далее",takethatMarmorD);
 	}
 }
 
@@ -916,23 +916,23 @@ private function takethatMarmorD():void {
 private function rathazulShopMenu(dyes:Boolean = false, philters:Boolean = false, reductos:Boolean = false):void {
 	//Dyes
 	if (dyes) {
-		addButton(0, "Hair Dyes", buyDyes, null, null, null, "Ask him to make a dye for you. \n\nCost: 50 Gems.");
-		addButton(1, "Skin Oils", buyOils, null, null, null, "Ask him to make a skin oil for you. \n\nCost: 50 Gems.");
-		addButton(2, "Body Lotions", buyLotions, null, null, null, "Ask him to make a body lotion for you. \n\nCost: 50 Gems.");
+		addButton(0, "Краска", buyDyes, null, null, null, "Попросить его сделать краску для волос. \n\nЦена: 50 Камней.");
+		addButton(1, "Масло", buyOils, null, null, null, "Попросить его сделать масло для кожи. \n\nЦена: 50 Камней.");
+		addButton(2, "Крем", buyLotions, null, null, null, "Попросить его сделать крем для тела. \n\nЦена: 50 Камней.");
 	}
 	else {
-		addButtonDisabled(0, "Hair Dyes", "You can't afford to buy dyes. \n\n50 gems required.");
-		addButtonDisabled(1, "Skin Oils", "You can't afford to buy oil. \n\n50 gems required.");
-		addButtonDisabled(2, "Body Lotions", "You can't afford to buy lotions. \n\n50 gems required.");
+		addButtonDisabled(0, "Краска", "Ты не можешь позволить себе краску. \n\nТребуется 50 камней.");
+		addButtonDisabled(1, "Масло", "Ты не можешь позволить себе масло. \n\nТребуется 50 камней.");
+		addButtonDisabled(2, "Крем", "Ты не можешь позволить себе крем. \n\nТребуется 50 камней.");
 	}
 	//Reducto & GroPlus
 	if (reductos) {
-		addButton(3, "Reducto", buyReducto);
-		addButton(4, "GroPlus", buyGroPlus);
+		addButton(3, "'Редукто'", buyReducto);
+		addButton(4, "'ГроПлюс'", buyGroPlus);
 	}
 	else {
-		addButtonDisabled(3, "Reducto", "Rathazul isn't currently producing this item.");
-		addButtonDisabled(4, "GroPlus", "Rathazul isn't currently producing this item.");
+		addButtonDisabled(3, "'Редукто'", "В настоящий момент Ратазул не производит этот предмет.");
+		addButtonDisabled(4, "'ГроПлюс'", "В настоящий момент Ратазул не производит этот предмет.");
 	}
 	//Philters
 	if (philters) {
@@ -941,42 +941,42 @@ private function rathazulShopMenu(dyes:Boolean = false, philters:Boolean = false
 		addButton(7, consumables.NUMBOIL.shortName, buyPuritySomething, consumables.NUMBOIL);
 	}
 	else {
-		addButtonDisabled(5, consumables.H_PILL.shortName, "You can't afford to buy this.\n\n100 gems required.");
-		addButtonDisabled(6, consumables.PPHILTR.shortName, "You can't afford to buy this.\n\n100 gems required.");
-		addButtonDisabled(7, consumables.NUMBOIL.shortName, "You can't afford to buy this.\n\n100 gems required.");
+		addButtonDisabled(5, consumables.H_PILL.shortName, "Ты не можешь себе это позволить.\n\nТребуется 100 камней.");
+		addButtonDisabled(6, consumables.PPHILTR.shortName, "Ты не можешь себе это позволить.\n\nТребуется 100 камней.");
+		addButtonDisabled(7, consumables.NUMBOIL.shortName, "Ты не можешь себе это позволить.\n\nТребуется 100 камней.");
 	}
-	addButton(14, "Back", returnToRathazulMenu);
+	addButton(14, "Назад", returnToRathazulMenu);
 }
 
 //Hair dyes
 private function buyDyes():void {
 	clearOutput();
 	spriteSelect(SpriteDb.s_rathazul);
-	outputText(images.showImage("rathazul-vials"));
-	outputText("Rathazul smiles and pulls forth several vials of colored fluids.  Which type of dye would you like?");
-	outputText("\n\n<b>(-50 Gems)</b>");
+	outputText(images.showImage("rathazul-dye"));
+	outputText("Улыбаясь, Ратазул протягивает тебе несколько пузырьков с цветной жидкостью. Какой тип краски ты предпочитаешь?");
+	outputText("\n\n<b>(-50 Камней)</b>");
 	player.gems -= 50;
 	statScreenRefresh();
 	menu();
-	addButton(0, "Auburn", buyDye, consumables.AUBURND);
-	addButton(1, "Black", buyDye, consumables.BLACK_D);
-	addButton(2, "Blond", buyDye, consumables.BLOND_D);
-	addButton(3, "Brown", buyDye, consumables.BROWN_D);
-	addButton(4, "Red", buyDye, consumables.RED_DYE);
-	addButton(5, "White", buyDye, consumables.WHITEDY);
-	addButton(6, "Gray", buyDye, consumables.GRAYDYE);
+	addButton(0, "Золотисто-каштановая", buyDye, consumables.AUBURND);
+	addButton(1, "Черная", buyDye, consumables.BLACK_D);
+	addButton(2, "Светлая", buyDye, consumables.BLOND_D);
+	addButton(3, "Коричневая", buyDye, consumables.BROWN_D);
+	addButton(4, "Красная", buyDye, consumables.RED_DYE);
+	addButton(5, "Белая", buyDye, consumables.WHITEDY);
+	addButton(6, "Серая", buyDye, consumables.GRAYDYE);
 	if (player.statusEffectv2(StatusEffects.MetRathazul) >= 8) {
-		addButton(7, "Blue", buyDye, consumables.BLUEDYE);
-		addButton(8, "Green", buyDye, consumables.GREEN_D);
-		addButton(9, "Orange", buyDye, consumables.ORANGDY);
-		addButton(10, "Yellow", buyDye, consumables.YELLODY);
-		addButton(11, "Purple", buyDye, consumables.PURPDYE);
-		addButton(12, "Pink", buyDye, consumables.PINKDYE);
+		addButton(7, "Синяя", buyDye, consumables.BLUEDYE);
+		addButton(8, "Зеленая", buyDye, consumables.GREEN_D);
+		addButton(9, "Оранжевая", buyDye, consumables.ORANGDY);
+		addButton(10, "Желтая", buyDye, consumables.YELLODY);
+		addButton(11, "Пурпурная", buyDye, consumables.PURPDYE);
+		addButton(12, "Розовая", buyDye, consumables.PINKDYE);
 	}
 	if (player.statusEffectv2(StatusEffects.MetRathazul) >= 12) {
-		addButton(13, "Rainbow", buyDye, consumables.RAINDYE);
+		addButton(13, "Радужная", buyDye, consumables.RAINDYE);
 	}
-	addButton(14, "Nevermind", buyDyeNevermind);
+	addButton(14, "Неважно", buyDyeNevermind);
 }
 private function buyDye(dye:ItemType):void {
 	spriteSelect(SpriteDb.s_rathazul);
@@ -990,7 +990,7 @@ private function buyDye(dye:ItemType):void {
 private function buyDyeNevermind():void {
 	spriteSelect(SpriteDb.s_rathazul);
 	clearOutput();
-	outputText("You change your mind about the dye, and Rathazul returns your gems.\n\n<b>(+50 Gems)</b>");
+	outputText("Ты меняешь свое мнение о краске, и Ратазул тут же возвращает твои камни.\n\n<b>(+50 Камней)</b>");
 	player.gems += 50;
 	statScreenRefresh();
 	doNext(returnToRathazulMenu);
@@ -1002,31 +1002,31 @@ private function buyOils(fromPage2:Boolean = false):void {
 	spriteSelect(SpriteDb.s_rathazul);
 	if (!fromPage2) {
 		outputText(images.showImage("rathazul-oils"));
-		outputText("Rathazul smiles and pulls forth several bottles of skin oil.  Which type of skin oil would you like?");
-		outputText("\n\n<b>(-50 Gems)</b>");
+		outputText("Улыбаясь, Ратазул протягивает тебе несколько бутыльков с маслом для кожи. Какой тип масла для кожи ты предпочитаешь?");
+		outputText("\n\n<b>(-50 Камней)</b>");
 		player.gems -= 50;
 		statScreenRefresh();
 	}
 	menu();
-	addButton(0, "Dark", buyOil, consumables.DARK_OL);
-	addButton(1, "Ebony", buyOil, consumables.EBONYOL);
-	addButton(2, "Fair", buyOil, consumables.FAIR_OL);
-	addButton(3, "Light", buyOil, consumables.LIGHTOL);
+	addButton(0, "Смуглое", buyOil, consumables.DARK_OL);
+	addButton(1, "Эбеновое", buyOil, consumables.EBONYOL);
+	addButton(2, "Русое", buyOil, consumables.FAIR_OL);
+	addButton(3, "Светлое", buyOil, consumables.LIGHTOL);
 	if (mixologyXP() >= 80) {
-		addButton(4, "Next", buyOilsPage2);
+		addButton(4, "Далее", buyOilsPage2);
 	}
-	addButton(5, "Mahogany", buyOil, consumables.MAHOGOL);
-	addButton(6, "Olive", buyOil, consumables.OLIVEOL);
-	addButton(7, "Russet", buyOil, consumables.RUSS_OL);
+	addButton(5, "Красно-коричневое", buyOil, consumables.MAHOGOL);
+	addButton(6, "Оливковое", buyOil, consumables.OLIVEOL);
+	addButton(7, "Желтовато-коричневое", buyOil, consumables.RUSS_OL);
 	if (mixologyXP() >= 50) {
-		addButton(8, "Red", buyOil, consumables.RED__OL);
+		addButton(8, "Красное", buyOil, consumables.RED__OL);
 		// Button 9 left empty in case, we add a third page here
-		addButton(10, "Green", buyOil, consumables.GREENOL);
-		addButton(11, "White", buyOil, consumables.WHITEOL);
-		addButton(12, "Blue", buyOil, consumables.BLUE_OL);
-		addButton(13, "Black", buyOil, consumables.BLACKOL);
+		addButton(10, "Зеленое", buyOil, consumables.GREENOL);
+		addButton(11, "Белое", buyOil, consumables.WHITEOL);
+		addButton(12, "Синее", buyOil, consumables.BLUE_OL);
+		addButton(13, "Черное", buyOil, consumables.BLACKOL);
 	}
-	addButton(14, "Nevermind", buyOilNevermind);
+	addButton(14, "Неважно", buyOilNevermind);
 }
 private function buyOilsPage2():void {
 	clearOutput();
@@ -1037,27 +1037,27 @@ private function buyOilsPage2():void {
 	spriteSelect(SpriteDb.s_rathazul);
 	outputText(images.showImage("rathazul-oils"));
 	menu();
-	addButton(0, "Purple", buyOil, consumables.PURPLOL);
-	addButton(1, "Silver", buyOil, consumables.SILVROL);
+	addButton(0, "Пурпурное", buyOil, consumables.PURPLOL);
+	addButton(1, "Серебряное", buyOil, consumables.SILVROL);
 	if (mixologyXP() >= 100) {
-		addButton(2, "Orange", buyOil, consumables.ORANGOL);
-		addButton(3, "Yellow", buyOil, consumables.YELLOOL);
+		addButton(2, "Оранжевое", buyOil, consumables.ORANGOL);
+		addButton(3, "Желтое", buyOil, consumables.YELLOOL);
 	}
-	addButton(4, "Previous", buyOils, true);
+	addButton(4, "Предыдущее", buyOils, true);
 	if (mixologyXP() >= 120) { // Rathazul discovers mixing blue and green ... wow!! o.O
-		addButton(5, "Yellow Green", buyOil, consumables.YELGROL);
-		addButton(6, "Spring Green", buyOil, consumables.SPRGROL);
-		addButton(7, "Cyan", buyOil, consumables.CYAN_OL);
-		addButton(8, "Ocean Blue", buyOil, consumables.OCBLUOL);
+		addButton(5, "Желтовато-зеленое", buyOil, consumables.YELGROL);
+		addButton(6, "Ярко-зеленое", buyOil, consumables.SPRGROL);
+		addButton(7, "Сине-зеленое", buyOil, consumables.CYAN_OL);
+		addButton(8, "Темно-синее", buyOil, consumables.OCBLUOL);
 	}
 	// Button 9 left empty in case, we add a third page here
 	if (mixologyXP() >= 150) { // Rathazul discovers mixing blue and red ... oh my gawd!!! o.O
-		addButton(10, "Electric Violet", buyOil, consumables.ELVIOOL);
-		addButton(11, "Magenta", buyOil, consumables.MAGENOL);
-		addButton(12, "Deep Pink", buyOil, consumables.DPPNKOL);
-		addButton(13, "Pink", buyOil, consumables.PINK_OL);
+		addButton(10, "Темно-лиловое", buyOil, consumables.ELVIOOL);
+		addButton(11, "Пурпурно-красное", buyOil, consumables.MAGENOL);
+		addButton(12, "Темно-розовое", buyOil, consumables.DPPNKOL);
+		addButton(13, "Розовое", buyOil, consumables.PINK_OL);
 	}
-	addButton(14, "Nevermind", buyOilNevermind);
+	addButton(14, "Неважно", buyOilNevermind);
 }
 private function buyOil(oil:ItemType):void {
 	clearOutput();
@@ -1071,7 +1071,7 @@ private function buyOil(oil:ItemType):void {
 private function buyOilNevermind():void {
 	clearOutput();
 	spriteSelect(SpriteDb.s_rathazul);
-	outputText("You change your mind about the oil, and Rathazul returns your gems.\n\n<b>(+50 Gems)</b>");
+	outputText("Ты меняешь свое мнение о масле, и Ратазул тут же возвращает твои камни.\n\n<b>(+50 Камней)</b>");
 	player.gems += 50;
 	statScreenRefresh();
 	doNext(returnToRathazulMenu);
@@ -1082,16 +1082,16 @@ private function buyLotions():void {
 	clearOutput();
 	spriteSelect(SpriteDb.s_rathazul);
 	outputText(images.showImage("rathazul-vials"));
-	outputText("Rathazul smiles and pulls forth several vials of body lotion.  Which type of body lotion would you like?");
-	outputText("\n\n<b>(-50 Gems)</b>");
+	outputText("Улыбаясь, Ратазул протягивает тебе несколько склянок с кремом. Какой тип крема ты предпочитаешь?");
+	outputText("\n\n<b>(-50 Камней)</b>");
 	player.gems -= 50;
 	statScreenRefresh();
 	menu();
-	addButton(0, "Clear", buyLotion, consumables.CLEARLN);
-	addButton(1, "Rough", buyLotion, consumables.ROUGHLN);
-	addButton(2, "Sexy", buyLotion, consumables.SEXY_LN);
-	addButton(3, "Smooth", buyLotion, consumables.SMTH_LN);
-	addButton(14, "Nevermind", buyLotionNevermind);
+	addButton(0, "Чистый", buyLotion, consumables.CLEARLN);
+	addButton(1, "Грубый", buyLotion, consumables.ROUGHLN);
+	addButton(2, "Эротический", buyLotion, consumables.SEXY_LN);
+	addButton(3, "Приятный", buyLotion, consumables.SMTH_LN);
+	addButton(14, "Неважно", buyLotionNevermind);
 }
 private function buyLotion(lotion:ItemType):void {
 	clearOutput();
@@ -1105,7 +1105,7 @@ private function buyLotion(lotion:ItemType):void {
 private function buyLotionNevermind():void {
 	clearOutput();
 	spriteSelect(SpriteDb.s_rathazul);
-	outputText("You change your mind about the lotion, and Rathazul returns your gems.\n\n<b>(+50 Gems)</b>");
+	outputText("Ты меняешь свое мнение о креме, и Ратазул тут же возвращает твои камни.\n\n<b>(+50 Камней)</b>");
 	player.gems += 50;
 	statScreenRefresh();
 	doNext(returnToRathazulMenu);
@@ -1117,16 +1117,16 @@ private function buyReducto():void {
 	spriteSelect(SpriteDb.s_rathazul);
 	var cost:int = (flags[kFLAGS.AMILY_MET_RATHAZUL] >= 2 ? 50 : 100);
 	if (player.gems >= cost) {
-		outputText("Rathazul hands you the Reducto with a nod before returning to his work.\n\n");
-		player.gems -= cost;
 		outputText(images.showImage("item-reducto"));
+		outputText("Кивнув, Ратазул протягивает тебе 'Редукто', тут же вернувшись к своей работе.\n\n");
+		player.gems -= cost;
 		inventory.takeItem(consumables.REDUCTO, returnToRathazulMenu);
 		statScreenRefresh();
 		addMixologyXP(4);
 		player.addStatusValue(StatusEffects.MetRathazul, 2, 1);
 	}
 	else {
-		outputText("\"<i>I'm sorry, but you lack the gems I need to make the trade,</i>\" apologizes Rathazul.");
+		outputText("\"<i>Прошу прощения, но у тебя недостаточно камней, при помощи которых мы заключим сделку,</i>\" извиняется Ратазул.");
 		doNext(returnToRathazulMenu);
 	}
 }
@@ -1138,7 +1138,7 @@ private function buyGroPlus():void {
 	var cost:int = (flags[kFLAGS.AMILY_MET_RATHAZUL] >= 2 ? 50 : 100);
 	if (player.gems >= cost) {
 		outputText(images.showImage("item-groPlus"));
-		outputText("Rathazul hands you the GroPlus with a nod before returning to his work.\n\n");
+		outputText("Кивнув, Ратазул протягивает тебе 'ГроПлюс', тут же вернувшись к своей работе.\n\n");
 		player.gems -= cost;
 		inventory.takeItem(consumables.GROPLUS, returnToRathazulMenu);
 		statScreenRefresh();
@@ -1146,13 +1146,14 @@ private function buyGroPlus():void {
 		player.addStatusValue(StatusEffects.MetRathazul, 2, 1);
 	}
 	else {
-		outputText("\"<i>I'm sorry, but you lack the gems I need to make the trade,</i>\" apologizes Rathazul.");
+		outputText("\"<i>Прошу прощения, но у тебя недостаточно камней, при помощи которых мы заключим сделку,</i>\" извиняется Ратазул.");
 		doNext(returnToRathazulMenu);
 	}
 }
 
 
 private function buyPuritySomething(item:ItemType):void {
+	clearOutput();
 	player.gems -= 100;
 	statScreenRefresh();
 	outputText(images.showImage("item-box"));
@@ -1167,30 +1168,31 @@ private function buyPuritySomething(item:ItemType):void {
 private function purifySomething():void {
 	clearOutput();
 	spriteSelect(SpriteDb.s_rathazul);
-	outputText("Rathazul asks, \"<i>What would you like me to purify?</i>\"");
+	outputText("Ратазул спрашивает, \"<i>Что ты хочешь, чтобы я очистил?</i>\"");
 	menu();
 	//Item purification offer
 	if (player.hasItem(consumables.INCUBID)) {
-		addButton(0, "Incubi Draft", rathazulPurifyItem, consumables.INCUBID, consumables.P_DRAFT);
+		addButton(0, "Проект 'Инкуб'", rathazulPurifyItem, consumables.INCUBID, consumables.P_DRAFT);
 	}
 	if (player.hasItem(consumables.SUCMILK)) {
-		addButton(1, "SuccubiMilk", rathazulPurifyItem, consumables.SUCMILK, consumables.P_S_MLK);
+		addButton(1, "'Молоко Суккуба'", rathazulPurifyItem, consumables.SUCMILK, consumables.P_S_MLK);
 	}
 	if (player.hasItem(consumables.SDELITE)) {
-		addButton(2, "S. Delight", rathazulPurifyItem, consumables.SDELITE, consumables.PSDELIT);
+		addButton(2, "'Услада Суккуба'", rathazulPurifyItem, consumables.SDELITE, consumables.PSDELIT);
 	}
 	if (player.hasItem(consumables.LABOVA_)) {
-		addButton(3, "LaBova", rathazulPurifyItem, consumables.LABOVA_, consumables.P_LBOVA);
+		addButton(3, "'лаБова'", rathazulPurifyItem, consumables.LABOVA_, consumables.P_LBOVA);
 	}
 	if (player.hasItem(consumables.MINOCUM)) {
-		addButton(4, "MinoCum", rathazulPurifyItem, consumables.MINOCUM, consumables.P_M_CUM);
+		addButton(4, "'Семя Миноса'", rathazulPurifyItem, consumables.MINOCUM, consumables.P_M_CUM);
 	}
-	addButton(14, "Back", returnToRathazulMenu);
+	addButton(14, "Назад", returnToRathazulMenu);
 }
 
 private function rathazulPurifyItem(itype:ItemType, result:ItemType):void {
+	clearOutput();
 	if (player.gems < 20) {
-		outputText("Rathazul says, \"<i>You do not have enough gems for that service.</i>\"");
+		outputText("Ратазул говорит, \"<i>Для этой услуги у тебя не хватает камней.</i>\"");
 		doNext(returnToRathazulMenu);
 		return;
 	}
@@ -1235,7 +1237,7 @@ private function rathazulMakesPurifyPotion():void {
 	outputText("\n\nYou concede he has a point and take the potion; all you need to do now is give it to Minerva and hope for the best.");
 	player.createKeyItem("Rathazul's Purity Potion", 0, 0, 0, 0);
 	menu();
-	addButton(0, "Next", campRathazul);
+	addButton(0, "Далее", campRathazul);
 }
 
 //------------
@@ -1245,57 +1247,57 @@ private function rathazulAlchemyMenu():void {
 	menu();
 	//Distill Honey
 	if (player.hasItem(consumables.BEEHONY)) {
-		addButton(0, "Distill Honey", rathazulMakesPureHoney, null, null, null, "Ask him to distill a vial of bee honey into a pure honey. \n\nCost: 25 Gems \nNeeds 1 vial of Bee Honey");
+		addButton(0, "Чистый мед", rathazulMakesPureHoney, null, null, null, "Ask him to distill a vial of bee honey into a pure honey. \n\nЦена: 25 Камней \nНужен 1 флакон Пчелиного меда");
 	}
 	else {	
-		addButtonDisabled(0, "Distill Honey", "You don't have any bee honey to be distilled.");
+		addButtonDisabled(0, "Чистый мед", "You don't have any bee honey to be distilled.");
 	}
 	//Debimbo
 	if (flags[kFLAGS.RATHAZUL_DEBIMBO_OFFERED] > 0) {
 		if (player.hasItem(consumables.SMART_T,5) && player.gems >= 250)
-			addButton(1, "Debimbo", makeADeBimboDraft, null, null, null, "Ask Rathazul to make a debimbofying potion for you. \n\nCost: 250 Gems \nNeeds 5 Scholar Teas.");
+			addButton(1, "'деБарби'", makeADeBimboDraft, null, null, null, "Ask Rathazul to make a debimbofying potion for you. \n\nЦена: 250 Камней \nНужно 5 Настоек ученика.");
 		else
-			addButtonDisabled(1, "Debimbo", "You don't have everything needed for this item. \n\nCost: 250 Gems \nNeeds 5 Scholar Teas.");
+			addButtonDisabled(1, "'деБарби'", "You don't have everything needed for this item. \n\nЦена: 250 Камней \nНужно 5 Настоек ученика.");
 	}
 	else {
-		addButtonDisabled(1, "Debimbo", "Rathazul sees no reason to make this. Maybe if someone's a bimbo in this camp...");
+		addButtonDisabled(1, "'деБарби'", "Rathazul sees no reason to make this. Maybe if someone's a bimbo in this camp...");
 	}
 	//Purification Potion for Minerva
 	if (flags[kFLAGS.MINERVA_PURIFICATION_RATHAZUL_TALKED] == 2 && flags[kFLAGS.MINERVA_PURIFICATION_PROGRESS] < 10) {
 		if ((player.hasItem(consumables.PURHONY, 1) || player.hasItem(consumables.PPHILTR, 1)) && player.hasItem(consumables.C__MINT, 1) && player.hasItem(consumables.PURPEAC, 1) && player.hasKeyItem("Rathazul's Purity Potion") < 0)
-			addButton(2, "Pure Potion", rathazulMakesPurifyPotion, null, null, null, "Ask him to brew a purification potion for Minerva.");
+			addButton(2, "Зелье очищения", rathazulMakesPurifyPotion, null, null, null, "Ask him to brew a purification potion for Minerva.");
 		else if (player.hasKeyItem("Rathazul's Purity Potion") >= 0)
-			addButtonDisabled(2, "Pure Potion", "You already have the potion made. Bring it to Minerva.");
+			addButtonDisabled(2, "Зелье очищения", "You already have the potion made. Bring it to Minerva.");
 		else
-			addButtonDisabled(2, "Pure Potion", "You don't have the ingredients needed to make the purification potion. \n\nNeeds 1 Pure Honey or Pure Philter, 1 Calm Mint, 1 Pure Peach.");
+			addButtonDisabled(2, "Зелье очищения", "You don't have the ingredients needed to make the purification potion. \n\nНужны: 1 Чистый мед, либо Чистый эликсир, 1 Тихая мята, 1 Чистый персик.");
 	}
 	//Special Transformations
 	if (player.statusEffectv2(StatusEffects.MetRathazul) >= 5) {
 		//Pro Lactaid
 		if (player.gems >= 250 && player.hasItem(consumables.LACTAID, 5) && player.hasItem(consumables.P_LBOVA, 2))
-			addButton(5, "ProLactaid", rathazulMakesMilkPotion, null, null, null, "Ask him to brew a special lactation potion. \n\nCost: 250 Gems \nNeeds 5 Lactaids and 2 Purified LaBovas.");
+			addButton(5, "'ПроЛактоид'", rathazulMakesMilkPotion, null, null, null, "Ask him to brew a special lactation potion. \n\nЦена: 250 Камней\nНужно 5 Лактоидов и 2 Очищенные лаБовы.");
 		else
-			addButtonDisabled(5, "ProLactaid", "You don't have everything needed for this item. \n\nCost: 250 Gems \nNeeds 5 Lactaids and 2 Purified LaBovas.");
+			addButtonDisabled(5, "'ПроЛактоид'", "You don't have everything needed for this item. \n\nЦена: 250 Камней\nНужно 5 Лактоидов и 2 Очищенные лаБовы.");
 		//Taurinum
 		if (player.gems >= 100 && player.hasItem(consumables.EQUINUM, 2) && player.hasItem(consumables.MINOBLO, 1))
-			addButton(6, "Taurinum", rathazulMakesTaurPotion, null, null, null, "Ask him to brew a special potion that could aid in becoming a centaur. \n\nCost: 100 Gems \nNeeds 2 Equinum and 1 Minotaur Blood.");
+			addButton(6, "'Тауринум'", rathazulMakesTaurPotion, null, null, null, "Ask him to brew a special potion that could aid in becoming a centaur.\n\nЦена: 100 Камней\nНужно 2 Эквинума и 1 Кровь Миноса.");
 		else
-			addButtonDisabled(6, "Taurinum", "You don't have everything needed for this item. \n\nCost: 100 Gems \nNeeds 2 Equinum and 1 Minotaur Blood.");
+			addButtonDisabled(6, "'Тауринум'", "You don't have everything needed for this item.\n\nЦена: 100 Камней\nНужно 2 Эквинума и 1 Кровь Миноса.");
 	}
 	else {
-		addButtonDisabled(5, "ProLactaid", "Rathazul doesn't know how to make this yet. Try buying more from him.");
-		addButtonDisabled(6, "Taurinum", "Rathazul doesn't know how to make this yet. Try buying more from him.");
+		addButtonDisabled(5, "'ПроЛактоид'", "Rathazul doesn't know how to make this yet. Try buying more from him.");
+		addButtonDisabled(6, "'Тауринум'", "Rathazul doesn't know how to make this yet. Try buying more from him.");
 	}
 	if (player.statusEffectv2(StatusEffects.MetRathazul) >= 5 && flags[kFLAGS.TIMES_ENCOUNTERED_COCKATRICES] > 0) {
 		if (player.gems >= 100 && player.hasItem(consumables.REPTLUM, 1) && player.hasItem(consumables.GLDSEED, 1))
-			addButton(7, "Ton o' Trice", rathazulMakesCockatricePotion, null, null, null, "Ask him to brew a special potion that could aid in becoming a cockatrice. \n\nCost: 100 Gems \nNeeds 1 Reptilum and 1 Golden Seed.");
+			addButton(7, "'Тоннатрикс'", rathazulMakesCockatricePotion, null, null, null, "Ask him to brew a special potion that could aid in becoming a cockatrice.\n\nЦена: 100 Камней\nНужны 1 Рептилум и 1 Золотое зерно.");
 		else
-			addButtonDisabled(7, "Ton o' Trice", "You don't have everything needed for this item.\n\nCost: 100 Gems\nNeeds 1 Reptilum and 1 Golden Seed.");
+			addButtonDisabled(7, "'Тоннатрикс'", "You don't have everything needed for this item.\n\nЦена: 100 Камней\nНужны 1 Рептилум и 1 Золотое зерно.");
 	} else {
-		addButtonDisabled(7, "Ton o' Trice", "Rathazul doesn't know how to make this yet. Try buying more from him.");
+		addButtonDisabled(7, "'Тоннатрикс'", "Rathazul doesn't know how to make this yet. Try buying more from him.");
 	}
 
-	addButton(14, "Back", returnToRathazulMenu);
+	addButton(14, "Назад", returnToRathazulMenu);
 }
 
 private function rathazulDebimboOffer():void {
@@ -1328,7 +1330,7 @@ private function rathazulDebimboOffer():void {
 	}
 	//Rath menu
 	menu();
-	addButton(0,"Next",campRathazul);
+	addButton(0,"Далее",campRathazul);
 }
 
 //Creation Of The Draft:*
@@ -1362,7 +1364,7 @@ private function rathazulMakesPureHoney():void {
 	outputText("You hand over a vial of bee honey and the 25 gems.");
 	outputText("\n\n\"<i>I'll see what I can do,</i>\" he says as he takes the bee honey and begin brewing something. ");
 	menu();
-	addButton(0,"Next",takethatHoney);
+	addButton(0,"Далее",takethatHoney);
 }
 
 private function takethatHoney():void {
@@ -1394,7 +1396,7 @@ private function rathazulMakesMilkPotion():void {
 	outputText("You hand over the ingredients and 250 gems.");
 	outputText("\n\n\"<i>I'll see what I can do,</i>\" he says as he takes the ingredients and begin brewing something. ");
 	menu();
-	addButton(0,"Next",takethatMotion);
+	addButton(0,"Далее",takethatMotion);
 }
 
 private function takethatMotion():void {
@@ -1426,13 +1428,13 @@ private function rathazulMakesTaurPotion():void {
 	outputText(images.showImage("rathazul-lab"));
 	outputText("You hand over two vials of Equinum, one vial of Minotaur Blood and one hundred gems to Rathazul, which he gingerly takes them and proceeds to make a special potion for you.");
 	menu();
-	addButton(0,"Next",takethatTaurico);
+	addButton(0,"Далее",takethatTaurico);
 }
 
 private function takethatTaurico():void {
 	clearOutput();
 	outputText(images.showImage("item-taurico"));
-	outputText("\n\nAfter a while, the rat hands you a vial labeled \"Taurinum\" and nods.");
+	outputText("\n\nAfter a while, the rat hands you a vial labeled \"'Тауринум'\" and nods.");
 	addMixologyXP(8);
 	player.addStatusValue(StatusEffects.MetRathazul, 2, 1);
 	inventory.takeItem(consumables.TAURICO, returnToRathazulMenu);
@@ -1458,13 +1460,13 @@ private function rathazulMakesCockatricePotion():void {
 	outputText(images.showImage("rathazul-lab"));
 	outputText("You hand over one vial of Reptilum, one golden seed and one hundred gems to Rathazul, which he gingerly takes them and proceeds to make a special potion for you.");
 	menu();
-	addButton(0,"Next",takethatTotrice);
+	addButton(0,"Далее",takethatTotrice);
 }
 
 private function takethatTotrice():void {
 	clearOutput();
 	outputText(images.showImage("item-totrice"));
-	outputText("\n\nAfter a while, the rat hands you a bottle labeled \"Ton o' Trice\" and nods.");
+	outputText("\n\nAfter a while, the rat hands you a bottle labeled \"'Тоннатрикс'\" and nods.");
 	addMixologyXP(8);
 	player.addStatusValue(StatusEffects.MetRathazul, 2, 1);
 	inventory.takeItem(consumables.TOTRICE, returnToRathazulMenu);
