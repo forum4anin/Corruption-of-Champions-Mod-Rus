@@ -43,8 +43,8 @@ package classes.Scenes{
 		public function returnToCamp(timeUsed:int):void {
 			clearOutput();
 			if (timeUsed == 1)
-				outputText("An hour passes...\n");
-			else outputText(Num2Text(timeUsed) + " hours pass...\n");
+				outputText("Проходит час...\n");
+			else outputText(Num2Text(timeUsed) + " проходят часы...\n");
 			if (!getGame().inCombat) spriteSelect(null);
 			hideMenus();
 			timeQ = timeUsed;
@@ -322,7 +322,7 @@ private function doCamp():void { //Only called by playerMenu
 	if (timeQ > 0) {
 		if (!campQ) {
 			clearOutput();
-			outputText("More time passes...\n");
+			outputText("Проходит больше времени...\n");
 			goNext(timeQ, false);
 			return;
 		}
@@ -521,9 +521,9 @@ private function doCamp():void { //Only called by playerMenu
 	mainView.showMenuButton( MainView.MENU_DATA );
 	showStats();
 	//Change settings of new game buttons to go to main menu
-	mainView.setMenuButton( MainView.MENU_NEW_MAIN, "Main Menu", kGAMECLASS.mainMenu.mainMenu );
-	mainView.newGameButton.toolTipText = "Return to main menu.";
-	mainView.newGameButton.toolTipHeader = "Main Menu";
+	mainView.setMenuButton( MainView.MENU_NEW_MAIN, "Главное меню", kGAMECLASS.mainMenu.mainMenu );
+	mainView.newGameButton.toolTipText = "Вернуться в меню.";
+	mainView.newGameButton.toolTipHeader = "Главное меню";
 	//clear up/down arrows
 	hideUpDown();
 	//Level junk
@@ -785,7 +785,7 @@ private function doCamp():void { //Only called by playerMenu
 		if (player.gender == GENDER_HERM)
 		{
 			flags[kFLAGS.NEW_GAME_PLUS_BONUS_UNLOCKED_HERM] = 1;
-			outputText("\n\n<b>Congratulations! You have unlocked hermaphrodite option on character creation, accessible from New Game Plus!</b>");
+			outputText("\n\n<b>Поздравляем! You have unlocked hermaphrodite option on character creation, accessible from New Game Plus!</b>");
 			kGAMECLASS.saves.savePermObject(false);
 		}
 	}
@@ -794,24 +794,24 @@ private function doCamp():void { //Only called by playerMenu
 	
 	//Menu
 	menu();
-	addButton(0, "Explore", exploreEvent, null, null, null, "Explore to find new regions and visit any discovered regions.");
-	addButton(1, "Places", placesEvent, null, null, null, "Visit any places you have discovered so far.");
-	addButton(2, "Inventory", inventory.inventoryMenu, null, null, null, "The inventory allows you to use an item.  Be careful as this leaves you open to a counterattack when in combat.");
-	if (inventory.showStash()) addButton(3, "Stash", inventory.stash, null, null, null, "The stash allows you to store your items safely until you need them later.");
-	addButton(4, "Camp Actions", campActions, null, null, null, "Interact with the camp surroundings and also read your codex.");
-	if (followersCount() > 0) addButton(5, "Followers", campFollowers, null, null, null, "Check up on any followers or companions who are joining you in or around your camp.  You'll probably just end up sleeping with them.");
-	if (loversCount() > 0) addButton(6, "Lovers", campLoversMenu, null, null, null, "Check up on any lovers you have invited so far to your camp and interact with them.");
-	if (slavesCount() > 0) addButton(7, "Slaves", campSlavesMenu, null, null, null, "Check up on any slaves you have received and interact with them.");
+	addButton(0, "Разведка", exploreEvent, null, null, null, "Исследуй для того, чтобы найти новые области и посетить уже обнаруженные.");
+	addButton(1, "Места", placesEvent, null, null, null, "Посети любые места, которые тебе довелось обнаружить.");
+	addButton(2, "Инвентарь", inventory.inventoryMenu, null, null, null, "Инвентарь позволяет тебе пользоваться предметами. Осторожно, поскольку в бою это открывает тебя для контратаки.");
+	if (inventory.showStash()) addButton(3, "Тайник", inventory.stash, null, null, null, "Надежный тайник позволяет безопасно складывать в него свои предметы до твоей в них потребности.");
+	addButton(4, "Лагерь", campActions, null, null, null, "Взаимодействуй с окружением своего лагеря, где также можно прочитать свой журнал.");
+	if (followersCount() > 0) addButton(5, "Сторонники", campFollowers, null, null, null, "Проверить кто из сторонников или компаньонов находится в лагере. Вероятно закончится это тем, что ты с ними переспишь...");
+	if (loversCount() > 0) addButton(6, "Любовники", campLoversMenu, null, null, null, "Проверить кто из любовников находится в лагере.");
+	if (slavesCount() > 0) addButton(7, "Наложники", campSlavesMenu, null, null, null, "Проверить кто из наложников находится в лагере.");
 	var canFap:Boolean = !player.hasStatusEffect(StatusEffects.Dysfunction) && (flags[kFLAGS.UNABLE_TO_MASTURBATE_BECAUSE_CENTAUR] == 0 && !player.isTaur());
 	if (player.lust >= 30) {
-		addButton(8, "Masturbate", kGAMECLASS.masturbation.masturbateMenu);
-		if (((player.findPerk(PerkLib.HistoryReligious) >= 0 && player.cor <= (66 + player.corruptionTolerance())) || (player.findPerk(PerkLib.Enlightened) >= 0 && player.cor < 10)) && !(player.hasStatusEffect(StatusEffects.Exgartuan) && player.statusEffectv2(StatusEffects.Exgartuan) == 0) || flags[kFLAGS.SFW_MODE] >= 1) addButton(8, "Meditate", kGAMECLASS.masturbation.masturbateMenu);
+		addButton(8, "Мастурбировать", kGAMECLASS.masturbation.masturbateMenu);
+		if (((player.findPerk(PerkLib.HistoryReligious) >= 0 && player.cor <= (66 + player.corruptionTolerance())) || (player.findPerk(PerkLib.Enlightened) >= 0 && player.cor < 10)) && !(player.hasStatusEffect(StatusEffects.Exgartuan) && player.statusEffectv2(StatusEffects.Exgartuan) == 0) || flags[kFLAGS.SFW_MODE] >= 1) addButton(8, "Медитация", kGAMECLASS.masturbation.masturbateMenu);
 	}
-	addButton(9, "Wait", doWait, null, null, null, "Wait for four hours.\n\nShift-click to wait until the night comes.");
-	if (player.fatigue > 40 || player.HP / player.maxHP() <= .9) addButton(9, "Rest", rest, null, null, null, "Rest for four hours.\n\nShift-click to rest until fully healed or night comes.");
-	if (model.time.hours >= 21 || model.time.hours < 6) addButton(9, "Sleep", doSleep, null, null, null, "Turn yourself in for the night.");
+	addButton(9, "Ждать", doWait, null, null, null, "Прождать 4 часа.\n\n'Shift-click' - чтобы ждать наступления ночи.");
+	if (player.fatigue > 40 || player.HP / player.maxHP() <= .9) addButton(9, "Отдыхать", rest, null, null, null, "Отдыхать 4 часа.\n\n'Shift-click' - чтобы отдыхать до наступления ночи.");
+	if (model.time.hours >= 21 || model.time.hours < 6) addButton(9, "Спать", doSleep, null, null, null, "Приготовиться ко сну");
 
-	if (isAprilFools()) addButton(12, "Cash Shop", getGame().aprilFools.pay2WinSelection, null, null, null, "Need more gems? Want to buy special items to give you the edge? Purchase with real money!");
+	if (isAprilFools()) addButton(12, "Магазин", getGame().aprilFools.pay2WinSelection, null, null, null, "Нужно еще камней? Хочешь купить спец средства, которые сделают тебя подобно богам? Готовь настоящие деньги!");
 	
 	//Remove buttons according to conditions.
 	if (model.time.hours >= 21 || model.time.hours < 6) {
@@ -911,7 +911,7 @@ public function campLoversMenu(descOnly:Boolean = false):void {
 		menu();
 	}
 	if (isAprilFools() && flags[kFLAGS.DLC_APRIL_FOOLS] == 0 && !descOnly) {
-		getGame().aprilFools.DLCPrompt("Lovers DLC", "Get the Lovers DLC to be able to interact with them and have sex! Start families! The possibilities are endless!", "$4.99", doCamp);
+		getGame().aprilFools.DLCPrompt("DLC 'Любовники'", "Get the Lovers DLC to be able to interact with them and have sex! Start families! The possibilities are endless!", "$4.99", doCamp);
 		return;
 	}
 	//AMILY
@@ -928,7 +928,7 @@ public function campLoversMenu(descOnly:Boolean = false):void {
 		else if (temp == 4) outputText("and she flops down on her nest to have a rest");
 		else outputText("peeling the last strips of flesh off of an imp's skull and putting it on a particularly flat, sun-lit rock to bleach as a trophy");
 		outputText(".\n\n");
-		addButton(0, "Amily", amilyScene.amilyFollowerEncounter);
+		addButton(0, "Эмили", amilyScene.amilyFollowerEncounter);
 	}
 	//Amily out freaking Urta?
 	else if (flags[kFLAGS.AMILY_VISITING_URTA] == 1 || flags[kFLAGS.AMILY_VISITING_URTA] == 2) {
@@ -936,8 +936,8 @@ public function campLoversMenu(descOnly:Boolean = false):void {
 	}
 	//Arian
 	if (arianScene.arianFollower()) {
-		outputText("Arian's tent is here, if you'd like to go inside.\n\n");
-		addButton(1, "Arian", arianScene.visitAriansHouse);
+		outputText("Палатка Ариана рядом, вдруг ты захочешь зайти.\n\n");
+		addButton(1, "Ариан", arianScene.visitAriansHouse);
 	}
 	//Helia
 	if (kGAMECLASS.helScene.followerHel()) {
@@ -960,7 +960,7 @@ public function campLoversMenu(descOnly:Boolean = false):void {
 				outputText("<b>You see the salamander Helia pacing around camp, anxiously awaiting your departure to the harpy roost. Seeing you looking her way, she perks up, obviously ready to get underway.</b>\n\n");
 			}
 		}
-		addButton(2, "Helia", helFollower.heliaFollowerMenu);
+		addButton(2, "Хелия", helFollower.heliaFollowerMenu);
 	}
 	//Isabella
 	if (isabellaFollower() && flags[kFLAGS.FOLLOWER_AT_FARM_ISABELLA] == 0) {
@@ -1031,7 +1031,7 @@ public function campLoversMenu(descOnly:Boolean = false):void {
 			outputText("You have " + formatStringArray(babiesList) + " with her, all living here; unlike native Marethians, they will need years and years of care before they can go out into the world on their own.");
 		}
 		outputText("\n\n");
-		addButton(3, "Isabella", isabellaFollowerScene.callForFollowerIsabella);
+		addButton(3, "Изабелла", isabellaFollowerScene.callForFollowerIsabella);
 	}
 	//Izma
 	if (izmaFollower() && flags[kFLAGS.FOLLOWER_AT_FARM_IZMA] == 0) {
@@ -1043,7 +1043,7 @@ public function campLoversMenu(descOnly:Boolean = false):void {
 			else if (model.time.hours <= 22) outputText("Izmael has built a fire and is flopped down next to it. You can’t help but notice that he’s used several of his books for kindling. His eyes are locked on the flames, mesmerized by the dancing light and heat.");
 			else outputText("Izmael is currently on his bedroll, sleeping for the night.");
 			outputText("\n\n");
-			addButton(4, "Izmael", izmaScene.izmaelScene.izmaelMenu);
+			addButton(4, "Измаил", izmaScene.izmaelScene.izmaelMenu);
 		}
 		else {
 			outputText("Neatly laid near the base of your own is a worn bedroll belonging to Izma, your tigershark lover. It's a snug fit for her toned body, though it has some noticeable cuts and tears in the fabric. Close to her bed is her old trunk, almost as if she wants to have it at arms length if anyone tries to rob her in her sleep.\n\n");
@@ -1053,7 +1053,7 @@ public function campLoversMenu(descOnly:Boolean = false):void {
 				case 2: outputText("Izma is lying on her back near her bedroll. You wonder at first just why she isn't using her bed, but as you look closer you notice all the water pooled beneath her and the few droplets running down her arm, evidence that she's just returned from the stream."); break;
 			}
 			outputText("\n\n");
-			addButton(4, "Izma", izmaScene.izmaFollowerMenu);
+			addButton(4, "Изма", izmaScene.izmaFollowerMenu);
 		}
 
 	}
@@ -1080,7 +1080,7 @@ public function campLoversMenu(descOnly:Boolean = false):void {
 				outputText("Most of them are on fire.\n\n");
 			}
 		}
-		addButton(5, "Kiha", kihaScene.encounterKiha);
+		addButton(5, "Киха", kihaScene.encounterKiha);
 	}
 	//MARBLE
 	if (player.hasStatusEffect(StatusEffects.CampMarble) && flags[kFLAGS.FOLLOWER_AT_FARM_MARBLE] == 0) {
@@ -1148,13 +1148,13 @@ public function campLoversMenu(descOnly:Boolean = false):void {
 		//Out getting family
 		//else outputText("Marble is out in the wilderness right now, searching for a relative.");
 		outputText("\n\n");
-		if (flags[kFLAGS.MARBLE_PURIFICATION_STAGE] != 4) addButton(6, "Marble", marbleScene.interactWithMarbleAtCamp, null, null, null, "Go to Marble the cowgirl for talk and companionship.");
+		if (flags[kFLAGS.MARBLE_PURIFICATION_STAGE] != 4) addButton(6, "Марбл", marbleScene.interactWithMarbleAtCamp, null, null, null, "Go to Marble the cowgirl for talk and companionship.");
 	}
 	//Nieve
 	if (flags[kFLAGS.NIEVE_STAGE] == 5) {
 		kGAMECLASS.xmas.xmasMisc.nieveCampDescs();
 		outputText("\n\n");
-		addButton(7, "Nieve", getGame().xmas.xmasMisc.approachNieve);
+		addButton(7, "Нив", getGame().xmas.xmasMisc.approachNieve);
 	}
 	//Phylla
 	if (flags[kFLAGS.ANT_WAIFU] > 0) {
@@ -1165,9 +1165,9 @@ public function campLoversMenu(descOnly:Boolean = false):void {
 		if (flags[kFLAGS.ANT_KIDS] > 1000) outputText(" some of your children exit the anthill using main or one of the additionally entrances to unload some dirt. Some of them instead of unloading dirt coming out to fulfill some other task that their mother gave them.  You feel a little nostalgic seeing how this former small colony grown to such a magnificent size.");
 		else outputText(" Phylla appears out of the anthill to unload some dirt.  She looks over to your campsite and gives you an excited wave before heading back into the colony.  It makes you feel good to know she's so close.");
 		outputText("\n\n");
-		addButton(8,"Phylla", getGame().desert.antsScene.introductionToPhyllaFollower);
+		addButton(8,"Филла", getGame().desert.antsScene.introductionToPhyllaFollower);
 	}
-	addButton(14, "Back", playerMenu);
+	addButton(14, "Назад", playerMenu);
 }
 
 public function campSlavesMenu(descOnly:Boolean = false):void {
@@ -1192,31 +1192,31 @@ public function campSlavesMenu(descOnly:Boolean = false):void {
 	}
 	//Ceraph
 	if (ceraphIsFollower()) {
-		addButton(5, "Ceraph", ceraphFollowerScene.ceraphFollowerEncounter);
+		addButton(5, "Сераф", ceraphFollowerScene.ceraphFollowerEncounter);
 	}
 	//Vapula
 	if (vapulaSlave() && flags[kFLAGS.FOLLOWER_AT_FARM_VAPULA] == 0) {
 		vapula.vapulaSlaveFlavorText();
 		outputText("\n\n");
-		addButton(6, "Vapula", vapula.callSlaveVapula);
+		addButton(6, "Вапула", vapula.callSlaveVapula);
 	}
 	//Modified Camp/Follower List Description:
 	if (amilyScene.amilyFollower() && flags[kFLAGS.AMILY_FOLLOWER] == 2 && flags[kFLAGS.AMILY_BLOCK_COUNTDOWN_BECAUSE_CORRUPTED_JOJO] == 0 && flags[kFLAGS.FOLLOWER_AT_FARM_AMILY] == 0) {
 		outputText("Sometimes you hear a faint moan from not too far away. No doubt the result of your slutty toy mouse playing with herself.\n\n");
-		addButton(10, "Amily", amilyScene.amilyFollowerEncounter);
+		addButton(10, "Эмили", amilyScene.amilyFollowerEncounter);
 	}
 	//JOJO
 	//If Jojo is corrupted, add him to the masturbate menu.
 	if (campCorruptJojo() && flags[kFLAGS.FOLLOWER_AT_FARM_JOJO] == 0) {
 		outputText("From time to time you can hear movement from around your camp, and you routinely find thick puddles of mouse semen.  You are sure Jojo is here if you ever need to sate yourself.\n\n");
-		addButton(11, "Jojo", jojoScene.corruptCampJojo, null, null, null, "Call your corrupted pet into camp in order to relieve your desires in a variety of sexual positions?  He's ever so willing after your last encounter with him.");
+		addButton(11, "Джоджо", jojoScene.corruptCampJojo, null, null, null, "Call your corrupted pet into camp in order to relieve your desires in a variety of sexual positions?  He's ever so willing after your last encounter with him.");
 	}
 	//Bimbo Sophie
 	if (bimboSophie() && flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0) {
 		sophieBimbo.sophieCampLines();
-		addButton(12, "Sophie", sophieBimbo.approachBimboSophieInCamp);
+		addButton(12, "Софи", sophieBimbo.approachBimboSophieInCamp);
 	}
-	addButton(14, "Back", playerMenu);
+	addButton(14, "Назад", playerMenu);
 }
 
 public function campFollowers(descOnly:Boolean = false):void {
@@ -1231,7 +1231,7 @@ public function campFollowers(descOnly:Boolean = false):void {
 	//Ember
 	if (emberScene.followerEmber()) {
 		emberScene.emberCampDesc();
-		addButton(0, "Ember", emberScene.emberCampMenu, null, null, null, "Check up on Ember the dragon-" + (flags[kFLAGS.EMBER_ROUNDFACE] == 0 ? "morph" : flags[kFLAGS.EMBER_GENDER] == 1 ? "boy" : "girl" ) + "");
+		addButton(0, "Эмбер", emberScene.emberCampMenu, null, null, null, "Check up on Ember the dragon-" + (flags[kFLAGS.EMBER_ROUNDFACE] == 0 ? "morph" : flags[kFLAGS.EMBER_GENDER] == 1 ? "boy" : "girl" ) + "");
 	}
 	//Sophie
 	if (sophieFollower() && flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0) {
@@ -1254,7 +1254,7 @@ public function campFollowers(descOnly:Boolean = false):void {
 			else outputText("them");
 			outputText(" about hunting and gathering techniques.  Considering their unusual upbringing, it can't be as easy for them...\n\n");
 		}
-		addButton(1, "Sophie", sophieFollowerScene.followerSophieMainScreen, null, null, null, "Check up on Sophie the harpy.");
+		addButton(1, "Софи", sophieFollowerScene.followerSophieMainScreen, null, null, null, "Check up on Sophie the harpy.");
 	}
 	//Pure Jojo
 	if (player.hasStatusEffect(StatusEffects.PureCampJojo)) {
@@ -1263,14 +1263,14 @@ public function campFollowers(descOnly:Boolean = false):void {
 			if (flags[kFLAGS.JOJO_LITTERS] > 0 && model.time.hours >= 16 && model.time.hours < 19) outputText("You spot the little mice you had with Joy playing about close to her tent.");
 			else outputText("Joy herself is nowhere to be found, she's probably out frolicking about or sitting atop the boulder.");
 			outputText("\n\n");
-			addButton(2, "Joy", joyScene.approachCampJoy, null, null, null, "Go find Joy around the edges of your camp and meditate with her or have sex with her.");
+			addButton(2, "Джой", joyScene.approachCampJoy, null, null, null, "Go find Joy around the edges of your camp and meditate with her or have sex with her.");
 		}
 		else {
 			outputText("There is a small bedroll for Jojo near your own");
 			if (flags[kFLAGS.CAMP_BUILT_CABIN] > 0) outputText(" cabin");
 			if (!(model.time.hours > 4 && model.time.hours < 23)) outputText(" and the mouse is sleeping on it right now.\n\n");
 			else outputText(", though the mouse is probably hanging around the camp's perimeter.\n\n");
-			addButton(2, "Jojo", jojoScene.jojoCamp, null, null, null, "Go find Jojo around the edges of your camp and meditate with him or talk about watch duty.");
+			addButton(2, "Джоджо", jojoScene.jojoCamp, null, null, null, "Go find Jojo around the edges of your camp and meditate with him or talk about watch duty.");
 		}
 	}
 	//Helspawn
@@ -1288,7 +1288,7 @@ public function campFollowers(descOnly:Boolean = false):void {
 			outputText("\n\n");
 		}
 		else outputText("Tucked into a shaded corner of the rocks is a bevy of alchemical devices and equipment.  The alchemist Rathazul looks to be hard at work on the silken equipment you've commissioned him to craft.\n\n");
-		addButton(4, "Rathazul", kGAMECLASS.rathazul.returnToRathazulMenu, null, null, null, "Visit with Rathazul to see what alchemical supplies and services he has available at the moment.");
+		addButton(4, "Ратазул", kGAMECLASS.rathazul.returnToRathazulMenu, null, null, null, "Visit with Rathazul to see what alchemical supplies and services he has available at the moment.");
 	}
 	else
 	{
@@ -1321,16 +1321,16 @@ public function campFollowers(descOnly:Boolean = false):void {
 	}
 	//Shouldra
 	if (followerShouldra()) {
-		addButton(5, "Shouldra", shouldraFollower.shouldraFollowerScreen, null, null, null, "Talk to Shouldra. She is currently residing in your body.");
+		addButton(5, "Шулдра", shouldraFollower.shouldraFollowerScreen, null, null, null, "Talk to Shouldra. She is currently residing in your body.");
 	}
 	//Valeria
 	if (flags[kFLAGS.VALARIA_AT_CAMP] == 1) {
-		addButton(6, "Valeria", valeria.valeriaFollower, null, null, null, "Visit Valeria the goo-girl. You can even take and wear her as goo armor if you like.");
+		addButton(6, "Валерия", valeria.valeriaFollower, null, null, null, "Visit Valeria the goo-girl. You can even take and wear her as goo armor if you like.");
 	}
 	if (player.armor == armors.GOOARMR) {
-		addButtonDisabled(6, "Valeria", "You are currently wearing Valeria. Unequip from your Inventory menu if you want to interact with her.");
+		addButtonDisabled(6, "Валерия", "You are currently wearing Valeria. Unequip from your Inventory menu if you want to interact with her.");
 	}
-	addButton(14,"Back",playerMenu);
+	addButton(14,"Назад",playerMenu);
 }
 
 //-----------------
@@ -1341,28 +1341,28 @@ private function campActions():void {
 	menu();
 	clearOutput();
 	outputText(images.showImage("camp-doings"));
-	outputText("What would you like to do?")
-	addButton(0, "SwimInStream", swimInStream, null, null, null, "Swim in stream and relax to pass time.", "Swim In Stream");
-	addButton(1, "ExaminePortal", examinePortal, null, null, null, "Examine the portal. This scene is placeholder.", "Examine Portal"); //Examine portal.
+	outputText("Чем ты собираешься заняться?")
+	addButton(0, "Ручей", swimInStream, null, null, null, "Провести досуг, плавая в ручье.", "Плавание в ручье");
+	addButton(1, "Портал", examinePortal, null, null, null, "Осмотреть портал. This scene is placeholder.", "Проверить портал"); //Examine portal.
 	if (model.time.hours == 19) {
-		addButton(2, "Watch Sunset", watchSunset, null, null, null, "Watch the sunset and relax."); //Relax and watch at the sunset.
+		addButton(2, "Закат", watchSunset, null, null, null, "Провести досуг, наблюдая за заходом солнца."); //Relax and watch at the sunset.
 	}
 	else if (model.time.hours >= 20 && flags[kFLAGS.LETHICE_DEFEATED] > 0) {
-		addButton(2, "Stargaze", watchStars, null, null, null, "Look at the starry night sky."); //Stargaze. Only available after Lethice is defeated.
+		addButton(2, "Звезды", watchStars, null, null, null, "Разглядывать ночное звездное небо."); //Stargaze. Only available after Lethice is defeated.
 	}
 	else {
-		addButtonDisabled(2, "Watch Sky", "The option to watch sunset is available at 7pm.");
+		addButtonDisabled(2, "Небо", "Это действие станет доступно лишь к 19:00.");
 	}
-	if (flags[kFLAGS.CAMP_CABIN_PROGRESS] > 0 && flags[kFLAGS.CAMP_CABIN_PROGRESS] < 10) addButton(3, "Build Cabin", cabinProgress.initiateCabin, null, null, null, "Work on your cabin."); //Work on cabin.
-	if (flags[kFLAGS.CAMP_CABIN_PROGRESS] >= 10 || flags[kFLAGS.CAMP_BUILT_CABIN] >= 1) addButton(3, "Enter Cabin", cabinProgress.initiateCabin, null, null, null, "Enter your cabin."); //Enter cabin for furnish.
-	addButton(4, "Read Codex", codex.accessCodexMenu, null, null, null, "Read any codex entries you have unlocked.");
-	if (player.hasKeyItem("Carpenter's Toolbox") >= 0 && flags[kFLAGS.CAMP_WALL_PROGRESS] < 100 && getCampPopulation() >= 4) addButton(5, "Build Wall", buildCampWallPrompt, null, null, null, "Build a wall around your camp to defend from the imps." + (flags[kFLAGS.CAMP_WALL_PROGRESS] >= 20 ? "\n\nProgress: " + (flags[kFLAGS.CAMP_WALL_PROGRESS]/20) + "/5 complete": "") + "");
-	if (player.hasKeyItem("Carpenter's Toolbox") >= 0 && flags[kFLAGS.CAMP_WALL_PROGRESS] >= 100 && flags[kFLAGS.CAMP_WALL_GATE] <= 0) addButton(5, "Build Gate", buildCampGatePrompt, null, null, null, "Build a gate to complete your camp defense.");
-	if (flags[kFLAGS.CAMP_WALL_PROGRESS] >= 100 && player.hasItem(useables.IMPSKLL, 1)) addButton(6, "AddImpSkull", promptHangImpSkull, null, null, null, "Add an imp skull to decorate the wall and to serve as deterrent for imps.", "Add Imp Skull");
-	if (flags[kFLAGS.LETHICE_DEFEATED] > 0) addButton(7, "Ascension", promptAscend, null, null, null, "Perform an ascension? This will restart your adventures with your levels, items, and gems carried over. The game will also get harder.");
+	if (flags[kFLAGS.CAMP_CABIN_PROGRESS] > 0 && flags[kFLAGS.CAMP_CABIN_PROGRESS] < 10) addButton(3, "Строить хижину", cabinProgress.initiateCabin, null, null, null, "Работать над своей хижиной."); //Work on cabin.
+	if (flags[kFLAGS.CAMP_CABIN_PROGRESS] >= 10 || flags[kFLAGS.CAMP_BUILT_CABIN] >= 1) addButton(3, "Войти в хижину", cabinProgress.initiateCabin, null, null, null, "Зайти в свою хижину."); //Enter cabin for furnish.
+	addButton(4, "Кодекс", codex.accessCodexMenu, null, null, null, "Прочитать заметки, занесенные тобой в кодекс.");
+	if (player.hasKeyItem("Carpenter's Toolbox") >= 0 && flags[kFLAGS.CAMP_WALL_PROGRESS] < 100 && getCampPopulation() >= 4) addButton(5, "Строить стену", buildCampWallPrompt, null, null, null, "Работать над стеной по периметру своего лагеря, которая поможет защититься от бесов." + (flags[kFLAGS.CAMP_WALL_PROGRESS] >= 20 ? "\n\nПрогресс: " + (flags[kFLAGS.CAMP_WALL_PROGRESS]/20) + " из 5 выполнено": "") + "");
+	if (player.hasKeyItem("Carpenter's Toolbox") >= 0 && flags[kFLAGS.CAMP_WALL_PROGRESS] >= 100 && flags[kFLAGS.CAMP_WALL_GATE] <= 0) addButton(5, "Строить ворота", buildCampGatePrompt, null, null, null, "Завершить укрепление твоего лагеря постройкой ворот.");
+	if (flags[kFLAGS.CAMP_WALL_PROGRESS] >= 100 && player.hasItem(useables.IMPSKLL, 1)) addButton(6, "Черепки", promptHangImpSkull, null, null, null, "Украсить черепком беса стену твоего лагеря, что послужит им средством устрашения.", "Добавить черепок");
+	if (flags[kFLAGS.LETHICE_DEFEATED] > 0) addButton(7, "Вознесение", promptAscend, null, null, null, "Совершить вознесение? Это перезапустит твои приключения и перенесет твои уровни, предметы и камни. Также игра станет куда сложнее...");
 	//addButton(8, "Build Misc", null, null, null, null, "Build other structures than walls or cabin for your camp");
 	//addButton(9, "Craft", kGAMECLASS.crafting.accessCraftingMenu, null, null, null, "Craft some items.");
-	addButton(14, "Back", playerMenu);
+	addButton(14, "Назад", playerMenu);
 }
 
 private function swimInStream():void {
@@ -1480,7 +1480,7 @@ private function swimInStreamPrank1():void {
 	}*/
 	if (pranked == false) outputText("  No one managed to swim past where you left the warm spot before it dissipated. You feel a bit disappointed and just go back to swimming.");
 	else outputText("  You feel accomplished from the prank and resume swimming. ");
-	awardAchievement("Urine Trouble", kACHIEVEMENTS.GENERAL_URINE_TROUBLE);
+	awardAchievement("Проблемы с мочеиспусканием", kACHIEVEMENTS.GENERAL_URINE_TROUBLE);
 	doNext(swimInStreamFinish);
 }
 
@@ -1505,16 +1505,15 @@ private function swimInStreamFinish():void {
 }
 
 private function examinePortal():void {
+	clearOutput();
 	outputText(images.showImage("camp-portal"));
 	if (flags[kFLAGS.CAMP_PORTAL_PROGRESS] <= 0) {
-		clearOutput();
 		outputText("You walk over to the portal, reminded by how and why you came. You wonder if you can go back to Ingnam. You start by picking up a small pebble and throw it through the portal. It passes through the portal. As you walk around the portal, you spot the pebble at the other side. Seems like you can't get back right now.");
 		flags[kFLAGS.CAMP_PORTAL_PROGRESS] = 1;
 		doNext(camp.returnToCampUseOneHour);
 		return;
 	}
 	else {
-		clearOutput();
 		outputText("You walk over to the portal, reminded by how and why you came. You let out a sigh, knowing you can't return to Ingnam.");
 	}
 	doNext(playerMenu);
@@ -1952,15 +1951,15 @@ public function badEndGIANTBALLZ():void {
 	menu();
 	if (player.hasItem(consumables.REDUCTO, 1)) {
 		outputText("\n\nFortunately, you have some Reducto.  You can shrink your balls and get back to your adventures!")
-		addButton(1, "Reducto", applyReductoAndEscapeBadEnd);
+		addButton(1, "'Редукто'", applyReductoAndEscapeBadEnd);
 	}
 	if (player.hasStatusEffect(StatusEffects.CampRathazul)) {
 		outputText("\n\nYou could call for Rathazul to help you.")
-		addButton(2, "Rathazul", callRathazulAndEscapeBadEnd);		
+		addButton(2, "Ратазул", callRathazulAndEscapeBadEnd);		
 	}
 	if (shouldraFollower.followerShouldra()) {
 		outputText("\n\nYou could call for Shouldra to shrink your monstrous balls.")
-		addButton(3, "Shouldra", shouldraFollower.shouldraReductosYourBallsUpInsideYa, true);		
+		addButton(3, "Шулдра", shouldraFollower.shouldraReductosYourBallsUpInsideYa, true);		
 	}
 	else getGame().gameOver();
 }
@@ -2024,7 +2023,7 @@ public function badEndMinLust():void {
 
 public function allNaturalSelfStimulationBeltContinuation():void {
 	clearOutput();
-	outputText(images.showImage("camp-stimBelt"));
+	outputText(images.showImage("masti-stimBelt-allNatural"));
 	outputText("In shock, you scream as you realize the nodule has instantly grown into a massive, organic dildo. It bottoms out easily and rests against your cervix as you recover from the initial shock of its penetration. As the pangs subside, the infernal appendage begins working itself. It begins undulating in long, slow strokes. It takes great care to adjust itself to fit every curve of your womb. Overwhelmed, your body begins reacting against your conscious thought and slowly thrusts your pelvis in tune to the thing.\n\n");
 	outputText("As suddenly as it penetrated you, it shifts into a different phase of operation. It buries itself as deep as it can and begins short, rapid strokes. The toy hammers your insides faster than any man could ever hope to do. You orgasm immediately and produce successive climaxes. Your body loses what motor control it had and bucks and undulates wildly as the device pistons your cunt without end. You scream at the top of your lungs. Each yell calls to creation the depth of your pleasure and lust.\n\n");
 	outputText("The fiendish belt shifts again. It buries itself as deep as it can go and you feel pressure against the depths of your womanhood. You feel a hot fluid spray inside you. Reflexively, you shout, \"<b>IT'S CUMMING! IT'S CUMMING INSIDE ME!</b>\" Indeed, each push of the prodding member floods your box with juice. It cums... and cums... and cums... and cums...\n\n");
@@ -2038,7 +2037,7 @@ public function allNaturalSelfStimulationBeltContinuation():void {
 public function allNaturalSelfStimulationBeltBadEnd():void {
 	spriteSelect(SpriteDb.s_giacomo);
 	clearOutput();
-	outputText(images.showImage("badend-stimbelt"));
+	outputText(images.showImage("badend-stimBelt"));
 	outputText("Whatever the belt is, whatever it does, it no longer matters to you.  The only thing you want is to feel the belt and its creature fuck the hell out of you, day and night.  You quickly don the creature again and it begins working its usual lustful magic on your insatiable little box.  An endless wave of orgasms take you.  All you now know is the endless bliss of an eternal orgasm.\n\n");
 	outputText("Your awareness hopelessly compromised by the belt and your pleasure, you fail to notice a familiar face approach your undulating form.  It is the very person who sold you this infernal toy.  The merchant, Giacomo.\n\n");
 	outputText("\"<i>Well, well,</i>\" Giacomo says.  \"<i>The Libertines are right.  The creature's fluids are addictive. This poor " + player.mf("man", "woman") + " is a total slave to the beast!</i>\"\n\n");
@@ -2096,7 +2095,7 @@ public function places():Boolean {
 	hideMenus();
 	clearOutput();
 	outputText(images.showImage("camp-pathfinder"));
-	outputText("Which place would you like to visit?");
+	outputText("Какое место ты желаешь посетить?");
 	//if (flags[kFLAGS.PLACES_PAGE] != 0)
 	//{
 	//	placesPage2();
@@ -2104,26 +2103,26 @@ public function places():Boolean {
 	//}
 	//Build menu
 	menu();
-	if (flags[kFLAGS.BAZAAR_ENTERED] > 0) addButton(0, "Bazaar", kGAMECLASS.bazaar.enterTheBazaar, null, null, null, "Visit the Bizarre Bazaar where the demons and corrupted beings hang out.");
-	if (player.hasStatusEffect(StatusEffects.BoatDiscovery)) addButton(1, "Boat", kGAMECLASS.boat.boatExplore, null, null, null, "Get on the boat and explore the lake. \n\nRecommended level: 4");
+	if (flags[kFLAGS.BAZAAR_ENTERED] > 0) addButton(0, "Базар", kGAMECLASS.bazaar.enterTheBazaar, null, null, null, "Visit the Bizarre Bazaar where the demons and corrupted beings hang out.");
+	if (player.hasStatusEffect(StatusEffects.BoatDiscovery)) addButton(1, "Шлюпка", kGAMECLASS.boat.boatExplore, null, null, null, "Get on the boat and explore the lake. \n\nRecommended level: 4");
 	if (flags[kFLAGS.FOUND_CATHEDRAL] > 0) {
-		if (flags[kFLAGS.GAR_NAME] == 0) addButton(2, "Cathedral", kGAMECLASS.gargoyle.gargoylesTheShowNowOnWBNetwork, null, null, null, "Visit the ruined cathedral you've recently discovered.");
-		else addButton(2, "Cathedral", kGAMECLASS.gargoyle.returnToCathedral, null, null, null, "Visit the ruined cathedral where " + flags[kFLAGS.GAR_NAME] + " resides.");
+		if (flags[kFLAGS.GAR_NAME] == 0) addButton(2, "Собор", kGAMECLASS.gargoyle.gargoylesTheShowNowOnWBNetwork, null, null, null, "Visit the ruined cathedral you've recently discovered.");
+		else addButton(2, "Собор", kGAMECLASS.gargoyle.returnToCathedral, null, null, null, "Visit the ruined cathedral where " + flags[kFLAGS.GAR_NAME] + " resides.");
 	}
-	if (dungeonFound()) addButton(3, "Dungeons", dungeons, null, null, null, "Delve into dungeons.");
+	if (dungeonFound()) addButton(3, "Подземелья", dungeons, null, null, null, "Delve into dungeons.");
 	
-	if (farmFound()) addButton(5, "Farm", kGAMECLASS.farm.farmExploreEncounter, null, null, null, "Visit Whitney's farm.");
-	if (flags[kFLAGS.OWCA_UNLOCKED] == 1) addButton(6, "Owca", kGAMECLASS.owca.gangbangVillageStuff, null, null, null, "Visit the sheep village of Owca, known for its pit where a person is hung on the pole weekly to be gang-raped by the demons.");
-	if (flags[kFLAGS.MET_MINERVA] >= 4) addButton(7, "Oasis Tower", kGAMECLASS.highMountains.minervaScene.encounterMinerva, null, null, null, "Visit the ruined tower in the high mountains where Minerva resides.");
-	if (player.hasStatusEffect(StatusEffects.HairdresserMeeting)) addButton(8, "Salon", kGAMECLASS.mountain.salon.salonGreeting, null, null, null, "Visit the salon for hair services.");
+	if (farmFound()) addButton(5, "Ферма", kGAMECLASS.farm.farmExploreEncounter, null, null, null, "Visit Whitney's farm.");
+	if (flags[kFLAGS.OWCA_UNLOCKED] == 1) addButton(6, "Овца", kGAMECLASS.owca.gangbangVillageStuff, null, null, null, "Visit the sheep village of Owca, known for its pit where a person is hung on the pole weekly to be gang-raped by the demons.");
+	if (flags[kFLAGS.MET_MINERVA] >= 4) addButton(7, "Башня Прибежища", kGAMECLASS.highMountains.minervaScene.encounterMinerva, null, null, null, "Visit the ruined tower in the high mountains where Minerva resides.");
+	if (player.hasStatusEffect(StatusEffects.HairdresserMeeting)) addButton(8, "Салон", kGAMECLASS.mountain.salon.salonGreeting, null, null, null, "Visit the salon for hair services.");
 	
-	if (player.statusEffectv1(StatusEffects.TelAdre) >= 1) addButton(10, "Tel'Adre", kGAMECLASS.telAdre.telAdreMenu, null, null, null, "Visit the city of Tel'Adre in desert, easily recognized by the massive tower.");
-	if (flags[kFLAGS.AMILY_VILLAGE_ACCESSIBLE] > 0) addButton(11, "Town Ruins", kGAMECLASS.townRuins.exploreVillageRuin, null, null, null, "Visit the village ruins.");
-	if (flags[kFLAGS.PRISON_CAPTURE_COUNTER] > 0) addButton(12, "Prison", kGAMECLASS.prison.prisonIntro, false, null, null, "Return to the prison and continue your life as Elly's slave.");
-	if (debug) addButton(13, "Ingnam", kGAMECLASS.ingnam.returnToIngnam, null, null, null, "Return to Ingnam for debugging purposes. Night-time event weirdness might occur. You have been warned!");
+	if (player.statusEffectv1(StatusEffects.TelAdre) >= 1) addButton(10, "Тель Адре", kGAMECLASS.telAdre.telAdreMenu, null, null, null, "Visit the city of Tel'Adre in desert, easily recognized by the massive tower.");
+	if (flags[kFLAGS.AMILY_VILLAGE_ACCESSIBLE] > 0) addButton(11, "Развалины", kGAMECLASS.townRuins.exploreVillageRuin, null, null, null, "Visit the village ruins.");
+	if (flags[kFLAGS.PRISON_CAPTURE_COUNTER] > 0) addButton(12, "Тюрьма", kGAMECLASS.prison.prisonIntro, false, null, null, "Return to the prison and continue your life as Elly's slave.");
+	if (debug) addButton(13, "Ингнам", kGAMECLASS.ingnam.returnToIngnam, null, null, null, "Return to Ingnam for debugging purposes. Night-time event weirdness might occur. You have been warned!");
 	
 	//addButton(4, "Next", placesPage2);
-	addButton(14, "Back", playerMenu);
+	addButton(14, "Назад", playerMenu);
 	return true;
 }
 
@@ -2142,19 +2141,19 @@ private function placesToPage1():void {
 private function dungeons():void {
 	menu();
 	//Turn on dungeon 1
-	if (flags[kFLAGS.FACTORY_FOUND] > 0) addButton(0, "Factory", getGame().dungeons.factory.enterDungeon, null, null, null, "Visit the demonic factory in the mountains." + (flags[kFLAGS.FACTORY_SHUTDOWN] > 0 ? "\n\nYou've managed to shut down the factory." : "The factory is still running. Marae wants you to shut down the factory!") + (kGAMECLASS.dungeons.checkFactoryClear() ? "\n\nCLEARED!" : ""));
+	if (flags[kFLAGS.FACTORY_FOUND] > 0) addButton(0, "Фабрика", getGame().dungeons.factory.enterDungeon, null, null, null, "Visit the demonic factory in the mountains." + (flags[kFLAGS.FACTORY_SHUTDOWN] > 0 ? "\n\nYou've managed to shut down the factory." : "The factory is still running. Marae wants you to shut down the factory!") + (kGAMECLASS.dungeons.checkFactoryClear() ? "\n\nОЧИЩЕНО!" : ""));
 	//Turn on dungeon 2
-	if (flags[kFLAGS.DISCOVERED_DUNGEON_2_ZETAZ] > 0) addButton(1, "Deep Cave", getGame().dungeons.deepcave.enterDungeon, null, null, null, "Visit the cave you've found in the Deepwoods." + (flags[kFLAGS.DEFEATED_ZETAZ] > 0 ? "\n\nYou've defeated Zetaz, your old rival." : "") + (kGAMECLASS.dungeons.checkDeepCaveClear() ? "\n\nCLEARED!" : ""));
+	if (flags[kFLAGS.DISCOVERED_DUNGEON_2_ZETAZ] > 0) addButton(1, "Глубокая пещера", getGame().dungeons.deepcave.enterDungeon, null, null, null, "Visit the cave you've found in the Deepwoods." + (flags[kFLAGS.DEFEATED_ZETAZ] > 0 ? "\n\nYou've defeated Zetaz, your old rival." : "") + (kGAMECLASS.dungeons.checkDeepCaveClear() ? "\n\nОЧИЩЕНО!" : ""));
 	//Turn on dungeon 3
-	if (flags[kFLAGS.D3_DISCOVERED] > 0) addButton(2, "Stronghold", kGAMECLASS.d3.enterD3, null, null, null, "Visit the stronghold in the high mountains that belongs to Lethice, the demon queen." + (flags[kFLAGS.LETHICE_DEFEATED] > 0 ? "\n\nYou have defeated Lethice and put an end to the demonic threats. Congratulations, you've beaten the main story!" : "") + (kGAMECLASS.dungeons.checkLethiceStrongholdClear() ? "\n\nCLEARED!" : ""));
+	if (flags[kFLAGS.D3_DISCOVERED] > 0) addButton(2, "Цитадель", kGAMECLASS.d3.enterD3, null, null, null, "Visit the stronghold in the high mountains that belongs to Lethice, the demon queen." + (flags[kFLAGS.LETHICE_DEFEATED] > 0 ? "\n\nYou have defeated Lethice and put an end to the demonic threats. Congratulations, you've beaten the main story!" : "") + (kGAMECLASS.dungeons.checkLethiceStrongholdClear() ? "\n\nОЧИЩЕНО!" : ""));
 	//Side dungeons
-	if (flags[kFLAGS.DISCOVERED_WITCH_DUNGEON] > 0) addButton(5, "Desert Cave", getGame().dungeons.desertcave.enterDungeon, null, null, null, "Visit the cave you've found in the desert." + (flags[kFLAGS.SAND_WITCHES_COWED] + flags[kFLAGS.SAND_WITCHES_FRIENDLY] > 0 ? "\n\nFrom what you've known, this is the source of the Sand Witches." : "") + (kGAMECLASS.dungeons.checkSandCaveClear() ? "\n\nCLEARED!" : ""));
-	if (kGAMECLASS.dungeons.checkPhoenixTowerClear()) addButton(6, "Phoenix Tower", getGame().dungeons.heltower.returnToHeliaDungeon, null, null, null, "Re-visit the tower you went there as part of Helia's quest." + (kGAMECLASS.dungeons.checkPhoenixTowerClear() ? "\n\nYou've helped Helia in the quest and resolved the problems. \n\nCLEARED!" : ""));
+	if (flags[kFLAGS.DISCOVERED_WITCH_DUNGEON] > 0) addButton(5, "Грот в пустыне", getGame().dungeons.desertcave.enterDungeon, null, null, null, "Visit the cave you've found in the desert." + (flags[kFLAGS.SAND_WITCHES_COWED] + flags[kFLAGS.SAND_WITCHES_FRIENDLY] > 0 ? "\n\nFrom what you've known, this is the source of the Sand Witches." : "") + (kGAMECLASS.dungeons.checkSandCaveClear() ? "\n\nОЧИЩЕНО!" : ""));
+	if (kGAMECLASS.dungeons.checkPhoenixTowerClear()) addButton(6, "Башня Феникса", getGame().dungeons.heltower.returnToHeliaDungeon, null, null, null, "Re-visit the tower you went there as part of Helia's quest." + (kGAMECLASS.dungeons.checkPhoenixTowerClear() ? "\n\nYou've helped Helia in the quest and resolved the problems. \n\nОЧИЩЕНО!" : ""));
 		//Fetish Church?
 		//Hellhound Dungeon?
 	//Non-hostile dungeons
-	if (flags[kFLAGS.ANZU_PALACE_UNLOCKED] > 0) addButton(10, "Anzu's Palace", getGame().dungeons.palace.enterDungeon, null, null, null, "Visit the palace in the Glacial Rift where Anzu the avian deity resides.");
-	addButton(14, "Back", places);
+	if (flags[kFLAGS.ANZU_PALACE_UNLOCKED] > 0) addButton(10, "Дворец Анджу", getGame().dungeons.palace.enterDungeon, null, null, null, "Visit the palace in the Glacial Rift where Anzu the avian deity resides.");
+	addButton(14, "Назад", places);
 }
 
 private function exgartuanCampUpdate():void {
@@ -2171,7 +2170,7 @@ private function exgartuanCampUpdate():void {
 			if (player.hasCock()) outputText("  Perhaps you got too small for Exgartuan to handle?</b>\n");
 			else outputText("  It looks like the demon didn't want to stick around without your manhood.</b>\n");
 			player.removeStatusEffect(StatusEffects.Exgartuan);
-			awardAchievement("Urine Trouble", kACHIEVEMENTS.GENERAL_URINE_TROUBLE, true);
+			awardAchievement("Проблемы с мочеиспусканием", kACHIEVEMENTS.GENERAL_URINE_TROUBLE, true);
 		}
 		//Tit removal
 		else if (player.statusEffectv1(StatusEffects.Exgartuan) == 2 && player.biggestTitSize() < 12)
@@ -2236,7 +2235,7 @@ public function wakeFromBadEnd():void {
 	if (player.spe100 > 20) dynStats("spe", Math.ceil(-player.spe * 0.02) * penaltyMultiplier);
 	if (player.inte100 > 20) dynStats("inte", Math.ceil(-player.inte * 0.02) * penaltyMultiplier);
 	menu();
-	addButton(0, "Next", playerMenu);
+	addButton(0, "Далее", playerMenu);
 }
 
 //Camp wall
@@ -2437,13 +2436,13 @@ public function bedDesc():String {
 
 private function promptAscend():void {
 	clearOutput();
-	outputText("Are you sure you want to ascend? This will restart the game and put you into ");
-	if (flags[kFLAGS.NEW_GAME_PLUS_LEVEL] == 0) outputText("<b>New Game+</b>");
-	else if (flags[kFLAGS.NEW_GAME_PLUS_LEVEL] == 1) outputText("<b>New Game++</b>");
-	else if (flags[kFLAGS.NEW_GAME_PLUS_LEVEL] == 2) outputText("<b>New Game+++</b>");
-	else outputText("<b>New Game+" + (flags[kFLAGS.NEW_GAME_PLUS_LEVEL] + 1) + "</b>");
-	outputText(". Your items, level, and attributes except Corruption will be carried over into new playthrough. You'll revert back to human completely but you'll get to keep ears, horns, and tail transformations, if any. You'll also retain your name and gender.");
-	outputText("\n\n<b>Proceed?</b>");
+	outputText("Ты точно хочешь вознестись? Это перезапустит игру и перенесет тебя в ");
+	if (flags[kFLAGS.NEW_GAME_PLUS_LEVEL] == 0) outputText("<b>Новую Игру+</b>");
+	else if (flags[kFLAGS.NEW_GAME_PLUS_LEVEL] == 1) outputText("<b>Новую Игру++</b>");
+	else if (flags[kFLAGS.NEW_GAME_PLUS_LEVEL] == 2) outputText("<b>Новую Игру+++</b>");
+	else outputText("<b>Новую Игру+" + (flags[kFLAGS.NEW_GAME_PLUS_LEVEL] + 1) + "</b>");
+	outputText(". Твой уровень, предметы и свойства, за исключением Разврата будут перенесены в новую сессию. Ты вернешься в человеческое обличие, но ты сможешь оставить видоизмененные уши, рога и хвост, если таковые имеются. Также ты сохранишь свои имя и пол.");
+	outputText("\n\n<b>Продолжить?</b>");
 	doYesNo(ascendForReal, campActions);
 }
 private function totalChildrenForAscension():int { //Sorted alphabetically
@@ -2509,17 +2508,17 @@ public function setLevelButton():Boolean {
 		if (player.XP < player.requiredXP() || player.level >= kGAMECLASS.levelCap)
 		{
 			if (player.statPoints > 0) {
-				mainView.setMenuButton( MainView.MENU_LEVEL, "Stat Up" );
-				mainView.levelButton.toolTipText = "Distribute your stats points. \n\nYou currently have " + String(player.statPoints) + ".";
+				mainView.setMenuButton( MainView.MENU_LEVEL, "Свойство↑" );
+				mainView.levelButton.toolTipText = "Distribute your stats points. \n\nСейчас у тебя " + String(player.statPoints) + ".";
 			}
 			else {
-				mainView.setMenuButton( MainView.MENU_LEVEL, "Perk Up" );
-				mainView.levelButton.toolTipText = "Spend your perk points on a new perk. \n\nYou currently have " + String(player.perkPoints) + ".";
+				mainView.setMenuButton( MainView.MENU_LEVEL, "Навык↑" );
+				mainView.levelButton.toolTipText = "Spend your perk points on a new perk. \n\nСейчас у тебя " + String(player.perkPoints) + ".";
 			}
 		}
 		else {
-			mainView.setMenuButton( MainView.MENU_LEVEL, "Level Up" );
-			mainView.levelButton.toolTipText = "Level up to increase your maximum HP by 15 and gain 5 attribute points and 1 perk points.";
+			mainView.setMenuButton( MainView.MENU_LEVEL, "Уровень↑" );
+			mainView.levelButton.toolTipText = "Подняв свой уровень, ты увеличишь максимальные ОЗ на 15 и получишь 5 очков свойств и 1 очко навыка.";
 			if (flags[kFLAGS.AUTO_LEVEL] > 0) {
 				kGAMECLASS.playerInfo.levelUpGo();
 				return true; //True indicates that you should be routed to level-up.
@@ -2761,40 +2760,40 @@ private function promptSaveUpdate():void {
 
 private function furColorSelection1():void {
 	menu();
-	addButton(0, "Brown", chooseFurColorSaveUpdate, "brown");
-	addButton(1, "Chocolate", chooseFurColorSaveUpdate, "chocolate");
-	addButton(2, "Auburn", chooseFurColorSaveUpdate, "auburn");
-	addButton(3, "Orange", chooseFurColorSaveUpdate, "orange");
+	addButton(0, "Коричневая", chooseFurColorSaveUpdate, "коричневая");
+	addButton(1, "Шоколадная", chooseFurColorSaveUpdate, "шоколадная");
+	addButton(2, "Золотисто-каштановая", chooseFurColorSaveUpdate, "золотисто-каштановая");
+	addButton(3, "Оранжевая", chooseFurColorSaveUpdate, "оранжевая");
 	
-	addButton(5, "Caramel", chooseFurColorSaveUpdate, "caramel");
-	addButton(6, "Peach", chooseFurColorSaveUpdate, "peach");
-	addButton(7, "Sandy Brown", chooseFurColorSaveUpdate, "sandy brown");
-	addButton(8, "Golden", chooseFurColorSaveUpdate, "golden");
+	addButton(5, "Карамельная", chooseFurColorSaveUpdate, "карамельная");
+	addButton(6, "Персиковая", chooseFurColorSaveUpdate, "персиковая");
+	addButton(7, "Песочно-коричневая", chooseFurColorSaveUpdate, "песочно-коричневая");
+	addButton(8, "Золотая", chooseFurColorSaveUpdate, "золотая");
 
-	addButton(4, "Next", furColorSelection2);
+	addButton(4, "Далее", furColorSelection2);
 }
 private function furColorSelection2():void {
 	menu();
-	addButton(0, "Midnight black", chooseFurColorSaveUpdate, "midnight black");
-	addButton(1, "Black", chooseFurColorSaveUpdate, "black");
-	addButton(2, "Dark gray", chooseFurColorSaveUpdate, "dark gray");
-	addButton(3, "Gray", chooseFurColorSaveUpdate, "gray");
+	addButton(0, "Полуночно-черная", chooseFurColorSaveUpdate, "полуночно-черная");
+	addButton(1, "Черная", chooseFurColorSaveUpdate, "черная");
+	addButton(2, "Темно-серая", chooseFurColorSaveUpdate, "темно-серая");
+	addButton(3, "Серая", chooseFurColorSaveUpdate, "серая");
 	
-	addButton(5, "Light gray", chooseFurColorSaveUpdate, "light gray");
-	addButton(6, "Silver", chooseFurColorSaveUpdate, "silver");
-	addButton(7, "White", chooseFurColorSaveUpdate, "white");
+	addButton(5, "Светло-серая", chooseFurColorSaveUpdate, "светло-серая");
+	addButton(6, "Серебряная", chooseFurColorSaveUpdate, "серебряная");
+	addButton(7, "Белая", chooseFurColorSaveUpdate, "белая");
 	
-	addButton(10, "Orange&White", chooseFurColorSaveUpdate, "orange and white");
-	addButton(11, "Brown&White", chooseFurColorSaveUpdate, "brown and white");
-	addButton(12, "Black&White", chooseFurColorSaveUpdate, "black and white");
-	addButton(13, "Gray&White", chooseFurColorSaveUpdate, "gray and white");
+	addButton(10, "Белооранжевая", chooseFurColorSaveUpdate, "белооранжевая");
+	addButton(11, "Белокоричневая", chooseFurColorSaveUpdate, "белокоричневая");
+	addButton(12, "Белочерная", chooseFurColorSaveUpdate, "белочерная");
+	addButton(13, "Белосерая", chooseFurColorSaveUpdate, "белосерая");
 	
-	addButton(9, "Previous", furColorSelection1);
+	addButton(9, "Предыдущее", furColorSelection1);
 }
 
 private function chooseFurColorSaveUpdate(color:String):void {
 	clearOutput();
-	outputText("You now have " + color + " fur. You will be returned to your camp now and you can continue your usual gameplay.");
+	outputText("Теперь у тебя " + color + " шкура. Теперь ты возвращаешься в свой лагерь, где сможешь продолжить свои похождения.");
 	player.furColor = color;
 	doNext(doCamp);
 }
@@ -2835,118 +2834,118 @@ private function updateSaveFlags():void {
 
 private function updateAchievements():void {
 	//Story
-	awardAchievement("Newcomer", kACHIEVEMENTS.STORY_NEWCOMER);
-	if (flags[kFLAGS.MARAE_QUEST_COMPLETE] > 0) awardAchievement("Marae's Savior", kACHIEVEMENTS.STORY_MARAE_SAVIOR);
-	if (player.hasKeyItem("Zetaz's Map") >= 0) awardAchievement("Revenge at Last", kACHIEVEMENTS.STORY_ZETAZ_REVENGE);
-	if (flags[kFLAGS.LETHICE_DEFEATED] > 0) awardAchievement("Demon Slayer", kACHIEVEMENTS.STORY_FINALBOSS);
+	awardAchievement("Новоприбывш" + player.mf("ий", "ая"), kACHIEVEMENTS.STORY_NEWCOMER);
+	if (flags[kFLAGS.MARAE_QUEST_COMPLETE] > 0) awardAchievement("Спаситель" + player.mf("", "ница") + " Мараи", kACHIEVEMENTS.STORY_MARAE_SAVIOR);
+	if (player.hasKeyItem("Zetaz's Map") >= 0) awardAchievement("Вкус мести", kACHIEVEMENTS.STORY_ZETAZ_REVENGE);
+	if (flags[kFLAGS.LETHICE_DEFEATED] > 0) awardAchievement("Убийца демонов", kACHIEVEMENTS.STORY_FINALBOSS);
 	
 	//Zones
-	if (flags[kFLAGS.TIMES_EXPLORED_FOREST] > 0 && flags[kFLAGS.TIMES_EXPLORED_LAKE] > 0 && flags[kFLAGS.TIMES_EXPLORED_DESERT] > 0 && flags[kFLAGS.TIMES_EXPLORED_MOUNTAIN] > 0 && flags[kFLAGS.TIMES_EXPLORED_PLAINS] > 0 && flags[kFLAGS.TIMES_EXPLORED_SWAMP] > 0 && player.hasStatusEffect(StatusEffects.ExploredDeepwoods) && flags[kFLAGS.DISCOVERED_HIGH_MOUNTAIN] > 0 && flags[kFLAGS.BOG_EXPLORED] > 0 && flags[kFLAGS.DISCOVERED_GLACIAL_RIFT] > 0) awardAchievement("Explorer", kACHIEVEMENTS.ZONE_EXPLORER);
-	if (placesCount() >= 10) awardAchievement("Sightseer", kACHIEVEMENTS.ZONE_SIGHTSEER);
-	if (flags[kFLAGS.TIMES_EXPLORED] >= 1) awardAchievement("Where am I?", kACHIEVEMENTS.ZONE_WHERE_AM_I);
-	if (flags[kFLAGS.TIMES_EXPLORED_DESERT] >= 100) awardAchievement("Dehydrated", kACHIEVEMENTS.ZONE_DEHYDRATED);
-	if (flags[kFLAGS.TIMES_EXPLORED_FOREST] >= 100) awardAchievement("Forest Ranger", kACHIEVEMENTS.ZONE_FOREST_RANGER);
-	if (flags[kFLAGS.TIMES_EXPLORED_LAKE] >= 100) awardAchievement("Vacationer", kACHIEVEMENTS.ZONE_VACATIONER);
-	if (flags[kFLAGS.TIMES_EXPLORED_MOUNTAIN] >= 100) awardAchievement("Mountaineer", kACHIEVEMENTS.ZONE_MOUNTAINEER);
-	if (flags[kFLAGS.TIMES_EXPLORED_PLAINS] >= 100) awardAchievement("Rolling Hills", kACHIEVEMENTS.ZONE_ROLLING_HILLS);
-	if (flags[kFLAGS.TIMES_EXPLORED_SWAMP] >= 100) awardAchievement("Wet All Over", kACHIEVEMENTS.ZONE_WET_ALL_OVER);
-	if (player.statusEffectv1(StatusEffects.ExploredDeepwoods) >= 100) awardAchievement("We Need to Go Deeper", kACHIEVEMENTS.ZONE_WE_NEED_TO_GO_DEEPER);
-	if (flags[kFLAGS.DISCOVERED_HIGH_MOUNTAIN] >= 100) awardAchievement("Light-headed", kACHIEVEMENTS.ZONE_LIGHT_HEADED);
-	if (flags[kFLAGS.BOG_EXPLORED] >= 100) awardAchievement("All murky", kACHIEVEMENTS.ZONE_ALL_MURKY);
-	if (flags[kFLAGS.DISCOVERED_GLACIAL_RIFT] >= 100) awardAchievement("Frozen", kACHIEVEMENTS.ZONE_FROZEN);
-	if (flags[kFLAGS.DISCOVERED_VOLCANO_CRAG] >= 100) awardAchievement("Roasted", kACHIEVEMENTS.ZONE_ROASTED);
+	if (flags[kFLAGS.TIMES_EXPLORED_FOREST] > 0 && flags[kFLAGS.TIMES_EXPLORED_LAKE] > 0 && flags[kFLAGS.TIMES_EXPLORED_DESERT] > 0 && flags[kFLAGS.TIMES_EXPLORED_MOUNTAIN] > 0 && flags[kFLAGS.TIMES_EXPLORED_PLAINS] > 0 && flags[kFLAGS.TIMES_EXPLORED_SWAMP] > 0 && player.hasStatusEffect(StatusEffects.ExploredDeepwoods) && flags[kFLAGS.DISCOVERED_HIGH_MOUNTAIN] > 0 && flags[kFLAGS.BOG_EXPLORED] > 0 && flags[kFLAGS.DISCOVERED_GLACIAL_RIFT] > 0) awardAchievement("Первопрод" + player.mf("ец", "чица"), kACHIEVEMENTS.ZONE_EXPLORER);
+	if (placesCount() >= 10) awardAchievement("Турис" + player.mf("т", "тка"), kACHIEVEMENTS.ZONE_SIGHTSEER);
+	if (flags[kFLAGS.TIMES_EXPLORED] >= 1) awardAchievement("Где я?", kACHIEVEMENTS.ZONE_WHERE_AM_I);
+	if (flags[kFLAGS.TIMES_EXPLORED_DESERT] >= 100) awardAchievement("Обезвоженн" + player.mf("ый", "ая"), kACHIEVEMENTS.ZONE_DEHYDRATED);
+	if (flags[kFLAGS.TIMES_EXPLORED_FOREST] >= 100) awardAchievement("Лесни" + player.mf("к", "чка"), kACHIEVEMENTS.ZONE_FOREST_RANGER);
+	if (flags[kFLAGS.TIMES_EXPLORED_LAKE] >= 100) awardAchievement("Дачни" + player.mf("к", "ца"), kACHIEVEMENTS.ZONE_VACATIONER);
+	if (flags[kFLAGS.TIMES_EXPLORED_MOUNTAIN] >= 100) awardAchievement("Горец", kACHIEVEMENTS.ZONE_MOUNTAINEER);
+	if (flags[kFLAGS.TIMES_EXPLORED_PLAINS] >= 100) awardAchievement("Покоривш" + player.mf("ий", "ая") + " холмы", kACHIEVEMENTS.ZONE_ROLLING_HILLS);
+	if (flags[kFLAGS.TIMES_EXPLORED_SWAMP] >= 100) awardAchievement("Просыревш" + player.mf("ий", "ая"), kACHIEVEMENTS.ZONE_WET_ALL_OVER);
+	if (player.statusEffectv1(StatusEffects.ExploredDeepwoods) >= 100) awardAchievement("'We Need to Go Deeper'", kACHIEVEMENTS.ZONE_WE_NEED_TO_GO_DEEPER);
+	if (flags[kFLAGS.DISCOVERED_HIGH_MOUNTAIN] >= 100) awardAchievement("Обветренн" + player.mf("ый", "ая"), kACHIEVEMENTS.ZONE_LIGHT_HEADED);
+	if (flags[kFLAGS.BOG_EXPLORED] >= 100) awardAchievement("Пропитавш" + player.mf("ийся", "аяся мраком") + " мраком", kACHIEVEMENTS.ZONE_ALL_MURKY);
+	if (flags[kFLAGS.DISCOVERED_GLACIAL_RIFT] >= 100) awardAchievement("Промороженн" + player.mf("ый", "ая"), kACHIEVEMENTS.ZONE_FROZEN);
+	if (flags[kFLAGS.DISCOVERED_VOLCANO_CRAG] >= 100) awardAchievement("Прожаренн" + player.mf("ый", "ая"), kACHIEVEMENTS.ZONE_ROASTED);
 	
-	if (player.statusEffectv1(StatusEffects.BoatDiscovery) >= 15) awardAchievement("Sea Legs", kACHIEVEMENTS.ZONE_SEA_LEGS);
-	if (player.statusEffectv1(StatusEffects.MetWhitney) >= 30) awardAchievement("Farmer", kACHIEVEMENTS.ZONE_FARMER);
-	if (flags[kFLAGS.AMILY_VILLAGE_EXPLORED] >= 15) awardAchievement("Archaeologist", kACHIEVEMENTS.ZONE_ARCHAEOLOGIST);
+	if (player.statusEffectv1(StatusEffects.BoatDiscovery) >= 15) awardAchievement("Морск" + player.mf("ой волк", "ая волчица"), kACHIEVEMENTS.ZONE_SEA_LEGS);
+	if (player.statusEffectv1(StatusEffects.MetWhitney) >= 30) awardAchievement("Ферме" + player.mf("", "ша"), kACHIEVEMENTS.ZONE_FARMER);
+	if (flags[kFLAGS.AMILY_VILLAGE_EXPLORED] >= 15) awardAchievement("Археолог", kACHIEVEMENTS.ZONE_ARCHAEOLOGIST);
 	
 	//Levels
-	if (player.level >= 2) awardAchievement("Level up!", kACHIEVEMENTS.LEVEL_LEVEL_UP);
-	if (player.level >= 5) awardAchievement("Novice", kACHIEVEMENTS.LEVEL_NOVICE);
-	if (player.level >= 10) awardAchievement("Apprentice", kACHIEVEMENTS.LEVEL_APPRENTICE);
-	if (player.level >= 15) awardAchievement("Journeyman", kACHIEVEMENTS.LEVEL_JOURNEYMAN);
-	if (player.level >= 20) awardAchievement("Expert", kACHIEVEMENTS.LEVEL_EXPERT);
-	if (player.level >= 30) awardAchievement("Master", kACHIEVEMENTS.LEVEL_MASTER);
-	if (player.level >= 45) awardAchievement("Grandmaster", kACHIEVEMENTS.LEVEL_GRANDMASTER);
-	if (player.level >= 60) awardAchievement("Illustrious", kACHIEVEMENTS.LEVEL_ILLUSTRIOUS);
+	if (player.level >= 2) awardAchievement("Повышение!", kACHIEVEMENTS.LEVEL_LEVEL_UP);
+	if (player.level >= 5) awardAchievement("Новобран" + player.mf("ец", "ица"), kACHIEVEMENTS.LEVEL_NOVICE);
+	if (player.level >= 10) awardAchievement("Учени" + player.mf("к", "ца"), kACHIEVEMENTS.LEVEL_APPRENTICE);
+	if (player.level >= 15) awardAchievement("Наемни" + player.mf("к", "ца"), kACHIEVEMENTS.LEVEL_JOURNEYMAN);
+	if (player.level >= 20) awardAchievement("Эксперт" + player.mf("", "ша"), kACHIEVEMENTS.LEVEL_EXPERT);
+	if (player.level >= 30) awardAchievement("Мастер" + player.mf("", "ша"), kACHIEVEMENTS.LEVEL_MASTER);
+	if (player.level >= 45) awardAchievement("Грандмастер" + player.mf("", "ша"), kACHIEVEMENTS.LEVEL_GRANDMASTER);
+	if (player.level >= 60) awardAchievement("Полковод" + player.mf("ец", "чица"), kACHIEVEMENTS.LEVEL_ILLUSTRIOUS);
 	//if (player.level >= 75) awardAchievement("Overlord", kACHIEVEMENTS.LEVEL_OVERLORD);
-	if (player.level >= 100) awardAchievement("Are you a god?", kACHIEVEMENTS.LEVEL_ARE_YOU_A_GOD);
+	if (player.level >= 100) awardAchievement("Ты бог" + player.mf("г?", "гиня?"), kACHIEVEMENTS.LEVEL_ARE_YOU_A_GOD);
 	
 	//Population
-	if (getCampPopulation() >= 2) awardAchievement("My First Companion", kACHIEVEMENTS.POPULATION_FIRST);
-	if (getCampPopulation() >= 5) awardAchievement("Hamlet", kACHIEVEMENTS.POPULATION_HAMLET);
-	if (getCampPopulation() >= 10) awardAchievement("Village", kACHIEVEMENTS.POPULATION_VILLAGE);
-	if (getCampPopulation() >= 25) awardAchievement("Town", kACHIEVEMENTS.POPULATION_TOWN);
-	if (getCampPopulation() >= 100) awardAchievement("City", kACHIEVEMENTS.POPULATION_CITY);
-	if (getCampPopulation() >= 250) awardAchievement("Metropolis", kACHIEVEMENTS.POPULATION_METROPOLIS);
-	if (getCampPopulation() >= 500) awardAchievement("Megalopolis", kACHIEVEMENTS.POPULATION_MEGALOPOLIS);
-	if (getCampPopulation() >= 1000) awardAchievement("City-State", kACHIEVEMENTS.POPULATION_CITY_STATE);
-	if (getCampPopulation() >= 2500) awardAchievement("Kingdom", kACHIEVEMENTS.POPULATION_KINGDOM);
-	if (getCampPopulation() >= 5000) awardAchievement("Empire", kACHIEVEMENTS.POPULATION_EMPIRE);
+	if (getCampPopulation() >= 2) awardAchievement("Мой первый спутник", kACHIEVEMENTS.POPULATION_FIRST);
+	if (getCampPopulation() >= 5) awardAchievement("Поселок", kACHIEVEMENTS.POPULATION_HAMLET);
+	if (getCampPopulation() >= 10) awardAchievement("Деревня", kACHIEVEMENTS.POPULATION_VILLAGE);
+	if (getCampPopulation() >= 25) awardAchievement("Городок", kACHIEVEMENTS.POPULATION_TOWN);
+	if (getCampPopulation() >= 100) awardAchievement("Город", kACHIEVEMENTS.POPULATION_CITY);
+	if (getCampPopulation() >= 250) awardAchievement("Метрополис", kACHIEVEMENTS.POPULATION_METROPOLIS);
+	if (getCampPopulation() >= 500) awardAchievement("Мегаполис", kACHIEVEMENTS.POPULATION_MEGALOPOLIS);
+	if (getCampPopulation() >= 1000) awardAchievement("Город-государство", kACHIEVEMENTS.POPULATION_CITY_STATE);
+	if (getCampPopulation() >= 2500) awardAchievement("Королевство", kACHIEVEMENTS.POPULATION_KINGDOM);
+	if (getCampPopulation() >= 5000) awardAchievement("Империя", kACHIEVEMENTS.POPULATION_EMPIRE);
 	
 	//Time
-	if (model.time.days >= 30) awardAchievement("It's been a month", kACHIEVEMENTS.TIME_MONTH);
-	if (model.time.days >= 180) awardAchievement("Half-year", kACHIEVEMENTS.TIME_HALF_YEAR);
-	if (model.time.days >= 365) awardAchievement("Annual", kACHIEVEMENTS.TIME_ANNUAL);
-	if (model.time.days >= 730) awardAchievement("Biennial", kACHIEVEMENTS.TIME_BIENNIAL);
-	if (model.time.days >= 1095) awardAchievement("Triennial", kACHIEVEMENTS.TIME_TRIENNIAL);
-	if (model.time.days >= 1825) awardAchievement("In for the long haul", kACHIEVEMENTS.TIME_LONG_HAUL);
-	if (model.time.days >= 3650) awardAchievement("Decade", kACHIEVEMENTS.TIME_DECADE);
-	if (model.time.days >= 36500) awardAchievement("Century", kACHIEVEMENTS.TIME_CENTURY);
+	if (model.time.days >= 30) awardAchievement("Месяц", kACHIEVEMENTS.TIME_MONTH);
+	if (model.time.days >= 180) awardAchievement("Полгода", kACHIEVEMENTS.TIME_HALF_YEAR);
+	if (model.time.days >= 365) awardAchievement("Год", kACHIEVEMENTS.TIME_ANNUAL);
+	if (model.time.days >= 730) awardAchievement("Два года", kACHIEVEMENTS.TIME_BIENNIAL);
+	if (model.time.days >= 1095) awardAchievement("Три года", kACHIEVEMENTS.TIME_TRIENNIAL);
+	if (model.time.days >= 1825) awardAchievement("Пять лет", kACHIEVEMENTS.TIME_LONG_HAUL);
+	if (model.time.days >= 3650) awardAchievement("Дясять лет", kACHIEVEMENTS.TIME_DECADE);
+	if (model.time.days >= 36500) awardAchievement("Вечность", kACHIEVEMENTS.TIME_CENTURY);
 	
 	//Dungeon
 	var dungeonsCleared:int = 0;
 	if (kGAMECLASS.dungeons.checkFactoryClear()) {
-		awardAchievement("Shut Down Everything", kACHIEVEMENTS.DUNGEON_SHUT_DOWN_EVERYTHING); 
+		awardAchievement("Фабрика закрывается", kACHIEVEMENTS.DUNGEON_SHUT_DOWN_EVERYTHING); 
 		dungeonsCleared++;
 	}
 	if (kGAMECLASS.dungeons.checkDeepCaveClear()) {
-		awardAchievement("You're in Deep", kACHIEVEMENTS.DUNGEON_YOURE_IN_DEEP);
+		awardAchievement("Вглубине", kACHIEVEMENTS.DUNGEON_YOURE_IN_DEEP);
 		dungeonsCleared++;
 	}
 	if (kGAMECLASS.dungeons.checkSandCaveClear()) {
-		awardAchievement("Friend of the Sand Witches", kACHIEVEMENTS.DUNGEON_SAND_WITCH_FRIEND);
+		awardAchievement(player.mf("Друг", "Подружка") + " песчаных ведьм", kACHIEVEMENTS.DUNGEON_SAND_WITCH_FRIEND);
 		dungeonsCleared++;
 	}
 	if (kGAMECLASS.dungeons.checkPhoenixTowerClear()) {
-		awardAchievement("Fall of the Phoenix", kACHIEVEMENTS.DUNGEON_PHOENIX_FALL);
+		awardAchievement("Падение Феникса", kACHIEVEMENTS.DUNGEON_PHOENIX_FALL);
 		dungeonsCleared++;
-		if (flags[kFLAGS.TIMES_ORGASMED] <= 0 && flags[kFLAGS.MOD_SAVE_VERSION] == kGAMECLASS.modSaveVersion) awardAchievement("Extremely Chaste Delver", kACHIEVEMENTS.DUNGEON_EXTREMELY_CHASTE_DELVER);
+		if (flags[kFLAGS.TIMES_ORGASMED] <= 0 && flags[kFLAGS.MOD_SAVE_VERSION] == kGAMECLASS.modSaveVersion) awardAchievement("Расхититель" + player.mf("", "ница") + " самых высших нравов", kACHIEVEMENTS.DUNGEON_EXTREMELY_CHASTE_DELVER);
 	}
 	if (kGAMECLASS.dungeons.checkLethiceStrongholdClear()) {
-		awardAchievement("End of Reign", kACHIEVEMENTS.DUNGEON_END_OF_REIGN);
+		awardAchievement("Конец царствования", kACHIEVEMENTS.DUNGEON_END_OF_REIGN);
 		dungeonsCleared++;
 	}
-	if (dungeonsCleared >= 1) awardAchievement("Delver", kACHIEVEMENTS.DUNGEON_DELVER);
-	if (dungeonsCleared >= 3) awardAchievement("Delver Apprentice", kACHIEVEMENTS.DUNGEON_DELVER_APPRENTICE);
-	if (dungeonsCleared >= 5) awardAchievement("Delver Master", kACHIEVEMENTS.DUNGEON_DELVER_MASTER);
+	if (dungeonsCleared >= 1) awardAchievement("Посетитель" + player.mf("", "ница") + " гробниц", kACHIEVEMENTS.DUNGEON_DELVER);
+	if (dungeonsCleared >= 3) awardAchievement("Находчи" + player.mf("к", "ца") + " гробниц", kACHIEVEMENTS.DUNGEON_DELVER_APPRENTICE);
+	if (dungeonsCleared >= 5) awardAchievement("Расхититель" + player.mf("", "ница") + " гробниц", kACHIEVEMENTS.DUNGEON_DELVER_MASTER);
 	
 	//Fashion
-	if (player.armor == armors.W_ROBES && player.weapon == weapons.W_STAFF) awardAchievement("Wannabe Wizard", kACHIEVEMENTS.FASHION_WANNABE_WIZARD);
-	if (player.previouslyWornClothes.length >= 10) awardAchievement("Cosplayer", kACHIEVEMENTS.FASHION_COSPLAYER);
-	if ((player.armor == armors.RBBRCLT || player.armor == armors.BONSTRP || player.armor == armors.NURSECL) && (player.weapon == weapons.RIDINGC || player.weapon == weapons.WHIP || player.weapon == weapons.SUCWHIP || player.weapon == weapons.L_WHIP)) awardAchievement("Dominatrix", kACHIEVEMENTS.FASHION_DOMINATRIX);
-	if (player.armor != ArmorLib.NOTHING && player.lowerGarment == UndergarmentLib.NOTHING && player.upperGarment == UndergarmentLib.NOTHING) awardAchievement("Going Commando", kACHIEVEMENTS.FASHION_GOING_COMMANDO);
-	if (player.jewelry.value >= 1000) awardAchievement("Bling Bling", kACHIEVEMENTS.FASHION_BLING_BLING);
+	if (player.armor == armors.W_ROBES && player.weapon == weapons.W_STAFF) awardAchievement("Мечтающ" + player.mf("ий стать магом", "ая стать чародейкой"), kACHIEVEMENTS.FASHION_WANNABE_WIZARD);
+	if (player.previouslyWornClothes.length >= 10) awardAchievement("Косплеер" + player.mf("", "ша"), kACHIEVEMENTS.FASHION_COSPLAYER);
+	if ((player.armor == armors.RBBRCLT || player.armor == armors.BONSTRP || player.armor == armors.NURSECL) && (player.weapon == weapons.RIDINGC || player.weapon == weapons.WHIP || player.weapon == weapons.SUCWHIP || player.weapon == weapons.L_WHIP)) awardAchievement("Повелительница", kACHIEVEMENTS.FASHION_DOMINATRIX);
+	if (player.armor != ArmorLib.NOTHING && player.lowerGarment == UndergarmentLib.NOTHING && player.upperGarment == UndergarmentLib.NOTHING) awardAchievement("Становление десантника", kACHIEVEMENTS.FASHION_GOING_COMMANDO);
+	if (player.jewelry.value >= 1000) awardAchievement("Показушни" + player.mf("к", "ца"), kACHIEVEMENTS.FASHION_BLING_BLING);
 	
 	//Wealth
-	if (player.gems >= 1000) awardAchievement("Rich", kACHIEVEMENTS.WEALTH_RICH);
-	if (player.gems >= 10000) awardAchievement("Hoarder", kACHIEVEMENTS.WEALTH_HOARDER);
-	if (player.gems >= 100000) awardAchievement("Gem Vault", kACHIEVEMENTS.WEALTH_GEM_VAULT);
-	if (player.gems >= 1000000) awardAchievement("Millionaire", kACHIEVEMENTS.WEALTH_MILLIONAIRE);
+	if (player.gems >= 1000) awardAchievement("Богатеньк" + player.mf("ий", "ая"), kACHIEVEMENTS.WEALTH_RICH);
+	if (player.gems >= 10000) awardAchievement("Скопидом", kACHIEVEMENTS.WEALTH_HOARDER);
+	if (player.gems >= 100000) awardAchievement("Хранитель" + player.mf("", "ница") + "драгоценностей", kACHIEVEMENTS.WEALTH_GEM_VAULT);
+	if (player.gems >= 1000000) awardAchievement("Миллионер" + player.mf("", "ша"), kACHIEVEMENTS.WEALTH_MILLIONAIRE);
 	
 	//Combat
-	if (player.hasStatusEffect(StatusEffects.KnowsCharge) && player.hasStatusEffect(StatusEffects.KnowsBlind) && player.hasStatusEffect(StatusEffects.KnowsWhitefire) && player.hasStatusEffect(StatusEffects.KnowsArouse) && player.hasStatusEffect(StatusEffects.KnowsHeal) && player.hasStatusEffect(StatusEffects.KnowsMight) ) awardAchievement("Wizard", kACHIEVEMENTS.COMBAT_WIZARD);
+	if (player.hasStatusEffect(StatusEffects.KnowsCharge) && player.hasStatusEffect(StatusEffects.KnowsBlind) && player.hasStatusEffect(StatusEffects.KnowsWhitefire) && player.hasStatusEffect(StatusEffects.KnowsArouse) && player.hasStatusEffect(StatusEffects.KnowsHeal) && player.hasStatusEffect(StatusEffects.KnowsMight) ) awardAchievement(player.mf("Маг", "Чародейка"), kACHIEVEMENTS.COMBAT_WIZARD);
 	
 	//Realistic
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_FASTING] >= 168 && flags[kFLAGS.HUNGER_ENABLED] > 0) awardAchievement("Fasting", kACHIEVEMENTS.REALISTIC_FASTING)
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_FASTING] >= 168 && flags[kFLAGS.HUNGER_ENABLED] > 0) awardAchievement("Натощак", kACHIEVEMENTS.REALISTIC_FASTING)
 
 	//Holiday
-	if (flags[kFLAGS.NIEVE_STAGE] == 5) awardAchievement("The Lovable Snowman", kACHIEVEMENTS.HOLIDAY_CHRISTMAS_III);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_EGG_HUNTER] >= 10) awardAchievement("Egg Hunter", kACHIEVEMENTS.HOLIDAY_EGG_HUNTER);
+	if (flags[kFLAGS.NIEVE_STAGE] == 5) awardAchievement("Привлекательный снеговичок", kACHIEVEMENTS.HOLIDAY_CHRISTMAS_III);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_EGG_HUNTER] >= 10) awardAchievement("Охотни" + player.mf("к", "ца") + "за яйцами", kACHIEVEMENTS.HOLIDAY_EGG_HUNTER);
 
 	//General
-	if (flags[kFLAGS.DEMONS_DEFEATED] >= 25 && model.time.days >= 10) awardAchievement("Portal Defender", kACHIEVEMENTS.GENERAL_PORTAL_DEFENDER);
-	if (flags[kFLAGS.LETHICE_KILLED] == 2) awardAchievement("Off With Her Head!", kACHIEVEMENTS.GENERAL_OFF_WITH_HER_HEAD);
+	if (flags[kFLAGS.DEMONS_DEFEATED] >= 25 && model.time.days >= 10) awardAchievement("Защитни" + player.mf("к", "ца") + "портала", kACHIEVEMENTS.GENERAL_PORTAL_DEFENDER);
+	if (flags[kFLAGS.LETHICE_KILLED] == 2) awardAchievement("Голову с плеч!", kACHIEVEMENTS.GENERAL_OFF_WITH_HER_HEAD);
 	
 	var NPCsBadEnds:int = 0; //Check how many NPCs got bad-ended.
 	if (flags[kFLAGS.D1_OMNIBUS_KILLED] > 0) NPCsBadEnds++;
@@ -2964,40 +2963,41 @@ private function updateAchievements():void {
 	if (flags[kFLAGS.MINOTAURKING_KILLED] > 0) NPCsBadEnds++;
 	if (flags[kFLAGS.LETHICE_KILLED] > 0) NPCsBadEnds++;
 	
-	if (NPCsBadEnds >= 3) awardAchievement("Bad Ender", kACHIEVEMENTS.GENERAL_BAD_ENDER);
+	if (NPCsBadEnds >= 3) awardAchievement("Кончающ" + player.mf("ий херово", "ая херово"), kACHIEVEMENTS.GENERAL_BAD_ENDER);
 
-	if (flags[kFLAGS.TIMES_TRANSFORMED] >= 1) awardAchievement("What's Happening to Me?", kACHIEVEMENTS.GENERAL_WHATS_HAPPENING_TO_ME);
-	if (flags[kFLAGS.TIMES_TRANSFORMED] >= 10) awardAchievement("Transformer", kACHIEVEMENTS.GENERAL_TRANSFORMER);
-	if (flags[kFLAGS.TIMES_TRANSFORMED] >= 25) awardAchievement("Shapeshifty", kACHIEVEMENTS.GENERAL_SHAPESHIFTY);
-	if (flags[kFLAGS.TIMES_MASTURBATED] >= 1) awardAchievement("Fapfapfap", kACHIEVEMENTS.GENERAL_FAPFAPFAP);
-	if (flags[kFLAGS.TIMES_MASTURBATED] >= 10) awardAchievement("Faptastic", kACHIEVEMENTS.GENERAL_FAPTASTIC);
-	if (flags[kFLAGS.TIMES_MASTURBATED] >= 100) awardAchievement("Master-bation", kACHIEVEMENTS.GENERAL_FAPSTER);
+	if (flags[kFLAGS.TIMES_TRANSFORMED] >= 1) awardAchievement("Что со мной произошло?", kACHIEVEMENTS.GENERAL_WHATS_HAPPENING_TO_ME);
+	if (flags[kFLAGS.TIMES_TRANSFORMED] >= 10) awardAchievement("Трансформер", kACHIEVEMENTS.GENERAL_TRANSFORMER);
+	if (flags[kFLAGS.TIMES_TRANSFORMED] >= 25) awardAchievement("Меняющ" + player.mf("ий форму", "ая форму"), kACHIEVEMENTS.GENERAL_SHAPESHIFTY);
 	
-	if (player.armorName == "goo armor") awardAchievement("Goo Armor", kACHIEVEMENTS.GENERAL_GOO_ARMOR);
-	if (helspawnFollower()) awardAchievement("Helspawn", kACHIEVEMENTS.GENERAL_HELSPAWN);
-	if (flags[kFLAGS.URTA_KIDS_MALES] + flags[kFLAGS.URTA_KIDS_FEMALES] + flags[kFLAGS.URTA_KIDS_HERMS] > 0) awardAchievement("Urta's True Lover", kACHIEVEMENTS.GENERAL_URTA_TRUE_LOVER);
-	if (flags[kFLAGS.CORRUPTED_MARAE_KILLED] > 0) awardAchievement("Godslayer", kACHIEVEMENTS.GENERAL_GODSLAYER);
-	if (followersCount() >= 7) awardAchievement("Follow the Leader", kACHIEVEMENTS.GENERAL_FOLLOW_THE_LEADER);
-	if (loversCount() >= 8) awardAchievement("Gotta Love 'Em All", kACHIEVEMENTS.GENERAL_GOTTA_LOVE_THEM_ALL);
-	if (slavesCount() >= 4) awardAchievement("Meet Your " + player.mf("Master", "Mistress") , kACHIEVEMENTS.GENERAL_MEET_YOUR_MASTER);
-	if (followersCount() + loversCount() + slavesCount() >= 19) awardAchievement("All Your People are Belong to Me", kACHIEVEMENTS.GENERAL_ALL_UR_PPLZ_R_BLNG_2_ME);
-	if (flags[kFLAGS.MANSION_VISITED] >= 3) awardAchievement("Freeloader", kACHIEVEMENTS.GENERAL_FREELOADER);
-	if (player.perks.length >= 20) awardAchievement("Perky", kACHIEVEMENTS.GENERAL_PERKY);
-	if (player.perks.length >= 35) awardAchievement("Super Perky", kACHIEVEMENTS.GENERAL_SUPER_PERKY);
-	if (player.perks.length >= 50) awardAchievement("Ultra Perky", kACHIEVEMENTS.GENERAL_ULTRA_PERKY);
-	if (player.str >= 50 && player.tou >= 50 && player.spe >= 50 && player.inte >= 50) awardAchievement("Jack of All Trades", kACHIEVEMENTS.GENERAL_STATS_50);
-	if (player.str >= 100 && player.tou >= 100 && player.spe >= 100 && player.inte >= 100) awardAchievement("Incredible Stats", kACHIEVEMENTS.GENERAL_STATS_100);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_SCHIZOPHRENIA] >= 4) awardAchievement("Schizophrenic", kACHIEVEMENTS.GENERAL_SCHIZO);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_CLEAN_SLATE] >= 2) awardAchievement("Clean Slate", kACHIEVEMENTS.GENERAL_CLEAN_SLATE);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_IM_NO_LUMBERJACK] >= 100) awardAchievement("I'm No Lumberjack", kACHIEVEMENTS.GENERAL_IM_NO_LUMBERJACK);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_DEFORESTER] >= 100) awardAchievement("Deforester", kACHIEVEMENTS.GENERAL_DEFORESTER);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_HAMMER_TIME] >= 300) awardAchievement("Hammer Time", kACHIEVEMENTS.GENERAL_HAMMER_TIME);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_SCAVENGER] >= 200) awardAchievement("Nail Scavenger", kACHIEVEMENTS.GENERAL_NAIL_SCAVENGER);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_YABBA_DABBA_DOO] >= 100) awardAchievement("Yabba Dabba Doo", kACHIEVEMENTS.GENERAL_YABBA_DABBA_DOO);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_ANTWORKS] >= 200) awardAchievement("AntWorks", kACHIEVEMENTS.GENERAL_ANTWORKS);
-	if (flags[kFLAGS.CAMP_CABIN_FURNITURE_BED] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_NIGHTSTAND] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_DRESSER] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_TABLE] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_CHAIR1] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_CHAIR2] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_BOOKSHELF] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_DESK] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_DESKCHAIR] >= 1) awardAchievement("Home Sweet Home", kACHIEVEMENTS.GENERAL_HOME_SWEET_HOME);
-	if (flags[kFLAGS.CAMP_WALL_GATE] > 0) awardAchievement("Make Mareth Great Again", kACHIEVEMENTS.GENERAL_MAKE_MARETH_GREAT_AGAIN);
-	if (player.tallness >= 132) awardAchievement("Up to Eleven", kACHIEVEMENTS.GENERAL_UP_TO_11);
+	if (flags[kFLAGS.TIMES_MASTURBATED] >= 1) awardAchievement("С кем не бывает", kACHIEVEMENTS.GENERAL_FAPFAPFAP);
+	if (flags[kFLAGS.TIMES_MASTURBATED] >= 10) awardAchievement("Фантастическ" + player.mf("ий дрочер", "ая дрочерша"), kACHIEVEMENTS.GENERAL_FAPTASTIC);
+	if (flags[kFLAGS.TIMES_MASTURBATED] >= 100) awardAchievement("Мастер-бации", kACHIEVEMENTS.GENERAL_FAPSTER);
+	
+	if (player.armorName == "goo armor") awardAchievement("Жидкая броня", kACHIEVEMENTS.GENERAL_GOO_ARMOR);
+	if (helspawnFollower()) awardAchievement("ХельСпаун", kACHIEVEMENTS.GENERAL_HELSPAWN);
+	if (flags[kFLAGS.URTA_KIDS_MALES] + flags[kFLAGS.URTA_KIDS_FEMALES] + flags[kFLAGS.URTA_KIDS_HERMS] > 0) awardAchievement("Настоящая любовь Урты", kACHIEVEMENTS.GENERAL_URTA_TRUE_LOVER);
+	if (flags[kFLAGS.CORRUPTED_MARAE_KILLED] > 0) awardAchievement("Убийца богов", kACHIEVEMENTS.GENERAL_GODSLAYER);
+	if (followersCount() >= 7) awardAchievement("Следуй за лидером", kACHIEVEMENTS.GENERAL_FOLLOW_THE_LEADER);
+	if (loversCount() >= 8) awardAchievement("Надо любить их всех", kACHIEVEMENTS.GENERAL_GOTTA_LOVE_THEM_ALL);
+	if (slavesCount() >= 4) awardAchievement("Встреть сво" + player.mf("его господина", "ю госпожу") , kACHIEVEMENTS.GENERAL_MEET_YOUR_MASTER);
+	if (followersCount() + loversCount() + slavesCount() >= 19) awardAchievement("Всё твоё - теперь моё", kACHIEVEMENTS.GENERAL_ALL_UR_PPLZ_R_BLNG_2_ME);
+	if (flags[kFLAGS.MANSION_VISITED] >= 3) awardAchievement("Нахлебни" + player.mf("к", "ца"), kACHIEVEMENTS.GENERAL_FREELOADER);
+	if (player.perks.length >= 20) awardAchievement("Способный учени" + player.mf("к", "ца"), kACHIEVEMENTS.GENERAL_PERKY);
+	if (player.perks.length >= 35) awardAchievement("Супер учени" + player.mf("к", "ца"), kACHIEVEMENTS.GENERAL_SUPER_PERKY);
+	if (player.perks.length >= 50) awardAchievement("Сверх учени" + player.mf("к", "ца"), kACHIEVEMENTS.GENERAL_ULTRA_PERKY);
+	if (player.str >= 50 && player.tou >= 50 && player.spe >= 50 && player.inte >= 50) awardAchievement("Масте" + player.mf("р", "рица") + "на все руки", kACHIEVEMENTS.GENERAL_STATS_50);
+	if (player.str >= 100 && player.tou >= 100 && player.spe >= 100 && player.inte >= 100) awardAchievement("Невероятные показатели", kACHIEVEMENTS.GENERAL_STATS_100);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_SCHIZOPHRENIA] >= 4) awardAchievement("Шизофрени" + player.mf("к", "чка"), kACHIEVEMENTS.GENERAL_SCHIZO);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_CLEAN_SLATE] >= 2) awardAchievement("С чистого листа", kACHIEVEMENTS.GENERAL_CLEAN_SLATE);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_IM_NO_LUMBERJACK] >= 100) awardAchievement("Я же не дровосек", kACHIEVEMENTS.GENERAL_IM_NO_LUMBERJACK);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_DEFORESTER] >= 100) awardAchievement("Вырубщи" + player.mf("к", "ца"), kACHIEVEMENTS.GENERAL_DEFORESTER);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_HAMMER_TIME] >= 300) awardAchievement("Время молотка", kACHIEVEMENTS.GENERAL_HAMMER_TIME);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_SCAVENGER] >= 200) awardAchievement("Сборщи" + player.mf("к", "ца") + "гвоздей", kACHIEVEMENTS.GENERAL_NAIL_SCAVENGER);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_YABBA_DABBA_DOO] >= 100) awardAchievement("Яба-дабба-ду!", kACHIEVEMENTS.GENERAL_YABBA_DABBA_DOO);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_ANTWORKS] >= 200) awardAchievement("Муравьиные мануфактуры", kACHIEVEMENTS.GENERAL_ANTWORKS);
+	if (flags[kFLAGS.CAMP_CABIN_FURNITURE_BED] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_NIGHTSTAND] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_DRESSER] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_TABLE] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_CHAIR1] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_CHAIR2] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_BOOKSHELF] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_DESK] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_DESKCHAIR] >= 1) awardAchievement("Дом милый дом", kACHIEVEMENTS.GENERAL_HOME_SWEET_HOME);
+	if (flags[kFLAGS.CAMP_WALL_GATE] > 0) awardAchievement("Сделаем Мареф великим вновь", kACHIEVEMENTS.GENERAL_MAKE_MARETH_GREAT_AGAIN);
+	if (player.tallness >= 132) awardAchievement("До одиннадцати", kACHIEVEMENTS.GENERAL_UP_TO_11);
 	
 	var NPCsDedicked:int = 0; //Check how many NPCs are dedicked.
 	if (flags[kFLAGS.IZMA_NO_COCK] > 0) NPCsDedicked++;
@@ -3008,9 +3008,9 @@ private function updateAchievements():void {
 	if (flags[kFLAGS.KATHERINE_UNLOCKED] > 0 && flags[kFLAGS.KATHERINE_DICK_COUNT] <= 0) NPCsDedicked++;
 	if (flags[kFLAGS.MET_KITSUNES] > 0 && flags[kFLAGS.redheadIsFuta] == 0) NPCsDedicked++;
 	if (flags[kFLAGS.KELT_BREAK_LEVEL] == 4) NPCsDedicked++;
-	if (flags[kFLAGS.CAMP_WALL_STATUES] >= 100) awardAchievement("Terracotta Impy", kACHIEVEMENTS.GENERAL_TERRACOTTA_IMPY);
-	if (NPCsDedicked >= 3) awardAchievement("Dick Banisher", kACHIEVEMENTS.GENERAL_DICK_BANISHER);
-	if (NPCsDedicked >= 7) awardAchievement("You Bastard", kACHIEVEMENTS.GENERAL_YOU_BASTARD); //Take that, dedickers!
+	if (flags[kFLAGS.CAMP_WALL_STATUES] >= 100) awardAchievement("Терракотовая армия бесов", kACHIEVEMENTS.GENERAL_TERRACOTTA_IMPY);
+	if (NPCsDedicked >= 3) awardAchievement("Изгоняющ" + player.mf("ий", "ая") + "причендалы", kACHIEVEMENTS.GENERAL_DICK_BANISHER);
+	if (NPCsDedicked >= 7) awardAchievement(player.mf("Ублюдок", "Стерва"), kACHIEVEMENTS.GENERAL_YOU_BASTARD); //Take that, dedickers!
 }
 
 /*
