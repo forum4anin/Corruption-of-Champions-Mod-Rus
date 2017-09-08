@@ -35,21 +35,21 @@ package classes
 			kGAMECLASS.saves.loadPermObject();
 			kGAMECLASS.mainViewManager.setTheme();
 			//Reset newgame buttons
-			mainView.setMenuButton(MainView.MENU_NEW_MAIN, "New Game", kGAMECLASS.charCreation.newGameFromScratch);
+			mainView.setMenuButton(MainView.MENU_NEW_MAIN, "Новая Игра", kGAMECLASS.charCreation.newGameFromScratch);
 			mainView.hideAllMenuButtons();
 			mainView.showMenuButton(MainView.MENU_NEW_MAIN);
 			mainView.showMenuButton(MainView.MENU_DATA);
 
-			mainView.newGameButton.toolTipText = "Start a new game.";
-			mainView.dataButton.toolTipHeader = "New Game";
-			mainView.dataButton.toolTipText = "Save or load your files.";
-			mainView.dataButton.toolTipHeader = "Data";
-			mainView.statsButton.toolTipText = "View your stats.";
-			mainView.statsButton.toolTipHeader = "Stats";
-			mainView.perksButton.toolTipText = "View your perks.";
-			mainView.perksButton.toolTipHeader = "Perks";
-			mainView.appearanceButton.toolTipText = "View your appearance.";
-			mainView.appearanceButton.toolTipHeader = "Appearance";
+			mainView.newGameButton.toolTipText = "Начать новую игру.";
+			mainView.dataButton.toolTipHeader = "Новая Игра";
+			mainView.dataButton.toolTipText = "Сохранение и загрузка.";
+			mainView.dataButton.toolTipHeader = "Данные";
+			mainView.statsButton.toolTipText = "Увидеть подробную информацию.";
+			mainView.statsButton.toolTipHeader = "Информация";
+			mainView.perksButton.toolTipText = "Увидеть свои навыки.";
+			mainView.perksButton.toolTipHeader = "Навыки";
+			mainView.appearanceButton.toolTipText = "Увидеть свою внешность.";
+			mainView.appearanceButton.toolTipHeader = "Внешность";
 			//Sets game state to 3, used for determining back functionality of save/load menu.
 			kGAMECLASS.gameStateDirectSet(3);
 			clearOutput();
@@ -69,16 +69,16 @@ package classes
 			// Therefore, the imageCreditScreen will just have to say "No image pack" if you don't have any images
 
 			menu();
-			if (player.str > 0) addButton(0, "Resume", playerMenu, null, null, null, "Get back to gameplay?");
-			else addButtonDisabled(0, "Resume", "Please start or load a game first.");
-			addButton(1, "Settings", kGAMECLASS.gameSettings.settingsScreenMain, null, null, null, "Configure game settings and enable cheats.");
-			addButton(2, "Instructions", howToPlay, null, null, null, "How to play.  Starting tips.  And hotkeys for easy left-handed play...");
-			addButton(3, "Achievements", kGAMECLASS.achievementList.achievementsScreen, null, null, null, "View all achievements you have unlocked so far.");
-			addButton(4, "Mod Thread", openURL, "https://forum.fenoxo.com/threads/coc-revamp-mod.3/", null, null, "Check the official mod thread on Fenoxo's forum.");
+			if (player.str > 0) addButton(0, "Продолжить", playerMenu, null, null, null, "Вернуться в игру?");
+			else addButtonDisabled(0, "Продолжить", "Начинай новую игру или загружай сохранение.");
+			addButton(1, "Настройки", kGAMECLASS.gameSettings.settingsScreenMain, null, null, null, "Настройка параметров игры и активация читов.");
+			addButton(2, "Инструкции", howToPlay, null, null, null, "Правила. Подсказки. И горячие клавиши...");
+			addButton(3, "Достижения", kGAMECLASS.achievementList.achievementsScreen, null, null, null, "Посмотреть все достижения разблокированные тобой.");
+			addButton(4, "Форум", openURL, "https://forum.fenoxo.com/threads/coc-revamp-mod.3/", null, null, "Перейти на официальный форум Fenoxo в тему обсуждения мода.");
 
-			addButton(5, "Credits", creditsScreen, null, null, null, "See a list of all the cool people who have contributed to content for this game!");
-			addButton(6, "Image Credits", imageCreditsScreen, null, null, null, "Check out who contributed to the image pack.");
-			addButton(7, "Debug Info", kGAMECLASS.debugPane, null, null, null, "View debug information. You can also input to access any scenes, if you know the function names!");
+			addButton(5, "Разработчики", creditsScreen, null, null, null, "Просмотреть список всех замечательных людей, которые создавали этот проект!");
+			addButton(6, "Художники", imageCreditsScreen, null, null, null, "Узнать внесших вклад в декорирование игры.");
+			addButton(7, "Отладка", kGAMECLASS.debugPane, null, null, null, "Отладочная информация. Есть возможность просмотра сцен, если знаешь отвечающие за это функции!");
 		}
 
 		public function startupScreenBody():void {
@@ -87,50 +87,50 @@ package classes
 			// Fixed. No more markdown. :)
 			outputText("\n(Formerly Unnamed Text Game)");
 			//Brief credits
-			outputText("\n\n<b>Created by:</b> Fenoxo"); //The Original Creator
-			outputText("\n\n<b>Edited by:</b> "); //Edited By
+			outputText("\n\n<b>Создано:</b> Fenoxo"); //The Original Creator
+			outputText("\n\n<b>Под редакцией:</b> "); //Edited By
 			outputText("\n\tAshi, SoS, Prisoner416, Zeikfried, et al");
-			outputText("\n\n<b>Open-source contributions by:</b> "); //Contributions
+			outputText("\n\n<b>Копавшиеся в открытом исходном коде:</b> "); //Contributions
 			outputText("\n\taimozg, Amygdala, Cmacleod42, Enterprise2001, Fake-Name, Gedan, Yoffy, et al");
-			outputText("\n\n<b>Game Mod by:</b> Kitteh6660"); //Mod Creator
+			outputText("\n\n<b>Автор мода:</b> Kitteh6660"); //Mod Creator
 			//Github for Original
-			outputText("\n\n<b><u>Original Game Github</u></b>");
-			outputText("\n<b>Source Code:</b> <u><a href='https://github.com/herp-a-derp/Corruption-of-Champions'>https://github.com/herp-a-derp/Corruption-of-Champions</a></u>");
-			outputText("\n<b>Bug Tracker:</b> <u><a href='https://github.com/herp-a-derp/Corruption-of-Champions/issues'>https://github.com/herp-a-derp/Corruption-of-Champions/issues</a></u>");
+			outputText("\n\n<b><u>Исходники оригинала на Github</u></b>");
+			outputText("\n<b>Исходный код:</b> <u><a href='https://github.com/herp-a-derp/Corruption-of-Champions'>https://github.com/herp-a-derp/Corruption-of-Champions</a></u>");
+			outputText("\n<b>По багам:</b> <u><a href='https://github.com/herp-a-derp/Corruption-of-Champions/issues'>https://github.com/herp-a-derp/Corruption-of-Champions/issues</a></u>");
 			outputText("\n(requires an account, unfortunately)");
 			//Github for Mod
-			outputText("\n\n<b><u>Modded Game Github</u></b>");
-			outputText("\n<b>Source Code:</b> <u><a href='https://github.com/Kitteh6660/Corruption-of-Champions'>https://github.com/Kitteh6660/Corruption-of-Champions</a></u>");
-			outputText("\n<b>Bug Tracker:</b> <u><a href='https://github.com/Kitteh6660/Corruption-of-Champions/issues'>https://github.com/Kitteh6660/Corruption-of-Champions/issues</a></u>");
+			outputText("\n\n<b><u>Исходники мода на Github</u></b>");
+			outputText("\n<b>Исходный код:</b> <u><a href='https://github.com/Kitteh6660/Corruption-of-Champions'>https://github.com/Kitteh6660/Corruption-of-Champions</a></u>");
+			outputText("\n<b>По багам:</b> <u><a href='https://github.com/Kitteh6660/Corruption-of-Champions/issues'>https://github.com/Kitteh6660/Corruption-of-Champions/issues</a></u>");
 			outputText("\n(requires an account too, unfortunately)");
 			//Disclaimer
-			outputText("\n\n<b><u>DISCLAIMER</u></b>");
-			outputText("<li>There are many strange and odd fetishes contained in this flash.  Peruse at own risk.</li>");
-			outputText("<li>Please be 18 or the legal age to view porn before playing. If not, enable SFW Mode.</li>");
-			outputText("<li>Try to keep your keyboard clean.  Think of the children!</li>");
+			outputText("\n\n<b><u>ОТКАЗ ОТ ОТВЕТСТВЕННОСТИ</u></b>");
+			outputText("<li>Игра содержит описание множества странных и возможно неприятных фетишей. Просматривать лишь на свой страх и риск.</li>");
+			outputText("<li>Если ты не достиг 18-ти, то пожалуйста включи в настройках SFW-режим, убирающий взрослый контент.</li>");
+			outputText("<li>При прохождении игры старайся держать клавиатуру чистой. Думай о детях!</li>");
 			//Other Info
-			outputText("\n\nFor more information see Fenoxo's Blog at <b><u><a href='http://www.fenoxo.com/'>fenoxo.com</a></u></b>. ")
-			outputText("\n\nCheck out Trials in Tainted Space as well!");
-			outputText("\n\nAlso go play <u>Nimin</u> by Xadera on furaffinity.");
+			outputText("\n\nЧтобы увидеть дополнительную информацию посети блог Fenoxo: <b><u><a href='http://www.fenoxo.com/'>fenoxo.com</a></u></b>. ")
+			outputText("\n\nСледи за 'Trials in Tainted Space' как можно лучше!");
+			outputText("\n\nТакже сыграй в '<u>Nimin</u> by Xadera' на 'furaffinity'.");
 
 			if (debug)
-				outputText("\n\n<b>DEBUG MODE ENABLED: ITEMS WILL NOT BE CONSUMED BY USE.</b>");
+				outputText("\n\n<b>РЕЖИМ ОТЛАДКИ ВКЛЮЧЕН: ПОТРЕБЛЯЕМЫЕ ПРЕДМЕТЫ НЕ БУДУТ РАСХОДОВАТЬСЯ.</b>");
 			if (flags[kFLAGS.SHOW_SPRITES_FLAG])
-				outputText("\n\n<b>Sprites disabled.</b>");
+				outputText("\n\n<b>Спрайты отключены.</b>");
 			if (flags[kFLAGS.EASY_MODE_ENABLE_FLAG])
-				outputText("\n\n<b>Easy Mode On: Bad-ends can be ignored.</b>");
+				outputText("\n\n<b>Легкая сложность подключена: На плохие концовки можно не оглядываться.</b>");
 			if (flags[kFLAGS.SILLY_MODE_ENABLE_FLAG])
-				outputText("\n\n<b>SILLY MODE ENGAGED: Crazy, nonsensical, and possibly hilarious things may occur.</b>");
+				outputText("\n\n<b>АБСУРДНЫЙ РЕЖИМ ВКЛЮЧЕН: В игре могут произойти дикие, бессмысленные, и, возможно даже, веселые вещи.</b>");
 			if (flags[kFLAGS.PRISON_ENABLED])
-				outputText("\n\n<b>PRISON ENABLED: The prison can be accessed. WARNING: The prison is very buggy and may break your game. Enter it at your own risk!</b>");
+				outputText("\n\n<b>ТЮРЬМА ВКЛЮЧЕНА: Тюрьма теперь может быть доступна. ОСТОРОЖНО: Тюрьма довольно забагованна и может крашнуть твой сеанс. Посещать на свой страх и риск!</b>");
 			if (flags[kFLAGS.ITS_EVERY_DAY])
-				outputText("\n\n<b>Eternal holiday enabled.</b>");
+				outputText("\n\n<b>Вечные праздники включены.</b>");
 			if (kGAMECLASS.plains.bunnyGirl.isItEaster())
-				outputText("\n\n<b>It's Easter! Enjoy the eggs!</b>");
+				outputText("\n\n<b>Это Пасха! Наслаждайся яйцами!</b>");
 			if (kGAMECLASS.valentines.isItValentine())
-				outputText("\n\n<b>It's Valentine's!</b>");
+				outputText("\n\n<b>День Святого Валентина!</b>");
 			if (kGAMECLASS.helFollower.isHeliaBirthday())
-				outputText("\n\n<b>It's Helia's Birthday Month!</b>");
+				outputText("\n\n<b>В этом месяце родилась Хелия!</b>");
 
 		}
 
@@ -139,12 +139,12 @@ package classes
 		//------------
 		public function howToPlay():void {
 			clearOutput();
-			displayHeader("Instructions");
-			outputText("<b><u>How To Play:</u></b>\nClick the buttons corresponding to the actions you want to take.  Your 'goal' is to obviously put an end to the demonic corruption around you, but do whatever the hell you want.  There is a story but sometimes it's fun to ignore it.\n\n");
-			outputText("<b>Exploration:</b>\nThe lake is a safe zone when you start the game.  It's a good place to explore, and Whitney's farm can offer some nice stat boosts to help get you on your feet. Once you feel comfortable, the forest is probably the next safest area, but beware of tentacle monsters.  The desert is the next toughest area, and the mountains offer further challenges.  There are more areas beyond that, but that's a good way to get started.  You'll uncover plenty of new 'places' exploring, which can be accessed from the <b>Places</b> menu.  You'll also find some interesting characters when you try to discover new explorable locations by choosing <b>Explore</b> twice.\n\n");
-			outputText("<b>Combat:</b>\nCombat is won by raising an opponent's lust to 100 or taking their HP to 0.  You lose if your enemy does the same to you.  Loss isn't game over, but some losses will make it harder in the future by lowering your stats.  Beware.  Don't be afraid to spam the <b>Run</b> option when you're in over your head.\n\n");
-			outputText("<b>Controls:</b>\nThe game features numerous hot-keys to make playing quicker and easier.\nP key - Perks Menu\nD key - Data Menu\nA key - Appearance Screen\n1 Through 5 - The top row of 'choice' buttons.\n6 Through 0 - The bottom row of 'choice' buttons.\nQ through T - Alternative bottom 'choice' hotkeys.\nSpace Bar - Next/Back/Leave\nHome Key - Toggle text field background.\nS key - Stats Screen\n(Save Hotkeys - May not work in all players)\nF1-F5 - Quicksave to slot 1 through 5.  Only works when Data is visible.\nF6-F0 - Quick Load from slots 1-5.\n\n");
-			outputText("<b>Save often using the Data Menu</b> - you never know when your journey will come to an end!");
+			displayHeader("Инструкции");
+			outputText("<b><u>Правила игры:</u></b>\nClick the buttons corresponding to the actions you want to take.  Your 'goal' is to obviously put an end to the demonic corruption around you, but do whatever the hell you want.  There is a story but sometimes it's fun to ignore it.\n\n");
+			outputText("<b>Исследования:</b>\nThe lake is a safe zone when you start the game.  It's a good place to explore, and Whitney's farm can offer some nice stat boosts to help get you on your feet. Once you feel comfortable, the forest is probably the next safest area, but beware of tentacle monsters.  The desert is the next toughest area, and the mountains offer further challenges.  There are more areas beyond that, but that's a good way to get started.  You'll uncover plenty of new 'places' exploring, which can be accessed from the <b>Places</b> menu.  You'll also find some interesting characters when you try to discover new explorable locations by choosing <b>Explore</b> twice.\n\n");
+			outputText("<b>Бой:</b>\nCombat is won by raising an opponent's lust to 100 or taking their HP to 0.  You lose if your enemy does the same to you.  Loss isn't game over, but some losses will make it harder in the future by lowering your stats.  Beware.  Don't be afraid to spam the <b>Run</b> option when you're in over your head.\n\n");
+			outputText("<b>Управление:</b>\nThe game features numerous hot-keys to make playing quicker and easier.\nP key - Perks Menu\nD key - Data Menu\nA key - Appearance Screen\n1 Through 5 - The top row of 'choice' buttons.\n6 Through 0 - The bottom row of 'choice' buttons.\nQ through T - Alternative bottom 'choice' hotkeys.\nSpace Bar - Next/Back/Leave\nHome Key - Toggle text field background.\nS key - Stats Screen\n(Save Hotkeys - May not work in all players)\nF1-F5 - Quicksave to slot 1 through 5.  Only works when Data is visible.\nF6-F0 - Quick Load from slots 1-5.\n\n");
+			outputText("<b>Сохраняйся чаще, используя подменю 'Данные'</b> - никогда не знаешь, когда твое приключение подойдет к концу!");
 			doNext(mainMenu);
 		}
 
@@ -153,16 +153,16 @@ package classes
 		//------------
 		public function creditsScreen():void {
 			clearOutput();
-			displayHeader("Credits");
+			displayHeader("Разработчики");
 			outputText("<b>Coding and Main Events:</b>\n");
 			outputText("<ul>");
 			outputText("<li> Fenoxo</li>\n");
 			outputText("</ul>");
-			outputText("<b>Game Mod:</b>\n");
+			outputText("<b>Автор мода:</b>\n");
 			outputText("<ul>");
 			outputText("<li> Kitteh6660 (Mod Creator)</li>");
 			outputText("</ul>");
-			outputText("<b>Game Mod Contributors:</b>\n");
+			outputText("<b>Копавшиеся в открытом исходном коде мода:</b>\n");
 			outputText("<ul>");
 			outputText("<li> Parth37955 (Pure Jojo anal pitch scene, Behemoth's vaginal catch scene)</li>");
 			outputText("<li> Liadri (Manticore and Dragonne suggestions)</li>");
@@ -170,7 +170,7 @@ package classes
 			outputText("<li> Matraia (Replacement Cabin construction texts)</li>");
 			outputText("<li> Stadler76 (New arm types, Code refactoring)</li>");
 			outputText("</ul>");
-			outputText("<b>Game Mod Supplementary Events:</b>\n");
+			outputText("<b>Дополняющие мод:</b>\n");
 			outputText("<ul>");
 			outputText("<li> worldofdrakan (Pablo the Pseudo-Imp, Pigtail Truffles & Pig/Boar TFs)</li>");
 			outputText("<li> FeiFongWong (Prisoner Mod)</li>");
@@ -182,7 +182,7 @@ package classes
 			outputText("<li> Nonesuch (Izmael)</li>");
 			outputText("<li> IxFa (Naga Tail Masturbation)</li>");
 			outputText("</ul>");
-			outputText("<b>Game Mod Bug Reporting:</b>\n");
+			outputText("<b>Сообщающие о багах мода:</b>\n");
 			outputText("<ul>");
 			outputText("<li> Wastarce</li>");
 			outputText("<li> Sorenant</li>");
@@ -213,12 +213,12 @@ package classes
 			outputText("<li> Prisoner416</li>");
 			outputText("<li> Chibodee</li>");
 			outputText("");
-			outputText("<b>Graphical Prettiness:</b>")
+			outputText("<b>Графическое Изящество:</b>")
 			outputText("<ul>");;
 			outputText("<li> Dasutin (Background Images)</li>");
 			outputText("<li> Invader (Button Graphics, Font, and Other Hawtness)</li>");
 			outputText("</ul>");
-			outputText("<b>Supplementary Events:</b>");
+			outputText("<b>Дополняющие:</b>");
 			outputText("<ul>");
 			outputText("<li> Dxasmodeus (Tentacles, Worms, Giacomo)</li>");
 			outputText("<li> Kirbster (Christmas Bunny Trap)</li>");
@@ -338,7 +338,7 @@ package classes
 		public function imageCreditsScreen():void
 		{
 			clearOutput();
-			displayHeader("Image Credits");
+			displayHeader("Художники");
 			if (images.getLoadedImageCount() > 0)
 			{
 				outputText("<b>Bundled Image Credits:</b>\n\n");
