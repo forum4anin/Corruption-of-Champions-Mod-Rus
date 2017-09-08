@@ -181,27 +181,27 @@ public class MainView extends Block {
 			}
 		}));
 		topRow.addElement(newGameButton = new CoCButton({
-			labelText  : 'New Game',
+			labelText  : 'Новая игра',
 			bitmapClass: ButtonBackground1
 		}));
 		topRow.addElement(dataButton = new CoCButton({
-			labelText  : 'Data',
+			labelText  : 'Данные',
 			bitmapClass: ButtonBackground2
 		}));
 		topRow.addElement(statsButton = new CoCButton({
-			labelText  : 'Stats',
+			labelText  : 'Информация',
 			bitmapClass: ButtonBackground3
 		}));
 		topRow.addElement(levelButton = new CoCButton({
-			labelText  : 'Level Up',
+			labelText  : 'Новый уровень',
 			bitmapClass: ButtonBackground4
 		}));
 		topRow.addElement(perksButton = new CoCButton({
-			labelText  : 'Perks',
+			labelText  : 'Навыки',
 			bitmapClass: ButtonBackground5
 		}));
 		topRow.addElement(appearanceButton = new CoCButton({
-			labelText  : 'Appearance',
+			labelText  : 'Внешность',
 			bitmapClass: ButtonBackground6
 		}));
 		addElement(textBGWhite = new BitmapDataSprite({
@@ -331,7 +331,7 @@ public class MainView extends Block {
 		this.aCb.width         = 200;
 		this.aCb.scaleY        = 1.1;
 		this.aCb.move(-1250, -1550);
-		this.aCb.prompt = "Choose a perk";
+		this.aCb.prompt = "Выбери навык";
 		this.addChild(this.aCb);
 
 		this.hideSprite();
