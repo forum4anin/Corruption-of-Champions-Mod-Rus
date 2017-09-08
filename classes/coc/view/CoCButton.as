@@ -21,7 +21,7 @@ import flash.text.TextField;
 
 	public class CoCButton extends Block {
 
-		[Embed(source='../../../res/ui/Shrewsbury-Titling_Bold.ttf',
+		[Embed(source='../../../res/ui/font03.ttf',
 				advancedAntiAliasing='true',
 				fontName='ShrewsburyTitlingBold',
 				embedAsCFF='false')]
@@ -54,7 +54,7 @@ import flash.text.TextField;
 				height           : MainView.BTN_H - 8,
 				defaultTextFormat: {
 					font : ButtonLabelFontName,
-					size : 18,
+					size : 15,
 					align: 'center'
 				}
 			});
