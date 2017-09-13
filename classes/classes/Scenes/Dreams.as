@@ -243,18 +243,32 @@ package classes.Scenes {
 					if (inBimbo) bimboWetDreamOrgasm();
 				}
 				else if (daydream == 7) {
-					outputText("grinding your rear into his thick cock, your hand reaching behind you to caress Akbal's cheek.  Having his prick between your ass is almost too distracting, but you know you have a duty to perform.  You raise your hands and address the acolytes before you, kneeling and observing.\n\n");
-
-					outputText("\"<i>It is glorious to obey our lord,</i>\" you moan out, shivering as you rub against his muscled chest.  \"<i>Our god.</i>\"  Simply being in his presence makes you shiver.  His erect cock has not diminished in the slightest as you work it with your cheeks.  \"<i>Give exaltations unto him,</i>\" you gasp out, \"<i>give his desires unto him.  Fear his wrath!</i>\"  You moan, nearly cumming as you work yourself up.  Focusing carefully, you whisper the next words into the minds of the acolytes.  But love his gifts.\n\n");
-
-					outputText("Akbal's strong hand rests on your shoulder.  You nearly leap in excitement, but allow yourself to be bent forward over the altar.  \"<i>You please me, Buttslut,</i>\" the Lord of Terrestrial Fire whispers in your mind.  It is both title and name, the most important office in the one true religion.  He honors you with his cock, spreading your asshole around him and entering you deep.\n\n");
-
-					outputText("You cum.  You scream in glorious and divine pleasure, granted by your immaculate god.  The acolytes watching masturbate themselves, in awe of the raptured orgasm Akbal has granted you.  Your tongue lolls out as he pounds into you, the haze of delight briefly devouring your thoughts in all-consuming green fire.\n\n");
-
-					outputText("\"<i>Glory unto Akbal,</i>\" Buttslut whispers.\n\n");
-
-					outputText("You awake with a start, grumbling slightly before turning over and trying to get back to sleep.  Your asshole twitches.");
-					if (inBimbo) player.orgasm('Anal',false);
+					if (player.hasVagina() && (!player.hasCock() || rand(2) == 0)) {
+						//Story by Amanimmortal, picture by Meesh...
+						outputText("Through the haze of sleep you heard the whisper in your mind, calling you into the forest. As you blinked yourself awake you lifted your head to look through the sheer walls of the tent and into the forest beyond. A deep, but distant, growl rumbled through the woods outside and you knew some kind of beast called you. The touch on your mind was playful but demanding, it would broach no resistance./n/n");
+						outputText("Your panties flooded with your juice as the dominance of the beast flooded over you. It would come into the tent and take you if you did not submit to it. And somehow it knew you did not want that. You crawled from your sheets, over your lover, and then quietly leaved the tent. You climbed out of your nighty, leaving it draped over the lovers sleeping body. You knew that it would only get dirty out there. Then, on your hands and knees you set out into the night./n/n");
+						outputText("The floor of the forest was soft with moss and grasses. Through the touch on your mind you knew that the beast in the woods wanted you to remain on all fours. It would stalk you through the night and take you when it saw fit, certainly not when you did. Your sex was leaking freely, coating your thighs. The need of the beast was palpable and it's mental dominance over you was driving you into heat./n/n");
+						outputText("You had made it some distance across the clearing when you felt more than heard something behind you. A sudden weight between your shoulder blades signaled that the creature was upon you. A large paw pressed against the back of your head, driving it into the dirt and causing your ass to rise slightly. A deep rumbling, unmistakably a purr, erupted behind you as you felt something wet and hot press itself against your sex. As the foot left your head massive teeth, wet and warm, clamped around the back of your neck holding the woman in place.");
+						//redacted by fergusson ver 01						
+						outputText(images.showImage("dreams-akbal-female"));
+						outputText("It was a massive cat behind you, you knew this now. It rumbled against your neck as it speared into you, filling you with it's massive cock. Withdrawing slowly, the spines that ran the length of it's member dragged against your insides. You was intimately aware of his size both as he thrust balls deep into you and when he withdrew, pulling you inside out as he did so. If you could have looked you would have seen the pink inners of your sex straining at your entrance to hold him inside you, only to disappear back inside as he fucked forward once again.");
+						outputText("The cat came quickly, growling deeply against your neck as he did so. Cum spurted from him, splashing deep against your insides. Once you was full, it burst from around him, coating the fertile soil below them. Luckily for you this did not signal the end however, as once he was done cumming the cat happily started thrusting once again, this time taking his time building towards his orgasm.");
+						outputText("You had the feeling that this feline would have you for many more hours to come...");
+						//Preggers chance! --- This option I've added by my choice, and it may be disabled if author wished.
+						player.knockUp(PregnancyStore.PREGNANCY_IMP, PregnancyStore.INCUBATION_IMP, 101);
+						player.cuntChange(monster.cockArea(0), true, true, false);
+						player.orgasm('Vaginal');
+						dynStats("cor", 1);
+					}
+					else {
+						outputText("grinding your rear into his thick cock, your hand reaching behind you to caress Akbal's cheek.  Having his prick between your ass is almost too distracting, but you know you have a duty to perform.  You raise your hands and address the acolytes before you, kneeling and observing.\n\n");
+						outputText("\"<i>It is glorious to obey our lord,</i>\" you moan out, shivering as you rub against his muscled chest.  \"<i>Our god.</i>\"  Simply being in his presence makes you shiver.  His erect cock has not diminished in the slightest as you work it with your cheeks.  \"<i>Give exaltations unto him,</i>\" you gasp out, \"<i>give his desires unto him.  Fear his wrath!</i>\"  You moan, nearly cumming as you work yourself up.  Focusing carefully, you whisper the next words into the minds of the acolytes.  But love his gifts.\n\n");
+						outputText("Akbal's strong hand rests on your shoulder.  You nearly leap in excitement, but allow yourself to be bent forward over the altar.  \"<i>You please me, Buttslut,</i>\" the Lord of Terrestrial Fire whispers in your mind.  It is both title and name, the most important office in the one true religion.  He honors you with his cock, spreading your asshole around him and entering you deep.\n\n");
+						outputText("You cum.  You scream in glorious and divine pleasure, granted by your immaculate god.  The acolytes watching masturbate themselves, in awe of the raptured orgasm Akbal has granted you.  Your tongue lolls out as he pounds into you, the haze of delight briefly devouring your thoughts in all-consuming green fire.\n\n");
+						outputText("\"<i>Glory unto Akbal,</i>\" Buttslut whispers.\n\n");
+						outputText("You awake with a start, grumbling slightly before turning over and trying to get back to sleep.  Your asshole twitches.");
+						if (inBimbo) player.orgasm('Anal',false);
+					}
 				}
 				//Exgartuboobs
 				else if (daydream == 8) {
