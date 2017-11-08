@@ -27,9 +27,9 @@ package classes
 		public static function hairOrFur(i_creature:Creature):String
 		{
 			if (i_creature.hasFur())
-				return "fur";
+				return "мех";
 			else
-				return "hair";
+				return "волосы";
 		}
 
 		public static function hairDescription(i_creature:Creature):String
@@ -40,26 +40,26 @@ package classes
 			// LENGTH ADJECTIVE!
 			//
 			if (i_creature.hairLength == 0)
-				return randomChoice(["shaved", "bald", "smooth", "hairless", "glabrous"]) + " head";
+				return randomChoice(["бритая", "лысая", "гладкая", "безволосаяй", "голая"]) + " голова";
 
 			if (i_creature.hairLength < 1)
-				description += randomChoice(["close-cropped, ", "trim, ", "very short, "]);
+				description += randomChoice(["обрезанные, ", "стриженные, ", "очень короткие, "]);
 			else if (i_creature.hairLength < 3)
-				description += "short, ";
+				description += "короткие, ";
 			else if (i_creature.hairLength < 6)
-				description += "shaggy, ";
+				description += "мохнатые, ";
 			else if (i_creature.hairLength < 10)
-				description += "moderately long, ";
+				description += "средней длины, ";
 			else if (i_creature.hairLength < 16)
-				description += randomChoice(["long, ", "shoulder-length, "]);
+				description += randomChoice(["длинные, ", "до плеч, "]);
 			else if (i_creature.hairLength < 26)
-				description += randomChoice(["very long, ", "flowing locks of "]);
+				description += randomChoice(["очень длинные, ", "длиннющие "]);
 			else if (i_creature.hairLength < 40)
-				description += "ass-length, ";
+				description += "длинной до попы, ";
 			else if (i_creature.hairLength < i_creature.tallness)
-				description += "obscenely long, ";
+				description += "непристойной длины, ";
 			else // if (i_creature.hairLength >= i_creature.tallness)
-				description += randomChoice(["floor-length, ", "floor-dragging, "]);
+				description += randomChoice(["длиной до пола, ", "стелящиеся по полу, "]);
 			//
 			// COLORS
 			//
@@ -70,26 +70,26 @@ package classes
 			switch (i_creature.hairType) {
 				case HAIR_BASILISK_SPINES:
 					options = [
-						"rubbery spines",
-						"spiny crown",
-						"basilisk spines",
-						"reptilian spines",
+						"упругие шипы",
+						"колючая короны",
+						"шипы василиска",
+						"колючки рептилии",
 					];
 					return description + randomChoice(options);
 				case HAIR_BASILISK_PLUME:
 					options = [
-						"feathered hair",
-						"fluffy plume",
-						"basilisk plume",
-						"shock of feathers",
+						"пернатые волосы",
+						"пушистый шлейф",
+						"шлейф василиска",
+						"копна перьев",
 					];
 					return description + randomChoice(options);
 				case HAIR_WOOL:
 					options = [
-						"woolen hair",
-						"poofy hair",
-						"soft wool",
-						"untameable woolen hair",
+						"шерстяные волосы",
+						"плюшевые волосы",
+						"мягкая шерсть",
+						"непослушные шерстяные волосы",
 					];
 					return description + randomChoice(options);
 			}
@@ -98,29 +98,29 @@ package classes
 			// and so on. (Stadler76)
 			//If furry and longish hair sometimes call it a mane (50%)
 			if (i_creature.hasFur() && i_creature.hairLength > 3 && rand(2) == 0) {
-				if (i_creature.hairType == HAIR_FEATHER) description += "feather-";
-				else if (i_creature.hairType == HAIR_GHOST) description += "transparent ";
-				else if (i_creature.hairType == HAIR_GOO) description += "goo-";
-				else if (i_creature.hairType == HAIR_ANEMONE) description += "tentacle-";
-				else if (i_creature.hairType == HAIR_QUILL) description += "quill-";
-				else if (i_creature.hairType == HAIR_WOOL) description += "wool-";
-				description += "mane";
+				if (i_creature.hairType == HAIR_FEATHER) description += "перьевая ";
+				else if (i_creature.hairType == HAIR_GHOST) description += "прозрачная ";
+				else if (i_creature.hairType == HAIR_GOO) description += "липкая ";
+				else if (i_creature.hairType == HAIR_ANEMONE) description += "тентаклевая ";
+				else if (i_creature.hairType == HAIR_QUILL) description += "игольчатая ";
+				else if (i_creature.hairType == HAIR_WOOL) description += "шерстяная ";
+				description += "грива";
 				return description;
 			}
 			//if medium length refer to as locks sometimes
 			//CUT - locks is plural and screws up tense.
 			/*if (creature.hairLength >= 3 && creature.hairLength < 16 && rand(2) == 0) {
-			 descript += "locks of hair";
+			 descript += "пряди волос";
 			 return descript;
 			 }*/
 			//If nothing else used, use hair!
-			if (i_creature.hairType == HAIR_FEATHER) description += "feather-";
-			else if (i_creature.hairType == HAIR_GHOST) description += "transparent ";
-			else if (i_creature.hairType == HAIR_GOO) description += "goo-";
-			else if (i_creature.hairType == HAIR_ANEMONE) description += "tentacle-";
-			else if (i_creature.hairType == HAIR_QUILL) description += "quill-";
-			else if (i_creature.hairType == HAIR_WOOL) description += "woolen ";
-			description += "hair";
+			if (i_creature.hairType == HAIR_FEATHER) description += "перья-";
+			else if (i_creature.hairType == HAIR_GHOST) description += "прозрачные ";
+			else if (i_creature.hairType == HAIR_GOO) description += "липкие ";
+			else if (i_creature.hairType == HAIR_ANEMONE) description += "тентакли-";
+			else if (i_creature.hairType == HAIR_QUILL) description += "иглы-";
+			else if (i_creature.hairType == HAIR_WOOL) description += "шерстянные ";
+			description += "волосы";
 
 			return description;
 		}
@@ -133,30 +133,29 @@ package classes
 			// LENGTH ADJECTIVE!
 			//
 			if (i_creature.beardLength == 0) {
-				options = ["shaved",
-					"bald",
-					"smooth",
-					"hairless",
-					"glabrous"];
-				description = randomChoice(options) + " chin and cheeks";
+				options = ["бритые",
+					"голые",
+					"гладкие",
+					"безволосые"];
+				description = randomChoice(options) + " подбородок и щеки";
 				return description;
 			}
 			if (i_creature.beardLength < 0.2) {
-				options = ["close-cropped, ",
-					"trim, ",
-					"very short, "];
+				options = ["коротко-стриженая, ",
+					"стриженая, ",
+					"очень короткая, "];
 				description += randomChoice(options);
 			}
-			if (i_creature.beardLength >= 0.2 && i_creature.beardLength < 0.5) description += "short, ";
-			if (i_creature.beardLength >= 0.5 && i_creature.beardLength < 1.5) description += "medium, ";
-			if (i_creature.beardLength >= 1.5 && i_creature.beardLength < 3) description += "moderately long, ";
+			if (i_creature.beardLength >= 0.2 && i_creature.beardLength < 0.5) description += "короткая, ";
+			if (i_creature.beardLength >= 0.5 && i_creature.beardLength < 1.5) description += "средняя, ";
+			if (i_creature.beardLength >= 1.5 && i_creature.beardLength < 3) description += "умеренной длины, ";
 			if (i_creature.beardLength >= 3 && i_creature.beardLength < 6) {
-				if (rand(2) == 0) description += "long, ";
-				else description += "neck-length, ";
+				if (rand(2) == 0) description += "длинная, ";
+				else description += "длинной до шеи, ";
 			}
 			if (i_creature.beardLength >= 6) {
-				if (rand(2) == 0) description += "very long, ";
-				description += "chest-length, ";
+				if (rand(2) == 0) description += "очень длинная, ";
+				description += "длинной до груди, ";
 			}
 			//
 			// COLORS
@@ -166,14 +165,14 @@ package classes
 			// BEARD WORDS
 			// Follows hair type.
 			if (i_creature.hairType == 1) description += "";
-			else if (i_creature.hairType == 2) description += "transparent ";
-			else if (i_creature.hairType == 3) description += "gooey ";
-			else if (i_creature.hairType == 4) description += "tentacley ";
+			else if (i_creature.hairType == 2) description += "прозрачная ";
+			else if (i_creature.hairType == 3) description += "липкая ";
+			else if (i_creature.hairType == 4) description += "тентаклевая ";
 			
-			if (i_creature.beardStyle == 0) description += "beard"
-			else if (i_creature.beardStyle == 1) description += "goatee"
-			else if (i_creature.beardStyle == 2) description += "clean-cut beard"
-			else if (i_creature.beardStyle == 3) description += "mountain-man beard"
+			if (i_creature.beardStyle == 0) description += "борода"
+			else if (i_creature.beardStyle == 1) description += "козлиная бородка"
+			else if (i_creature.beardStyle == 2) description += "аккуратная борода"
+			else if (i_creature.beardStyle == 3) description += "пышная борода"
 
 			return description;
 		}
