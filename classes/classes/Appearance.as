@@ -40,7 +40,7 @@ package classes
 			// LENGTH ADJECTIVE!
 			//
 			if (i_creature.hairLength == 0)
-				return randomChoice(["бритая", "лысая", "гладкая", "безволосаяй", "голая"]) + " голова";
+				return randomChoice(["бритая", "лысая", "гладкая", "безволосая", "голая"]) + " голова";
 
 			if (i_creature.hairLength < 1)
 				description += randomChoice(["обрезанные, ", "стриженные, ", "очень короткие, "]);
@@ -186,9 +186,9 @@ package classes
 		{
 			// fallback for tongueTypes not fully implemented yet
 			if (i_character.tongueType == TONGUE_HUMAN || !DEFAULT_TONGUE_NAMES.hasOwnProperty(''+i_character.tongueType))
-				return "tongue";
+				return "язык";
 
-			return DEFAULT_TONGUE_NAMES[i_character.tongueType] + " tongue";
+			return DEFAULT_TONGUE_NAMES[i_character.tongueType] + " язык";
 		}
 
 		public static function nippleDescription(i_creature:Creature, i_rowNum:Number):String
@@ -210,45 +210,45 @@ package classes
 			if (rand(4) == 0) {
 				//TINAHHHH
 				if (i_creature.nippleLength < .25) {
-					options = ["tiny ",
-						"itty-bitty ",
-						"teeny-tiny ",
-						"dainty "];
+					options = ["крошеченые ",
+						"малюсенькие ",
+						"крохотулечки ",
+						"маленькие "];
 					description += randomChoice(options);
 				}
 				//Prominant
 				if (i_creature.nippleLength >= .4 && i_creature.nippleLength < 1) {
-					options = ["prominent ",
-						"pencil eraser-sized ",
-						"eye-catching ",
-						"pronounced ",
-						"striking "];
+					options = ["торчащие ",
+						"горошинки ",
+						"притягательные ",
+						"привлекательные ",
+						"поразительные "];
 					description += randomChoice(options);
 				}
 				//Big 'uns
 				if (i_creature.nippleLength >= 1 && i_creature.nippleLength < 2) {
-					options = ["forwards-jutting ",
-						"over-sized ",
-						"fleshy ",
-						"large protruding "];
+					options = ["заметно выступающие ",
+						"впечатляющие ",
+						"мясистые ",
+						"топорщащиеся "];
 					description += randomChoice(options);
 				}
 				//'Uge
 				if (i_creature.nippleLength >= 2 && i_creature.nippleLength < 3.2) {
-					options = ["elongated ",
-						"massive ",
-						"awkward ",
-						"lavish ",
-						"hefty "];
+					options = ["удлиненные ",
+						"массивные ",
+						"неуклюжие ",
+						"здоровые ",
+						"здоровенные "];
 					description += randomChoice(options);
 				}
 				//Massive
 				if (i_creature.nippleLength >= 3.2) {
-					options = ["bulky ",
-						"ponderous ",
-						"thumb-sized ",
-						"cock-sized ",
-						"cow-like "];
+					options = ["огроменные ",
+						"тяжеленные ",
+						"большого размера ",
+						"размером с член ",
+						"как-у-коровы "];
 					description += randomChoice(options);
 				}
 				haveDescription = true;
@@ -259,24 +259,24 @@ package classes
 				if (i_creature.hasFuckableNipples()) {
 					//Fuckable and lactating?
 					if (i_creature.biggestLactation() > 1) {
-						options = ["milk-lubricated ",
-							"lactating ",
-							"lactating ",
-							"milk-slicked ",
-							"milky "];
+						options = ["смазанные молоком ",
+							"кормящие ",
+							"истекающие молоком ",
+							"с капельками молока ",
+							"молочные "];
 						description += randomChoice(options);
 					}
 					//Just fuckable
 					else {
-						options = ["wet ",
-							"mutated ",
-							"slimy ",
-							"damp ",
-							"moist ",
-							"slippery ",
-							"oozing ",
-							"sloppy ",
-							"dewy "];
+						options = ["влажные ",
+							"мутированные ",
+							"слизистые ",
+							"мокрые ",
+							"сочные ",
+							"скользкие ",
+							"сочащиеся ",
+							"неряшливые ",
+							"увлажненные "];
 						description += randomChoice(options);
 					}
 					haveDescription = true;
@@ -285,24 +285,24 @@ package classes
 				else if (i_creature.biggestLactation() > 0) {
 					//Light lactation
 					if (i_creature.biggestLactation() <= 1) {
-						options = ["milk moistened ",
-							"slightly lactating ",
-							"milk-dampened "];
+						options = ["увлажненные молоком ",
+							"немного молочные ",
+							"смоченные молоком "];
 						description += randomChoice(options);
 					}
 					//Moderate lactation
 					if (i_creature.biggestLactation() > 1 && i_creature.biggestLactation() <= 2) {
-						options = ["lactating ",
-							"milky ",
-							"milk-seeping "];
+						options = ["кормящие молоком ",
+							"молочные ",
+							"с каплями молока "];
 						description += randomChoice(options);
 					}
 					//Heavy lactation
 					if (i_creature.biggestLactation() > 2) {
-						options = ["dripping ",
-							"dribbling ",
-							"milk-leaking ",
-							"drooling "];
+						options = ["с капающим молоком ",
+							"разбрызгивающие молоко ",
+							"с текущим молоком ",
+							"сочащиеся молоком "];
 						description += randomChoice(options);
 					}
 					haveDescription = true;
@@ -311,66 +311,66 @@ package classes
 			//Possible arousal descriptors
 			else if (rand(3) == 0 && !haveDescription) {
 				if (i_creature.lust100 > 50 && i_creature.lust100 < 75) {
-					options = ["erect ",
-						"perky ",
-						"erect ",
-						"firm ",
-						"tender "];
+					options = ["возбужденные ",
+						"торчащие ",
+						"похотиливые ",
+						"острые ",
+						"вставшие "];
 					description += randomChoice(options);
 					haveDescription = true;
 				}
 				if (i_creature.lust100 >= 75) {
-					options = ["throbbing ",
-						"trembling ",
-						"needy ",
-						"throbbing "];
+					options = ["перевозбужденные ",
+						"дрожащие ",
+						"жаждущие ",
+						"пульсирующие "];
 					description += randomChoice(options);
 					haveDescription = true;
 				}
 			}
 			if (!haveDescription && rand(2) == 0 && i_creature.nipplesPierced > 0 && i_rowNum == 0) {
-				if (i_creature.nipplesPierced == 5) description += "chained ";
-				else description += "pierced ";
+				if (i_creature.nipplesPierced == 5) description += "с цепочкой ";
+				else description += "с пирсингом ";
 				haveDescription = true;
 			}
 			if (!haveDescription && i_creature.hasGooSkin()) {
-				options = ["slime-slick ",
-					"goopy ",
-					"slippery "];
+				options = ["покрытые слизью ",
+					"сользкие ",
+					"липкие "];
 				description += randomChoice(options);
 			}
 			if (!haveDescription && i_creature.hasStatusEffect(StatusEffects.BlackNipples)) {
-				options = ["black ",
-					"ebony ",
-					"sable "];
+				options = ["черные ",
+					"темные ",
+					"темнейшие "];
 				description += randomChoice(options);
 			}
 
 			//Nounsssssssss*BOOM*
 			var choice:int = 0;
 			choice = rand(5);
-			if (choice == 0) description += "nipple";
+			if (choice == 0) description += "соски";
 			if (choice == 1) {
-				if (i_creature.nippleLength < .5) description += "perky nipple";
-				else description += "cherry-like nub";
+				if (i_creature.nippleLength < .5) description += "сосочки";
+				else description += "вишенки";
 			}
 			if (choice == 2) {
-				if (i_creature.hasFuckableNipples()) description += "fuckable nip";
+				if (i_creature.hasFuckableNipples()) description += "с щелкой для ебли ";
 				else {
-					if (i_creature.biggestLactation() >= 1 && i_creature.nippleLength >= 1) description += "teat";
-					else description += "nipple";
+					if (i_creature.biggestLactation() >= 1 && i_creature.nippleLength >= 1) description += "сосок";
+					else description += "сосок";
 				}
 			}
 			if (choice == 3) {
-				if (i_creature.hasFuckableNipples()) description += "nipple-hole";
+				if (i_creature.hasFuckableNipples()) description += "с дыркой ";
 				else {
-					if (i_creature.biggestLactation() >= 1 && i_creature.nippleLength >= 1) description += "teat";
-					else description += "nipple";
+					if (i_creature.biggestLactation() >= 1 && i_creature.nippleLength >= 1) description += "сосок";
+					else description += "сосок";
 				}
 			}
 			if (choice == 4) {
-				if (i_creature.hasFuckableNipples()) description += "nipple-cunt";
-				else description += "nipple";
+				if (i_creature.hasFuckableNipples()) description += "пизда-";
+				else description += "сосок";
 			}
 			return description;
 			/*OLD
