@@ -402,78 +402,77 @@ package classes
 			var description:String = "";
 			var options:Array;
 			if (i_character.hipRating <= 1) {
-				options = ["tiny ",
-					"narrow ",
-					"boyish "];
+				options = ["маленькие ",
+					"тонюсенькие ",
+					"мальчишеские "];
 				description = randomChoice(options);
 			}
 			else if (i_character.hipRating > 1 && i_character.hipRating < 4) {
-				options = ["slender ",
-					"narrow ",
-					"thin "];
+				options = ["узкие ",
+					"тонкие "];
 				description = randomChoice(options);
 				if (i_character.thickness < 30) {
-					if (rand(2) == 0) description = "slightly-flared ";
-					else description = "curved ";
+					if (rand(2) == 0) description = "немного выделяющиеся ";
+					else description = "слегка округлые ";
 				}
 			}
 			else if (i_character.hipRating >= 4 && i_character.hipRating < 6) {
-				options = ["well-formed ",
-					"pleasant "];
+				options = ["отличные ",
+					"славные "];
 				description = randomChoice(options);
 				if (i_character.thickness < 30) {
-					if (rand(2) == 0) description = "flared ";
-					else description = "curvy ";
+					if (rand(2) == 0) description = "заметные ";
+					else description = "привлекательные ";
 				}
 			}
 			else if (i_character.hipRating >= 6 && i_character.hipRating < 10) {
-				options = ["ample ",
-					"noticeable ",
-					"girly "];
+				options = ["широкие ",
+					"заметные ",
+					"женственные "];
 				description = randomChoice(options);
 				if (i_character.thickness < 30) {
-					if (rand(2) == 0) description = "flared ";
-					else description = "waspish ";
+					if (rand(2) == 0) description = "заметные ";
+					else description = "изящные ";
 				}
 			}
 			else if (i_character.hipRating >= 10 && i_character.hipRating < 15) {
-				options = ["flared ",
-					"curvy ",
-					"wide "];
+				options = ["выпуклые ",
+					"округлые ",
+					"широкие "];
 				description = randomChoice(options);
 				if (i_character.thickness < 30) {
-					if (rand(2) == 0) description = "flared ";
-					else description = "waspish ";
+					if (rand(2) == 0) description = "заметные ";
+					else description = "изящные ";
 				}
 			}
 			else if (i_character.hipRating >= 15 && i_character.hipRating < 20) {
 				if (i_character.thickness < 40) {
-					if (rand(2) == 0) description = "flared, ";
-					else description = "waspish, ";
+					if (rand(2) == 0) description = "заметные, ";
+					else description = "изящные, ";
 				}
-				options = ["fertile ",
-					"child-bearing ",
-					"voluptuous "];
+				options = ["широченные ",
+					"детородные ",
+					"пышные "];
 				description += randomChoice(options);
 			}
 			else if (i_character.hipRating >= 20) {
 				if (i_character.thickness < 40) {
-					if (rand(2) == 0) description = "flaring, ";
-					else description = "incredibly waspish, ";
+					if (rand(2) == 0) description = "заметные, ";
+					else description = "невероятно изящные, ";
 				}
-				options = ["broodmother-sized ",
-					"cow-like ",
-					"inhumanly-wide "];
+				options = ["размером с бревна ",
+					"безумно толстые ",
+					"неверотяно широкие "];
 				description += randomChoice(options);
 			}
 			//Taurs
-			if (i_character.isTaur() && rand(3) == 0) description += "flanks";
+			if (i_character.isTaur() && rand(3) == 0) description += "бока";
 			//Nagas have sides, right?
-			else if (i_character.isNaga() && rand(3) == 0) description += "sides";
+			else if (i_character.isNaga() && rand(3) == 0) description += "бока";
 			//Non taurs or taurs who didn't roll flanks
 			else {
-				options = ["hips",
-					"thighs"];
+				options = ["бедра",
+					"ляжки"];
 				description += randomChoice(options);
 			}
 
@@ -516,234 +515,225 @@ package classes
 			if (cockType == CockTypesEnum.HUMAN) {
 				// Yeah, this is kind of messy
 				// there is no other easy way to preserve the weighting fenoxo did
-				return randomChoice("cock",
-					"cock",
-					"cock",
-					"cock",
-					"cock",
-					"prick",
-					"prick",
-					"pecker",
-					"shaft",
-					"shaft",
-					"shaft");
+				return randomChoice("член",
+					"член",
+					"член",
+					"член",
+					"член",
+					"хер",
+					"хер",
+					"хрен",
+					"переч",
+					"хуй",
+					"стержень");
 			}
 			else if (cockType == CockTypesEnum.BEE) {
-				return randomChoice("bee prick",
-					"bee prick",
-					"bee prick",
-					"bee prick",
-					"insectoid cock",
-					"insectoid cock",
-					"furred monster");
+				return randomChoice("пчелиный член",
+					"пчелиный член",
+					"пчелиный член",
+					"пчелиный член",
+					"член насекомого",
+					"член насекомого",
+					"мохнатый монстр");
 			}
 			else if (cockType == CockTypesEnum.DOG) {
-				return randomChoice("dog-shaped dong",
-					"canine shaft",
-					"pointed prick",
-					"knotty dog-shaft",
-					"bestial cock",
-					"animalistic puppy-pecker",
-					"pointed dog-dick",
-					"pointed shaft",
-					"canine member",
-					"canine cock",
-					"knotted dog-cock");
+				return randomChoice("собачий член",
+					"собачий хуй",
+					"острый член",
+					"узловатый собачий хрен",
+					"звериный член",
+					"щенячий член",
+					"острый собачий хер",
+					"остраый хрен",
+					"собачий хрен",
+					"собачий хрен",
+					"узловатый собачий член");
 			}
 			else if (cockType == CockTypesEnum.FOX) {
-				return randomChoice("fox-shaped dong",
-					"vulpine shaft",
-					"pointed prick",
-					"knotty fox-shaft",
-					"bestial cock",
-					"animalistic vixen-pricker",
-					"pointed fox-dick",
-					"pointed shaft",
-					"vulpine member",
-					"vulpine cock",
-					"knotted fox-cock");
+				return randomChoice("лисий хер",
+					"острый лисий член",
+					"острый член",
+					"узловатый лисий член",
+					"звериный хуй",
+					"звериный член",
+					"острый лисий хуй",
+					"острый хер",
+					"лисий член",
+					"лисий хрен",
+					"узловатый лисий хер");
 			}
 			else if (cockType == CockTypesEnum.HORSE) {
-				return randomChoice("flared horse-cock",
-					"equine prick",
-					"bestial horse-shaft",
-					"flat-tipped horse-member",
-					"animalistic stallion-prick",
-					"equine dong",
-					"beast cock",
-					"flared stallion-cock");
+				return randomChoice("конский хрен",
+					"конский хер",
+					"конский член",
+					"конский член с плоской головкой",
+					"член жеребца",
+					"конский хуй",
+					"звериный член",
+					"налитый конский член");
 			}
 			else if (cockType == CockTypesEnum.DEMON) {
-				return randomChoice("nub-covered demon-dick",
-					"nubby shaft",
-					"corrupted cock",
-					"perverse pecker",
-					"bumpy demon-dick",
-					"demonic cock",
-					"demonic dong",
-					"cursed cock",
-					"infernal prick",
-					"unholy cock",
-					"blighted cock");
+				return randomChoice("покрытый пупырышками демонический член",
+					"извращенный член",
+					"порочный член",
+					"член демона",
+					"порченый член",
+					"проклятый член",
+					"инфернальный хер",
+					"демонический член",
+					"пораженный член");
 			}
 			else if (cockType == CockTypesEnum.TENTACLE) {
-				return randomChoice("twisting tentacle-prick",
-					"wriggling plant-shaft",
-					"sinuous tentacle-cock",
-					"squirming cock-tendril",
-					"writhing tentacle-pecker",
-					"wriggling plant-prick",
-					"penile flora",
-					"smooth shaft",
-					"undulating tentacle-dick",
-					"slithering vine-prick",
-					"vine-shaped cock");
+				return randomChoice("закрученный тентаклевидный член",
+					"извивающийся член",
+					"извивающийся тентакль",
+					"закрученный тентакль",
+					"периодически сокращающийся тентакль",
+					"закручивающийся тентакль",
+					"растениевидный член",
+					"гладкий член",
+					"стеблевидный член",
+					"член в форме стебля",
+					"член в форме лозы");
 			}
 			else if (cockType == CockTypesEnum.CAT) {
-				return randomChoice("feline dick",
-					"spined cat-cock",
-					"pink kitty-cock",
-					"spiny prick",
-					"animalistic kitty-prick",
-					"oddly-textured cat-penis",
-					"feline member",
-					"spined shaft",
-					"feline shaft",
-					"barbed dick",
-					"nubby kitten-prick");
+				return randomChoice("кошачий член",
+					"колючий кошачий член",
+					"розовый кошачий член",
+					"колючий член",
+					"звериный член",
+					"странно окрашеный кошачий пенис",
+					"кошачий хуй");
 			}
 			else if (cockType == CockTypesEnum.LIZARD) {
-				return randomChoice("reptilian dick",
-					"purple cock",
-					"inhuman cock",
-					"reptilian prick",
-					"purple prick",
-					"purple member",
-					"serpentine member",
-					"serpentine shaft",
-					"reptilian shaft",
-					"bulbous snake-shaft",
-					"bulging snake-dick");
+				return randomChoice("член рептилии",
+					"пурпурный член",
+					"нечеловеческий пенис",
+					"пенис рептилии",
+					"пурпурный пенис",
+					"змеевидный член",
+					"змеевидный пенис",
+					"змеевидный хуй");
 			}
 			else if (cockType == CockTypesEnum.ANEMONE) {
-				return randomChoice("anemone dick",
-					"tentacle-ringed cock",
-					"blue member",
-					"stinger-laden shaft",
-					"pulsating prick",
-					"anemone prick",
-					"stinger-coated member",
-					"blue cock",
-					"tentacle-ringed dick",
-					"near-transparent shaft",
-					"squirming shaft");
+				return randomChoice("полупрозрачный пенис",
+					"щупальцевый член",
+					"сиреневый член",
+					"пульсирующий пенис",
+					"пульсирующий член",
+					"покрытый колючками пенис",
+					"покрытый маленькими колючками член",
+					"голубой член",
+					"окруженный маленькими тентаклями член",
+					"почти прозрачный член",
+					"извивающийся член");
 			}
 			else if (cockType == CockTypesEnum.KANGAROO) {
-				return randomChoice("kangaroo-like dick",
-					"pointed cock",
-					"marsupial member",
-					"tapered shaft",
-					"curved pecker",
-					"pointed prick",
-					"squirming kangaroo-cock",
-					"marsupial cock",
-					"tapered kangaroo-dick",
-					"curved kangaroo-cock",
-					"squirming shaft");
+				return randomChoice("кенгуриный хрен",
+					"кенгуриный член",
+					"кенгуриный хер",
+					"конический член",
+					"загнутый член",
+					"загнутый пенис",
+					"извивающийся кенгуриный член",
+					"извивающийся кенгуриный пенис",
+					"конический пенис",
+					"изогнутый кенгуриный член",
+					"изогнутый кенгуриный пенис");
 			}
 			else if (cockType == CockTypesEnum.DRAGON) {
-				return randomChoice("dragon-like dick",
-					"segmented shaft",
-					"pointed prick",
-					"knotted dragon-cock",
-					"mythical mast",
-					"segmented tool",
-					"draconic dick",
-					"draconic cock",
-					"tapered dick",
-					"unusual endowment",
-					"scaly shaft");
+				return randomChoice("драконий член",
+					"чешуйчатый хрен",
+					"заостренный пенис",
+					"драконий член с выступающими узелками на нём",
+					"мифический член",
+					"чешуйчатый агрегат",
+					"драконий пенис",
+					"драконий хуй",
+					"заостренный член",
+					"чешуйчатый пенис",
+					"чешуйчатый член");
 			}
 			else if (cockType == CockTypesEnum.DISPLACER) {
-				return randomChoice("coerl cock",
-					"tentacle-tipped phallus",
-					"starfish-tipped shaft",
-					"alien member",
-					"almost-canine dick",
-					"bizarre prick",
-					"beastly cock",
-					"cthulhu-tier cock",
-					"coerl cock",
-					"animal dong",
-					"star-capped tool",
-					"knotted erection");
+				return randomChoice("ужасный пенис",
+					"член с тентаклями",
+					"пенис пришельца",
+					"член пришеьлца",
+					"почти собачий член",
+					"ужасный член",
+					"звериный член",
+					"член с тентаклями на конце",
+					"невероятный пенис",
+					"звериный пенис",
+					"член с головкой в форме звездочки",
+					"член с узлом");
 			}
 			else if (cockType == CockTypesEnum.AVIAN) {
-				return randomChoice("bird cock",
-					"bird dick",
-					"bird pecker",
-					"avian cock",
-					"avian dick",
-					"avian penis",
-					"avian prick",
-					"avian pecker",
-					"tapered cock",
-					"tapered prick");
+				return randomChoice("птичий член",
+					"птичий пенис",
+					"конический пенис",
+					"кончический член",
+					"птичье мужское достоинство",
+					"птичий хуй",
+					"птичий хер",
+					"конический хер",
+					"конический хрен",
+					"птичий хрен");
 			}
 			else if (cockType == CockTypesEnum.PIG) {
-				return randomChoice("pig cock",
-					"pig dick",
-					"pig penis",
-					"pig-like cock",
-					"pig-like dick",
-					"swine cock",
-					"swine penis",
-					"corkscrew-tipped cock",
-					"hoggish cock",
-					"pink pig-cock",
-					"pink pecker");
+				return randomChoice("пенис свиньи",
+					"свиной пенис",
+					"свиной член",
+					"член свиньи",
+					"поросячий член",
+					"поросячий пенис",
+					"пенис хряка",
+					"закрученный как штопор член",
+					"закрученный как штопор пенис",
+					"розовый поросячий член",
+					"розовый поросячий пенис");
 			}
 			else if (cockType == CockTypesEnum.RHINO) {
-				return randomChoice("oblong cock",
-					"oblong dick",
-					"oblong prick",
-					"rhino cock",
-					"rhino dick",
-					"rhino penis",
-					"rhino pecker",
-					"rhino prick",
-					"bulged rhino cock",
-					"bulged rhino dick");
+				return randomChoice("продолговатый член",
+					"продолговатый пенис",
+					"вытянутый член",
+					"вытянутый пенис",
+					"член носорога",
+					"пенис носорога",
+					"носорожий член",
+					"носорожий пенис",
+					"оттопыреный носорожий член",
+					"оттопыреный носорожий пенис");
 			}
 			else if (cockType == CockTypesEnum.WOLF) {
-				return randomChoice("wolf-shaped dong",
-					"canine shaft",
-					"pointed prick",
-					"knotty wolf-shaft",
-					"bestial cock",
-					"animalistic wolf-pecker",
-					"pointed wolf-dick",
-					"pointed shaft",
-					"canine member",
-					"canine cock",
-					"knotted wolf-cock");
+				return randomChoice("волчий член",
+					"собачий член",
+					"остроконечный член",
+					"волчий член с узлом",
+					"звериный член",
+					"волчий пенис",
+					"остроконечный волчий член",
+					"остроконечный пенис",
+					"собачий пенис",
+					"собачий хуй",
+					"собачий пенис с узлом");
 			}
 			else if (cockType == CockTypesEnum.ECHIDNA) {
-				return randomChoice("strange echidna dick",
-					"strange echidna cock",
-					"echidna dick",
-					"echidna penis",
-					"echidna cock",
-					"exotic endowment",
-					"four-headed prick",
-					"four-headed penis",
-					"four-headed cock",
-					"four-headed dick");
+				return randomChoice("странный пенис ехидны",
+					"странный член ехидны",
+					"хуй ехидны",
+					"пенис ехидны",
+					"член ехидны",
+					"экзотическое мужское достоинство",
+					"четырехголовый пенис",
+					"пенис с четыремя головками",
+					"член с четыремся головками",
+					"четырехголовый член");
 			}
-			return randomChoice("cock",
-				"prick",
-				"pecker",
-				"shaft");
+			return randomChoice("член",
+				"пенис",
+				"хуй",
+				"хер");
 		}
 
 		//New cock adjectives.  The old one sucked dicks
